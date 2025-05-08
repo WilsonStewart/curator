@@ -1,6 +1,17 @@
 // drizzle-schema.ts
-import { pgTable, uuid, text, timestamp, jsonb } from "drizzle-orm/pg-core";
-import { ownerColumns, museumColumns, timestampColumns } from "./common-columns";
+import {
+  pgTable,
+  uuid,
+  text,
+  timestamp,
+  jsonb,
+  integer,
+} from "drizzle-orm/pg-core";
+import {
+  ownerColumns,
+  museumColumns,
+  timestampColumns,
+} from "./common-columns";
 
 // // ───────────────────────────────────────────────────────────────
 // // 1. USERS & TENANTS
@@ -43,33 +54,45 @@ export const galleries = pgTable("galleries", {
 // // ───────────────────────────────────────────────────────────────
 // // 3. EXHIBITS & EXHIBIT TYPES
 // // ───────────────────────────────────────────────────────────────
-// export const exhibitTypes = pgTable('exhibit_types', {
-//   id:        uuid('id').primaryKey().defaultRandom(),
-//   name:      text('name').notNull().unique(),
-// });
+export const exhibitTypes = pgTable("exhibit_types", {
+  id: uuid().primaryKey(),
+  name: text().notNull().unique(),
+});
 
-// export const exhibitTypeAudio = pgTable('exhibit_type_audio', {
-//   exhibitTypeId: uuid('exhibit_type_id').primaryKey().references(() => exhibitTypes.id),
-//   bitrate:       integer('bitrate').notNull(),       // in kbps
-//   durationSec:   integer('duration_sec').notNull(),
-// });
+export const ETYoutubeChannels = pgTable("exhibit_type_youtube_channels", {
+  exhibitId: uuid()
+    .primaryKey()
+    .references(() => exhibits.id),
+  youtubeId: text().notNull().unique(),
+  name: text().notNull(),
+});
 
-// export const exhibitTypeVideo = pgTable('exhibit_type_video', {
-//   exhibitTypeId: uuid('exhibit_type_id').primaryKey().references(() => exhibitTypes.id),
-//   resolution:    text('resolution').notNull(),       // e.g. "1920x1080"
-//   framerate:     integer('framerate').notNull(),     // e.g. 30
-// });
+export const ETYoutubeVideos = pgTable("exhibit_type_youtube_videos", {
+  exhibitId: uuid()
+    .primaryKey()
+    .references(() => exhibits.id),
+  title: text().notNull(),
+  description: text(),
+  uploadDate: timestamp().notNull(),
+  youtubeId: text().notNull().unique(),
+  youtubeChannelId: uuid()
+    .notNull()
+    .references(() => ETYoutubeChannels.youtubeId),
+});
 
-// export const exhibits = pgTable('exhibits', {
-//   id:           uuid('id').primaryKey().defaultRandom(),
-//   name:         text('name').notNull(),
-//   exhibitTypeId: uuid('exhibit_type_id').notNull().references(() => exhibitTypes.id),
-//   galleryId:    uuid('gallery_id').notNull().references(() => galleries.id),
-//   museumId:     uuid('museum_id').notNull().references(() => museums.id),
-//   createdBy:    uuid('created_by').notNull().references(() => users.id),
-//   createdAt:    timestamp('created_at').notNull().defaultNow(),
-//   updatedAt:    timestamp('updated_at').notNull().defaultNow(),
-// });
+export const exhibits = pgTable("exhibits", {
+  id: uuid().primaryKey(),
+  name: text().notNull(),
+  exhibitTypeId: uuid()
+    .notNull()
+    .references(() => exhibitTypes.id),
+  galleryId: uuid()
+    .notNull()
+    .references(() => galleries.id),
+  ...museumColumns,
+  ...ownerColumns,
+  ...timestampColumns,
+});
 
 // export const exhibitsRelations = relations(exhibits, ({ one }) => ({
 //   type:    one(exhibitTypes,  { fields: [exhibits.exhibitTypeId], references: [exhibitTypes.id] }),
@@ -80,51 +103,44 @@ export const galleries = pgTable("galleries", {
 // // ───────────────────────────────────────────────────────────────
 // // 4. ARTIFACTS & COPIES
 // // ───────────────────────────────────────────────────────────────
-// export const artifactTypes = pgTable('artifact_types', {
-//   id:   uuid('id').primaryKey().defaultRandom(),
-//   name: text('name').notNull().unique(),
-// });
+export const artifactTypes = pgTable("artifact_types", {
+  id: uuid().primaryKey(),
+  name: text().notNull().unique(),
+});
 
-// export const artifactTypeImage = pgTable('artifact_type_image', {
-//   artifactTypeId: uuid('artifact_type_id').primaryKey().references(() => artifactTypes.id),
-//   width:          integer('width').notNull(),
-//   height:         integer('height').notNull(),
-// });
+export const artifactTypeAliases = pgTable("artifact_type_aliases", {
+  id: uuid().primaryKey(),
+  name: text().notNull().unique(),
+});
 
-// export const artifactTypeDocument = pgTable('artifact_type_document', {
-//   artifactTypeId: uuid('artifact_type_id').primaryKey().references(() => artifactTypes.id),
-//   pageCount:      integer('page_count').notNull(),
-//   language:       text('language').notNull(),
-// });
+export const ATVideos = pgTable("artifact_types_videos", {
+  artifactId: uuid()
+    .primaryKey()
+    .references(() => artifacts.id),
+  lengthSeconds: integer().notNull(),
+});
 
-// export const artifacts = pgTable('artifacts', {
-//   id:              uuid('id').primaryKey().defaultRandom(),
-//   name:            text('name').notNull(),
-//   sizeBytes:       integer('size_bytes').notNull(),
-//   fileFormat:      text('file_format').notNull(),
-//   datesCreated:    timestamp('dates_created').notNull(),
-//   datesModified:   timestamp('dates_modified').notNull(),
-//   artifactTypeId:  uuid('artifact_type_id').notNull().references(() => artifactTypes.id),
-//   exhibitId:       uuid('exhibit_id').notNull().references(() => exhibits.id),
-//   museumId:        uuid('museum_id').notNull().references(() => museums.id),
-//   createdBy:       uuid('created_by').notNull().references(() => users.id),
-//   createdAt:       timestamp('created_at').notNull().defaultNow(),
-//   updatedAt:       timestamp('updated_at').notNull().defaultNow(),
-// });
+export const ATAudio = pgTable("artifact_types_videos", {
+  artifactId: uuid()
+    .primaryKey()
+    .references(() => artifacts.id),
+  lengthSeconds: integer().notNull(),
+});
 
-// export const copies = pgTable('copies', {
-//   id:               uuid('id').primaryKey().defaultRandom(),
-//   name:             text('name').notNull(),
-//   storageType:      text('data_storage_type').notNull(), // e.g. 's3','gcs','filesystem'
-//   connectionString: text('path').notNull(),
-//   datesCreated:     timestamp('dates_created').notNull(),
-//   datesModified:    timestamp('dates_modified').notNull(),
-//   artifactId:       uuid('artifact_id').notNull().references(() => artifacts.id),
-//   museumId:         uuid('museum_id').notNull().references(() => museums.id),
-//   createdBy:        uuid('created_by').notNull().references(() => users.id),
-//   createdAt:        timestamp('created_at').notNull().defaultNow(),
-//   updatedAt:        timestamp('updated_at').notNull().defaultNow(),
-// });
+export const artifacts = pgTable("artifacts", {
+  id: uuid().primaryKey(),
+  name: text().notNull(),
+  fileName: text().notNull(),
+  fileFormat: text().notNull(),
+  sizeBytes: integer().notNull(),
+  artifactTypeId: uuid()
+    .notNull()
+    .references(() => artifactTypes.id),
+  artifactTypeAliasId: uuid().references(() => artifactTypeAliases.id),
+  ...museumColumns,
+  ...ownerColumns,
+  ...timestampColumns,
+});
 
 // export const artifactsRelations = relations(artifacts, ({ one, many }) => ({
 //   type:    one(artifactTypes, { fields: [artifacts.artifactTypeId], references: [artifactTypes.id] }),
@@ -135,37 +151,27 @@ export const galleries = pgTable("galleries", {
 // // ───────────────────────────────────────────────────────────────
 // // 5. POLICIES & LINKING
 // // ───────────────────────────────────────────────────────────────
-// export const policyTypes = pgTable('policy_types', {
-//   id:   uuid('id').primaryKey().defaultRandom(),
-//   name: text('name').notNull().unique(),
-// });
+export const policyTypes = pgTable("policy_types", {
+  id: uuid().primaryKey(),
+  name: text().notNull().unique(),
+});
 
-// export const policyTypeRetention = pgTable('policy_type_retention', {
-//   policyTypeId: uuid('policy_type_id').primaryKey().references(() => policyTypes.id),
-//   daysToKeep:   integer('days_to_keep').notNull(),
-// });
+export const policies = pgTable("policies", {
+  id: uuid().primaryKey().defaultRandom(),
+  name: text().notNull(),
+  policyTypeId: uuid()
+    .notNull()
+    .references(() => policyTypes.id),
+});
 
-// export const policyTypeAccess = pgTable('policy_type_access', {
-//   policyTypeId: uuid('policy_type_id').primaryKey().references(() => policyTypes.id),
-//   rolesAllowed: jsonb('roles_allowed').notNull(), // e.g. ["admin","viewer"]
+// export const galleryPolicies = pgTable("gallery_policies", {
+//   galleryId: uuid("gallery_id")
+//     .notNull()
+//     .references(() => galleries.id),
+//   policyId: uuid("policy_id")
+//     .notNull()
+//     .references(() => policies.id),
 // });
-
-// export const policies = pgTable('policies', {
-//   id:             uuid('id').primaryKey().defaultRandom(),
-//   name:           text('name').notNull(),
-//   policyTypeId:   uuid('policy_type_id').notNull().references(() => policyTypes.id),
-//   museumId:       uuid('museum_id').notNull().references(() => museums.id),
-//   createdBy:      uuid('created_by').notNull().references(() => users.id),
-//   createdAt:      timestamp('created_at').notNull().defaultNow(),
-//   updatedAt:      timestamp('updated_at').notNull().defaultNow(),
-// });
-
-// export const galleryPolicies = pgTable('gallery_policies', {
-//   galleryId: uuid('gallery_id').notNull().references(() => galleries.id),
-//   policyId:  uuid('policy_id').notNull().references(() => policies.id),
-// }, table => ({
-//   pk: table.primaryKey('gallery_policies_pkey', [table.galleryId, table.policyId]),
-// }));
 
 // export const policiesRelations = relations(policies, ({ one, many }) => ({
 //   type:    one(policyTypes,    { fields: [policies.policyTypeId], references: [policyTypes.id] }),
