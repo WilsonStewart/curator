@@ -1,6 +1,6 @@
 import "dotenv/config";
 import { Hono } from "hono";
-import { exhibit } from "./exhibit";
+import { exhibit } from "./routes/exhibit-routes";
 import { drizzle } from "drizzle-orm/node-postgres";
 
 const app = new Hono();

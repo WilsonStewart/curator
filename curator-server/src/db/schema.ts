@@ -7,6 +7,7 @@ import {
   integer,
   AnyPgColumn,
   primaryKey,
+  boolean,
 } from "drizzle-orm/pg-core";
 import {
   ownerColumns,
@@ -42,12 +43,18 @@ export const galleries = pgTable("galleries", {
 export const exhibitTypes = pgTable("exhibit_types", {
   id: uuid().primaryKey(),
   name: text().notNull().unique(),
+  displayName: text().notNull().unique(),
+  isAlias: boolean().notNull().default(false),
+  aliasedTypeId: uuid().references((): AnyPgColumn => exhibitTypes.id),
+  ...ownerColumns,
+  ...timestampColumns,
 });
 
 export const ETYoutubeChannels = pgTable("exhibit_type_youtube_channels", {
   exhibitId: uuid()
     .primaryKey()
     .references(() => exhibits.id),
+  exhibitTypeId: uuid().references(() => exhibitTypes.id),
   youtubeId: text().notNull().unique(),
   name: text().notNull(),
 });
@@ -56,6 +63,7 @@ export const ETYoutubeVideos = pgTable("exhibit_type_youtube_videos", {
   exhibitId: uuid()
     .primaryKey()
     .references(() => exhibits.id),
+  exhibitTypeId: uuid().references(() => exhibitTypes.id),
   title: text().notNull(),
   description: text(),
   uploadDate: timestamp().notNull(),
@@ -82,25 +90,36 @@ export const exhibits = pgTable("exhibits", {
 export const artifactTypes = pgTable("artifact_types", {
   id: uuid().primaryKey(),
   name: text().notNull().unique(),
+  displayName: text().notNull().unique(),
+  isAlias: boolean().notNull().default(false),
+  aliasedTypeId: uuid().references((): AnyPgColumn => artifactTypes.id),
+  ...ownerColumns,
+  ...timestampColumns,
 });
 
-export const artifactTypeAliases = pgTable("artifact_type_aliases", {
-  id: uuid().primaryKey(),
-  name: text().notNull().unique(),
-});
-
-export const ATVideos = pgTable("artifact_types_videos", {
+export const ATVideo = pgTable("artifact_types_video", {
   artifactId: uuid()
     .primaryKey()
     .references(() => artifacts.id),
+  artifactTypeId: uuid().references(() => artifactTypes.id),
   lengthSeconds: integer().notNull(),
 });
 
-export const ATAudio = pgTable("artifact_types_videos", {
+export const ATAudio = pgTable("artifact_types_audio", {
   artifactId: uuid()
     .primaryKey()
     .references(() => artifacts.id),
+  artifactTypeId: uuid().references(() => artifactTypes.id),
   lengthSeconds: integer().notNull(),
+});
+
+export const ATImage = pgTable("artifact_types_image", {
+  artifactId: uuid()
+    .primaryKey()
+    .references(() => artifacts.id),
+  artifactTypeId: uuid().references(() => artifactTypes.id),
+  widthPx: integer(),
+  heightPx: integer(),
 });
 
 export const artifacts = pgTable("artifacts", {
@@ -112,7 +131,6 @@ export const artifacts = pgTable("artifacts", {
   artifactTypeId: uuid()
     .notNull()
     .references(() => artifactTypes.id),
-  artifactTypeAliasId: uuid().references(() => artifactTypeAliases.id),
   ...museumColumns,
   ...ownerColumns,
   ...timestampColumns,
@@ -121,6 +139,11 @@ export const artifacts = pgTable("artifacts", {
 export const policyTypes = pgTable("policy_types", {
   id: uuid().primaryKey(),
   name: text().notNull().unique(),
+  displayName: text().notNull().unique(),
+  isAlias: boolean().notNull().default(false),
+  aliasedTypeId: uuid().references((): AnyPgColumn => policyTypes.id),
+  ...ownerColumns,
+  ...timestampColumns,
 });
 
 export const policies = pgTable("policies", {
