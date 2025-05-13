@@ -1,5 +1,5 @@
 import { Hono } from "hono";
-import { exhibitRoutes } from "./routes/exhibit-routes";
+import { exhibitRoutes } from "@/routes/exhibit-routes";
 
 export const api = () => {
   const server = new Hono();
