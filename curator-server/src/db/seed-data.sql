@@ -1,17 +1,20 @@
 -- -- -- -- -- -- -- -- -- -- -- -- --
 -- The following is for migration 0001:
-
+INSERT INTO
+    metadata (id)
+VALUES
+    ('curatorMetadata');
+--> statement-breakpoint
 INSERT INTO
     users (id, user_id)
 VALUES
     ('0196c522-b498-764d-b9a5-1899a93bbee2', 'SYSTEM');
-
 --> statement-breakpoint
 INSERT INTO
     museums (id, name, created_by)
 VALUES
     (
-        '0196c524-461b-7821-b45a-b0dd02d76aa8',
+        '0196c816-df66-7fb3-accf-104ba8754aaa',
         'default',
         '0196c522-b498-764d-b9a5-1899a93bbee2'
     );
@@ -24,9 +27,8 @@ VALUES
         '0196c525-2859-7906-af98-9f29606ccc0f',
         'root',
         '0196c522-b498-764d-b9a5-1899a93bbee2',
-        '0196c524-461b-7821-b45a-b0dd02d76aa8'
+        '0196c816-df66-7fb3-accf-104ba8754aaa'
     );
-
 --> statement-breakpoint
 INSERT INTO
     exhibit_types (id, name, display_name, created_by)
@@ -52,7 +54,7 @@ INSERT INTO
     artifact_types (id, name, display_name, created_by)
 VALUES
     (
-        '0196c531-29bb-7b17-837c-f7d9fe520b8a',
+        '0196c816-4bdb-725e-b11e-c82465caeaac',
         'audio',
         'Audio Recording',
         '0196c522-b498-764d-b9a5-1899a93bbee2'
@@ -94,7 +96,7 @@ INSERT INTO
     artifact_types (id, name, display_name, is_alias, aliased_type_id, created_by)
 VALUES
     (
-        '0196c541-1eab-7195-bcb3-7240fedbc32d',
+        '0196c814-759f-7624-bebe-fe10930abcb4',
         'youtube_channel_thumbnail',
         'YouTube Channel Thumbnail',
         true,
@@ -102,6 +104,16 @@ VALUES
         '0196c522-b498-764d-b9a5-1899a93bbee2'
     );
 --> statement-breakpoint
-
+INSERT INTO
+    repository_types (id, name, display_name, created_by, museum_id)
+VALUES
+    (
+        '0196c811-80eb-7e33-9655-82820d649deb',
+        'local_filesystem',
+        'Local Filesystem',
+        '0196c522-b498-764d-b9a5-1899a93bbee2',
+        '0196c816-df66-7fb3-accf-104ba8754aaa'
+    );
+--> statement-breakpoint
 -- End of things for migration 0001
 -- -- -- -- -- -- -- -- -- -- -- --

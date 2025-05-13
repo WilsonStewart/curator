@@ -8,15 +8,27 @@ import {
   AnyPgColumn,
   primaryKey,
   boolean,
+  bigint,
 } from "drizzle-orm/pg-core";
 import {
   ownerColumns,
   museumColumns,
   timestampColumns,
 } from "./common-columns";
+import { check } from "drizzle-orm/sqlite-core";
+import { sql } from "drizzle-orm";
+
+export const metadata = pgTable(
+  "metadata",
+  {
+    id: text().default("curatorMetadata").primaryKey(),
+    isInitialized: boolean().default(false),
+  },
+  (table) => [check("id", sql`${table.id} = 'curatorMetadata'`)]
+);
 
 export const users = pgTable("users", {
-  id: uuid().primaryKey().defaultRandom(),
+  id: uuid().primaryKey(),
   userId: text().notNull().unique(),
   firstName: text(),
   lastName: text(),
@@ -97,7 +109,7 @@ export const artifactTypes = pgTable("artifact_types", {
   ...timestampColumns,
 });
 
-export const ATVideo = pgTable("artifact_types_video", {
+export const ATVideo = pgTable("artifact_type_video", {
   artifactId: uuid()
     .primaryKey()
     .references(() => artifacts.id),
@@ -105,7 +117,7 @@ export const ATVideo = pgTable("artifact_types_video", {
   lengthSeconds: integer().notNull(),
 });
 
-export const ATAudio = pgTable("artifact_types_audio", {
+export const ATAudio = pgTable("artifact_type_audio", {
   artifactId: uuid()
     .primaryKey()
     .references(() => artifacts.id),
@@ -113,7 +125,7 @@ export const ATAudio = pgTable("artifact_types_audio", {
   lengthSeconds: integer().notNull(),
 });
 
-export const ATImage = pgTable("artifact_types_image", {
+export const ATImage = pgTable("artifact_type_image", {
   artifactId: uuid()
     .primaryKey()
     .references(() => artifacts.id),
@@ -147,7 +159,7 @@ export const policyTypes = pgTable("policy_types", {
 });
 
 export const policies = pgTable("policies", {
-  id: uuid().primaryKey().defaultRandom(),
+  id: uuid().primaryKey(),
   name: text().notNull(),
   policyTypeId: uuid()
     .notNull()
@@ -166,3 +178,31 @@ export const galleriesPolicies = pgTable(
     }),
   ]
 );
+
+export const repositoryTypes = pgTable("repository_types", {
+  id: uuid().primaryKey(),
+  name: text().notNull().unique(),
+  displayName: text().notNull().unique(),
+  isAlias: boolean().notNull().default(false),
+  aliasedTypeId: uuid().references((): AnyPgColumn => repositoryTypes.id),
+  ...ownerColumns,
+  ...timestampColumns,
+});
+
+export const RTLocalFilesystem = pgTable("repository_type_local_filesystem", {
+  repositoryId: uuid()
+    .primaryKey()
+    .references(() => repositories.id),
+  repositoryTypeId: uuid().references(() => repositoryTypes.id),
+  path: text().notNull(),
+  capacityMb: bigint({ mode: "bigint" }),
+});
+
+export const repositories = pgTable("repositories", {
+  id: uuid().primaryKey(),
+  name: text().notNull().unique(),
+  displayName: text().notNull().unique(),
+  ...museumColumns,
+  ...ownerColumns,
+  ...timestampColumns,
+});
