@@ -1,5 +1,6 @@
 import { Hono } from "hono";
 import { exhibitRoutes } from "@/routes/exhibit-routes";
+import { userRoutes } from "@/routes/user-routes";
 
 export const api = () => {
   const server = new Hono();
@@ -9,4 +10,5 @@ export const api = () => {
   });
 
   server.route("/exhibit", exhibitRoutes);
+  server.route("/users", userRoutes)
 };
