@@ -1,5 +1,5 @@
 import { Hono } from "hono";
-import { db } from "..";
+import { db } from "../api";
 import { users } from "../db/schema";
 
 const userRoutes = new Hono()

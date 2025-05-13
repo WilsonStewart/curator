@@ -1,5 +1,5 @@
 import { Hono } from "hono";
-import { db } from "..";
+import { db } from "../index";
 import { exhibits } from "../db/schema";
 
 export const exhibitRoutes = new Hono();
