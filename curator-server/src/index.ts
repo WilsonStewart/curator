@@ -1,6 +1,6 @@
 import "dotenv/config";
 import { Hono } from "hono";
-import { exhibit } from "./routes/exhibit-routes";
+import { exhibitRoutes } from "./routes/exhibit-routes";
 import { drizzle } from "drizzle-orm/node-postgres";
 
 const app = new Hono();
@@ -10,6 +10,6 @@ app.get("/", (c) => {
   return c.text("Hello Hono!");
 });
 
-app.route("/exhibit", exhibit);
+app.route("/exhibit", exhibitRoutes);
 
 export default app;
