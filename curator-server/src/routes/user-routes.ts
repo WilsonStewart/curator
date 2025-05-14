@@ -1,10 +1,10 @@
-import { Hono } from "hono";
+import { OpenAPIHono } from "@hono/zod-openapi";
 import { db } from "@/index";
 import { users } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { genUuid } from "@/util/uuid";
 
-export const userRoutes = new Hono();
+export const userRoutes = new OpenAPIHono();
 
 //
 // Create a user
