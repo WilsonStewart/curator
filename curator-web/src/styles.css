@@ -13,3 +13,21 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.mantine-AppShell-navbar {
+  background-color: #f4f6f8
+}
+
+.mantine-AppShell-header{
+    background-color: red
+}
+
+.mantine-AppShell-main {
+  background-color: #f4f6f8;
+}
+
+.mantine-AppShell-main .mainDiv {
+  background-color: white;
+  height: 500px;
+  /* border-top-left-radius: 10px; */
+}
