@@ -1,15 +1,55 @@
 @import "tailwindcss";
 
+html {
+}
+
 body {
   @apply m-0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  font-family:
+    "Manrope" -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Roboto",
+    "Oxygen",
+    "Ubuntu",
+    "Cantarell",
+    "Fira Sans",
+    "Droid Sans",
+    "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  font-family:
+    source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+.mantine-NavLink-root {
+  border-radius: 0.3em;
+  padding: 0 10px 0 10px;
+  margin: 5px 0 5px 0;
+  border: transparent solid 0.1px;
+  font-size: 1.5em;
+  width: 10em;
+}
+
+.mantine-NavLink-root:hover {
+  border: #f3e9f7 solid 0.1px;
+  -webkit-transition: all 0.1s ease;
+  transition: all 0.1s ease;
+}
+
+.mantine-Paper-root.main {
+  padding: 1em;
+  margin: 1em 0 0 0;
+  width: 100%;
+}
+
+.box-status-list {
+}
+
+.box-status-list tbody tr td {
+  padding: 0.2em 0.5em 0.2em 0.5em;
 }
