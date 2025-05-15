@@ -1,9 +1,10 @@
-import { createFileRoute } from '@tanstack/react-router'
-import logo from '../logo.svg'
+import { createFileRoute } from "@tanstack/react-router";
+import logo from "../logo.svg";
+import { Button } from "@mantine/core";
 
-export const Route = createFileRoute('/')({
+export const Route = createFileRoute("/")({
   component: App,
-})
+});
 
 function App() {
   return (
@@ -23,7 +24,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          <Button>Click me please</Button>
         </a>
         <a
           className="text-[#61dafb] hover:underline"
@@ -35,5 +36,5 @@ function App() {
         </a>
       </header>
     </div>
-  )
+  );
 }
