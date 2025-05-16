@@ -18,8 +18,8 @@ code {
   background-color: #f4f6f8
 }
 
-.mantine-AppShell-header{
-    background-color: red
+.mantine-AppShell-header {
+  background-color: red
 }
 
 .mantine-AppShell-main {
@@ -30,4 +30,18 @@ code {
   background-color: white;
   height: 500px;
   /* border-top-left-radius: 10px; */
+}
+
+.mantine-NavLink-root {
+  border-radius: .3em;
+  padding: 0 10px 0 10px;
+  margin: 2px 0 2px 0;
+  border: transparent solid .1px
+}
+
+.mantine-NavLink-root:hover {
+  background-color: white;
+  border: #f3e9f7 solid .1px;
+  -webkit-transition: all .1s ease;
+  transition: all .1s ease;
 }
