@@ -8,6 +8,7 @@ import {
   BoneIcon,
   HardDrivesIcon,
   UsersIcon,
+  PulseIcon,
 } from "@phosphor-icons/react";
 import type { PropsWithChildren } from "react";
 
@@ -18,7 +19,6 @@ export function MainLayout(props: PropsWithChildren) {
         display: "flex",
         height: "100vh",
         overflow: "hidden",
-        background: "#f6f8fa",
       }}
     >
       <Box style={{ padding: ".5em 0 0 .5em" }}>
@@ -26,61 +26,61 @@ export function MainLayout(props: PropsWithChildren) {
           <Box
             component="a"
             href="/"
-            style={{ fontFamily: "Manrope", fontSize: 30, fontWeight: 800 }}
+            style={{ fontFamily: "Manrope", fontSize: 30, fontWeight: 400 }}
           >
             Curator
           </Box>
         </Box>
-        <NavLink
-          color="grape"
+        {/* <NavLink
+          
           leftSection={<BankIcon />}
           label={"Overview"}
           active={true}
         />
         <NavLink
-          color="grape"
+          
           leftSection={<PresentationIcon />}
           label={"Exhibits"}
           active={false}
         />
         <NavLink
-          color="grape"
+          
           leftSection={<BoneIcon />}
           label={"Artifacts"}
           active={false}
         />
         <NavLink
-          color="grape"
+          
           leftSection={<HardDrivesIcon />}
           label={"Repositories"}
           active={false}
         />
         <Divider my="sm" />
         <NavLink
-          color="grape"
+          
           leftSection={<RobotIcon />}
           label={"Automation"}
           active={false}
         />
         <NavLink
-          color="grape"
+          
           leftSection={<ScrollIcon />}
           label={"Policies"}
           active={false}
         />
-        <Divider my="sm" />
+        <Divider my="sm" /> */}
         <NavLink
-          color="grape"
+          //
           leftSection={<GearIcon />}
           label={"Settings"}
           active={false}
         >
-          <NavLink
-            color="grape"
+          {/* <NavLink
             leftSection={<UsersIcon />}
             label={"Users"}
             active={false}
-          />
+          /> */}
+          <NavLink leftSection={<PulseIcon />} label={"Status"} active={true} />
         </NavLink>
       </Box>
       <Paper radius={10} className="main" shadow="xl">

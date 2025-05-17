@@ -13,6 +13,7 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as OverviewImport } from './routes/overview'
 import { Route as IndexImport } from './routes/index'
+import { Route as SettingsStatusImport } from './routes/settings.status'
 
 // Create/Update Routes
 
@@ -25,6 +26,12 @@ const OverviewRoute = OverviewImport.update({
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const SettingsStatusRoute = SettingsStatusImport.update({
+  id: '/settings/status',
+  path: '/settings/status',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -46,6 +53,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OverviewImport
       parentRoute: typeof rootRoute
     }
+    '/settings/status': {
+      id: '/settings/status'
+      path: '/settings/status'
+      fullPath: '/settings/status'
+      preLoaderRoute: typeof SettingsStatusImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -54,36 +68,41 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/overview': typeof OverviewRoute
+  '/settings/status': typeof SettingsStatusRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/overview': typeof OverviewRoute
+  '/settings/status': typeof SettingsStatusRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/overview': typeof OverviewRoute
+  '/settings/status': typeof SettingsStatusRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/overview'
+  fullPaths: '/' | '/overview' | '/settings/status'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/overview'
-  id: '__root__' | '/' | '/overview'
+  to: '/' | '/overview' | '/settings/status'
+  id: '__root__' | '/' | '/overview' | '/settings/status'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   OverviewRoute: typeof OverviewRoute
+  SettingsStatusRoute: typeof SettingsStatusRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   OverviewRoute: OverviewRoute,
+  SettingsStatusRoute: SettingsStatusRoute,
 }
 
 export const routeTree = rootRoute
@@ -97,7 +116,8 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/overview"
+        "/overview",
+        "/settings/status"
       ]
     },
     "/": {
@@ -105,6 +125,9 @@ export const routeTree = rootRoute
     },
     "/overview": {
       "filePath": "overview.tsx"
+    },
+    "/settings/status": {
+      "filePath": "settings.status.tsx"
     }
   }
 }

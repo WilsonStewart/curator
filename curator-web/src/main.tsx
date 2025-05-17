@@ -1,4 +1,4 @@
-import { MantineProvider } from "@mantine/core";
+import { createTheme, MantineProvider } from "@mantine/core";
 import ReactDOM from "react-dom/client";
 import { RouterProvider, createRouter } from "@tanstack/react-router";
 import "@mantine/core/styles.css";
@@ -8,6 +8,14 @@ import { routeTree } from "@/routeTree.gen";
 
 import "./styles.css";
 import reportWebVitals from "./reportWebVitals.ts";
+
+const mantineTheme = createTheme({
+  black: "#212529",
+  white: "white",
+  primaryColor: "grape",
+  fontFamily: "'Manrope', sans-serif",
+  cursorType: "pointer",
+});
 
 // Create a new router instance
 const router = createRouter({
@@ -31,7 +39,7 @@ const rootElement = document.getElementById("app");
 if (rootElement && !rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement);
   root.render(
-    <MantineProvider>
+    <MantineProvider theme={mantineTheme}>
       <RouterProvider router={router} />
     </MantineProvider>
   );
