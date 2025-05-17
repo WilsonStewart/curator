@@ -1,8 +1,12 @@
 @import "tailwindcss";
 
+html{
+  background: white
+}
+
 body {
   @apply m-0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+  font-family: "Manrope" -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -14,29 +18,13 @@ code {
     monospace;
 }
 
-.mantine-AppShell-navbar {
-  background-color: #f4f6f8
-}
-
-.mantine-AppShell-header {
-  background-color: red
-}
-
-.mantine-AppShell-main {
-  background-color: #f4f6f8;
-}
-
-.mantine-AppShell-main .mainDiv {
-  background-color: white;
-  height: 500px;
-  /* border-top-left-radius: 10px; */
-}
-
 .mantine-NavLink-root {
   border-radius: .3em;
   padding: 0 10px 0 10px;
-  margin: 2px 0 2px 0;
-  border: transparent solid .1px
+  margin: 5px 0 5px 0;
+  border: transparent solid .1px;
+  font-size: 1.5em;
+  width: 10em;
 }
 
 .mantine-NavLink-root:hover {
@@ -44,4 +32,11 @@ code {
   border: #f3e9f7 solid .1px;
   -webkit-transition: all .1s ease;
   transition: all .1s ease;
+}
+
+.mantine-Paper-root.main {
+  background-color: white;
+  padding: 1em;
+  margin: 1em 0 0 0;
+  width: 100%;
 }
