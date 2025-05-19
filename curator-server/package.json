@@ -2,6 +2,7 @@
   "name": "curator-server",
   "scripts": {
     "dev": "bun run --hot src/index.ts",
+    "db:genMigrations": "bun run drizzle-kit generate",
     "devtools:genNanoids": "bun run dev-tools/gen-20-nanoids.ts"
   },
   "dependencies": {
