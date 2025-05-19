@@ -29,6 +29,7 @@ export const metadata = pgTable(
 
 export const users = pgTable("users", {
   id: uuid().primaryKey(),
+  eid: text().notNull().unique(),
   userId: text().notNull().unique(),
   firstName: text(),
   lastName: text(),
@@ -37,6 +38,7 @@ export const users = pgTable("users", {
 
 export const museums = pgTable("museums", {
   id: uuid().primaryKey(),
+  eid: text().notNull().unique(),
   name: text().notNull().unique(),
   ...ownerColumns,
   ...timestampColumns,
@@ -44,6 +46,7 @@ export const museums = pgTable("museums", {
 
 export const galleries = pgTable("galleries", {
   id: uuid("id").primaryKey(),
+  eid: text().notNull().unique(),
   name: text("name").notNull(),
   parentGalleryId: uuid().references((): AnyPgColumn => galleries.id),
   resultantPolicy: jsonb(),
@@ -87,6 +90,7 @@ export const ETYoutubeVideos = pgTable("exhibit_type_youtube_videos", {
 
 export const exhibits = pgTable("exhibits", {
   id: uuid().primaryKey(),
+  eid: text().notNull().unique(),
   name: text().notNull(),
   exhibitTypeId: uuid()
     .notNull()
@@ -136,6 +140,7 @@ export const ATImage = pgTable("artifact_type_image", {
 
 export const artifacts = pgTable("artifacts", {
   id: uuid().primaryKey(),
+  eid: text().notNull().unique(),
   name: text().notNull(),
   fileName: text().notNull(),
   fileFormat: text().notNull(),
@@ -160,7 +165,8 @@ export const policyTypes = pgTable("policy_types", {
 
 export const policies = pgTable("policies", {
   id: uuid().primaryKey(),
-  name: text().notNull(),
+  eid: text().notNull().unique(),
+  name: text().notNull().unique(),
   policyTypeId: uuid()
     .notNull()
     .references(() => policyTypes.id),
@@ -200,6 +206,7 @@ export const RTLocalFilesystem = pgTable("repository_type_local_filesystem", {
 
 export const repositories = pgTable("repositories", {
   id: uuid().primaryKey(),
+  eid: text().notNull().unique(),
   name: text().notNull().unique(),
   displayName: text().notNull().unique(),
   ...museumColumns,

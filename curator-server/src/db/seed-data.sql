@@ -4,31 +4,40 @@ INSERT INTO
     metadata (id)
 VALUES
     ('curatorMetadata');
+
 --> statement-breakpoint
 INSERT INTO
-    users (id, user_id)
+    users (id, eid, user_id)
 VALUES
-    ('0196c522-b498-764d-b9a5-1899a93bbee2', 'SYSTEM');
+    (
+        '0196c522-b498-764d-b9a5-1899a93bbee2',
+        'uvsisaQDaD',
+        'SYSTEM'
+    );
+
 --> statement-breakpoint
 INSERT INTO
-    museums (id, name, created_by)
+    museums (id, eid, name, created_by)
 VALUES
     (
         '0196c816-df66-7fb3-accf-104ba8754aaa',
+        "hGtvQUDxDu",
         'default',
         '0196c522-b498-764d-b9a5-1899a93bbee2'
     );
 
 --> statement-breakpoint
 INSERT INTO
-    galleries (id, name, created_by, museum_id)
+    galleries (id, eid, name, museum_id, created_by)
 VALUES
     (
         '0196c525-2859-7906-af98-9f29606ccc0f',
-        'root',
+        "QQXZUtbzz4",
+        'ROOT',
+        '0196c816-df66-7fb3-accf-104ba8754aaa',
         '0196c522-b498-764d-b9a5-1899a93bbee2',
-        '0196c816-df66-7fb3-accf-104ba8754aaa'
     );
+
 --> statement-breakpoint
 INSERT INTO
     exhibit_types (id, name, display_name, created_by)
@@ -39,6 +48,7 @@ VALUES
         'YouTube Channel',
         '0196c522-b498-764d-b9a5-1899a93bbee2'
     );
+
 --> statement-breakpoint
 INSERT INTO
     exhibit_types (id, name, display_name, created_by)
@@ -49,6 +59,7 @@ VALUES
         'YouTube Video',
         '0196c522-b498-764d-b9a5-1899a93bbee2'
     );
+
 --> statement-breakpoint
 INSERT INTO
     artifact_types (id, name, display_name, created_by)
@@ -59,6 +70,7 @@ VALUES
         'Audio Recording',
         '0196c522-b498-764d-b9a5-1899a93bbee2'
     );
+
 --> statement-breakpoint
 INSERT INTO
     artifact_types (id, name, display_name, created_by)
@@ -69,6 +81,7 @@ VALUES
         'Video Recording',
         '0196c522-b498-764d-b9a5-1899a93bbee2'
     );
+
 --> statement-breakpoint
 INSERT INTO
     artifact_types (id, name, display_name, created_by)
@@ -79,41 +92,59 @@ VALUES
         'Image',
         '0196c522-b498-764d-b9a5-1899a93bbee2'
     );
+
 --> statement-breakpoint
 INSERT INTO
-    artifact_types (id, name, display_name, is_alias, aliased_type_id, created_by)
+    artifact_types (
+        id,
+        name,
+        display_name,
+        is_alias,
+        aliased_type_id,
+        created_by
+    )
 VALUES
     (
         '0196c536-2f90-7003-95e6-888fa7d71be7',
         'youtube_video_thumbnail',
         'YouTube Video Thumbnail',
         true,
-        '0196c540-29be-7c74-ac3c-ea33acf88e11'
+        '0196c540-29be-7c74-ac3c-ea33acf88e11',
         '0196c522-b498-764d-b9a5-1899a93bbee2'
     );
+
 --> statement-breakpoint
 INSERT INTO
-    artifact_types (id, name, display_name, is_alias, aliased_type_id, created_by)
+    artifact_types (
+        id,
+        name,
+        display_name,
+        is_alias,
+        aliased_type_id,
+        created_by
+    )
 VALUES
     (
         '0196c814-759f-7624-bebe-fe10930abcb4',
         'youtube_channel_thumbnail',
         'YouTube Channel Thumbnail',
         true,
-        '0196c540-29be-7c74-ac3c-ea33acf88e11'
+        '0196c540-29be-7c74-ac3c-ea33acf88e11',
         '0196c522-b498-764d-b9a5-1899a93bbee2'
     );
+
 --> statement-breakpoint
 INSERT INTO
-    repository_types (id, name, display_name, created_by, museum_id)
+    repository_types (id, name, display_name,, museum_id, created_by)
 VALUES
     (
         '0196c811-80eb-7e33-9655-82820d649deb',
         'local_filesystem',
         'Local Filesystem',
+        '0196c816-df66-7fb3-accf-104ba8754aaa',
         '0196c522-b498-764d-b9a5-1899a93bbee2',
-        '0196c816-df66-7fb3-accf-104ba8754aaa'
     );
+
 --> statement-breakpoint
 -- End of things for migration 0001
 -- -- -- -- -- -- -- -- -- -- -- --
