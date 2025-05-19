@@ -4,7 +4,14 @@ import { api } from "@/api";
 
 export const db = drizzle(process.env.DATABASE_URL!);
 
-switch(process.env.CURATOR_MODE){
-    case 'api':
-        api()
-}
+const start = () => {
+  switch (process.env.CURATOR_MODE) {
+    case "api":
+      return {
+        port: process.env.PORT,
+        fetch: api.fetch,
+      };
+  }
+};
+
+export default start();
