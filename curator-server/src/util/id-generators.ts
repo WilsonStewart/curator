@@ -7,8 +7,8 @@ export function genUuid(): string {
 
 export function genNanoid(): string {
   const nanoid = customAlphabet(
-    "123456789ABCDEFGHIJKLMNPQRSTUVWXYZabcdefghijklmnpqrstuvwxyz",
-    10
+    "23456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz",
+    8
   );
 
   return nanoid();
