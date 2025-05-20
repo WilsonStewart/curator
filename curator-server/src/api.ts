@@ -1,7 +1,6 @@
 import { OpenAPIHono } from "@hono/zod-openapi";
+import { notFound404Handler } from "@/middlewares/404-handler";
 
 export const api = new OpenAPIHono();
 
-api.get("/", (c) => {
-  return c.text("Hello Hono!");
-});
+api.notFound(notFound404Handler);
