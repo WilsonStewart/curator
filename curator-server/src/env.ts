@@ -1,9 +1,10 @@
 import { z } from "zod";
 
-const EnvSchema = z.object({
-  NODE_ENV: z.string().default("dev"),
-  SERVER_PORT: z.coerce.number().default(3100),
+const ZEnvSchema = z.object({
+  NODE_ENV: z.enum(["production", "development"]),
+  CURATOR_MODE: z.enum(["api", "supervisor", "worker"]),
+  SERVER_PORT: z.coerce.number(),
   DATABASE_URL: z.string().url(),
 });
 
-export type env = z.infer<typeof EnvSchema>;
+export type TEnvVars = z.infer<typeof ZEnvSchema>;
