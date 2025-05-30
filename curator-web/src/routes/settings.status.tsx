@@ -13,7 +13,12 @@ function RouteComponent() {
   const [backendStatus, setBackendStatus] = useState(false);
   const [backendStatusIsQueried, setBackendStatusIsQueried] = useState(false);
 
-  useEffect(() => { }, []);
+  useEffect(() => {
+setServerVersion(false)
+setServerVersionIsQueried(false)
+setBackendStatus(false)
+setBackendStatusIsQueried(false)
+  }, []);
 
   return (
     <MainLayout>
