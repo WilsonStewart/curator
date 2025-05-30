@@ -1,7 +1,6 @@
 @import "tailwindcss";
 
-html {
-}
+html {}
 
 body {
   @apply m-0;
@@ -27,11 +26,10 @@ code {
 }
 
 .mantine-NavLink-root {
-  border-radius: 0.3em;
+  border-radius: 0.1em;
   padding: 0 10px 0 10px;
   margin: 5px 0 5px 0;
   border: transparent solid 0.1px;
-  font-size: 1.5em;
   width: 10em;
 }
 
@@ -41,15 +39,56 @@ code {
   transition: all 0.1s ease;
 }
 
+.mantine-NavLink-label {
+  /* background-color: red; */
+  font-size: 11pt;
+}
+
+.mantine-NavLink-body {
+  display: flex;
+  padding: 2px 0 2px 0;
+}
+
 .mantine-Paper-root.main {
   padding: 1em;
   margin: 1em 0 0 0;
   width: 100%;
 }
 
-.box-status-list {
-}
+.box-status-list {}
 
 .box-status-list tbody tr td {
   padding: 0.2em 0.5em 0.2em 0.5em;
+}
+
+.topbar {
+  color: white;
+  height: 1.5em;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: .5em;
+  padding-right: .5em;
+}
+
+.search-bar {
+  color: black;
+  background-color: white;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30em;
+  height: auto;
+  padding: 2px;
+  font-size: 11pt
+}
+
+.sidebar {
+  /* background-color: red; */
+  padding: ".5em 0 0 .5em"
+}
+
+.main-content {
+  padding: 1em;
 }
