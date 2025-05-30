@@ -11,15 +11,50 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as OverviewImport } from './routes/overview'
+import { Route as RepositoriesImport } from './routes/repositories'
+import { Route as PoliciesImport } from './routes/policies'
+import { Route as ExhibitsImport } from './routes/exhibits'
+import { Route as DashboardImport } from './routes/dashboard'
+import { Route as AutomationsImport } from './routes/automations'
+import { Route as ArtifactsImport } from './routes/artifacts'
 import { Route as IndexImport } from './routes/index'
 import { Route as SettingsStatusImport } from './routes/settings.status'
 
 // Create/Update Routes
 
-const OverviewRoute = OverviewImport.update({
-  id: '/overview',
-  path: '/overview',
+const RepositoriesRoute = RepositoriesImport.update({
+  id: '/repositories',
+  path: '/repositories',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const PoliciesRoute = PoliciesImport.update({
+  id: '/policies',
+  path: '/policies',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ExhibitsRoute = ExhibitsImport.update({
+  id: '/exhibits',
+  path: '/exhibits',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const DashboardRoute = DashboardImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const AutomationsRoute = AutomationsImport.update({
+  id: '/automations',
+  path: '/automations',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ArtifactsRoute = ArtifactsImport.update({
+  id: '/artifacts',
+  path: '/artifacts',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -46,11 +81,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/overview': {
-      id: '/overview'
-      path: '/overview'
-      fullPath: '/overview'
-      preLoaderRoute: typeof OverviewImport
+    '/artifacts': {
+      id: '/artifacts'
+      path: '/artifacts'
+      fullPath: '/artifacts'
+      preLoaderRoute: typeof ArtifactsImport
+      parentRoute: typeof rootRoute
+    }
+    '/automations': {
+      id: '/automations'
+      path: '/automations'
+      fullPath: '/automations'
+      preLoaderRoute: typeof AutomationsImport
+      parentRoute: typeof rootRoute
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardImport
+      parentRoute: typeof rootRoute
+    }
+    '/exhibits': {
+      id: '/exhibits'
+      path: '/exhibits'
+      fullPath: '/exhibits'
+      preLoaderRoute: typeof ExhibitsImport
+      parentRoute: typeof rootRoute
+    }
+    '/policies': {
+      id: '/policies'
+      path: '/policies'
+      fullPath: '/policies'
+      preLoaderRoute: typeof PoliciesImport
+      parentRoute: typeof rootRoute
+    }
+    '/repositories': {
+      id: '/repositories'
+      path: '/repositories'
+      fullPath: '/repositories'
+      preLoaderRoute: typeof RepositoriesImport
       parentRoute: typeof rootRoute
     }
     '/settings/status': {
@@ -67,41 +137,91 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/overview': typeof OverviewRoute
+  '/artifacts': typeof ArtifactsRoute
+  '/automations': typeof AutomationsRoute
+  '/dashboard': typeof DashboardRoute
+  '/exhibits': typeof ExhibitsRoute
+  '/policies': typeof PoliciesRoute
+  '/repositories': typeof RepositoriesRoute
   '/settings/status': typeof SettingsStatusRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/overview': typeof OverviewRoute
+  '/artifacts': typeof ArtifactsRoute
+  '/automations': typeof AutomationsRoute
+  '/dashboard': typeof DashboardRoute
+  '/exhibits': typeof ExhibitsRoute
+  '/policies': typeof PoliciesRoute
+  '/repositories': typeof RepositoriesRoute
   '/settings/status': typeof SettingsStatusRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
-  '/overview': typeof OverviewRoute
+  '/artifacts': typeof ArtifactsRoute
+  '/automations': typeof AutomationsRoute
+  '/dashboard': typeof DashboardRoute
+  '/exhibits': typeof ExhibitsRoute
+  '/policies': typeof PoliciesRoute
+  '/repositories': typeof RepositoriesRoute
   '/settings/status': typeof SettingsStatusRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/overview' | '/settings/status'
+  fullPaths:
+    | '/'
+    | '/artifacts'
+    | '/automations'
+    | '/dashboard'
+    | '/exhibits'
+    | '/policies'
+    | '/repositories'
+    | '/settings/status'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/overview' | '/settings/status'
-  id: '__root__' | '/' | '/overview' | '/settings/status'
+  to:
+    | '/'
+    | '/artifacts'
+    | '/automations'
+    | '/dashboard'
+    | '/exhibits'
+    | '/policies'
+    | '/repositories'
+    | '/settings/status'
+  id:
+    | '__root__'
+    | '/'
+    | '/artifacts'
+    | '/automations'
+    | '/dashboard'
+    | '/exhibits'
+    | '/policies'
+    | '/repositories'
+    | '/settings/status'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  OverviewRoute: typeof OverviewRoute
+  ArtifactsRoute: typeof ArtifactsRoute
+  AutomationsRoute: typeof AutomationsRoute
+  DashboardRoute: typeof DashboardRoute
+  ExhibitsRoute: typeof ExhibitsRoute
+  PoliciesRoute: typeof PoliciesRoute
+  RepositoriesRoute: typeof RepositoriesRoute
   SettingsStatusRoute: typeof SettingsStatusRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  OverviewRoute: OverviewRoute,
+  ArtifactsRoute: ArtifactsRoute,
+  AutomationsRoute: AutomationsRoute,
+  DashboardRoute: DashboardRoute,
+  ExhibitsRoute: ExhibitsRoute,
+  PoliciesRoute: PoliciesRoute,
+  RepositoriesRoute: RepositoriesRoute,
   SettingsStatusRoute: SettingsStatusRoute,
 }
 
@@ -116,15 +236,35 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/overview",
+        "/artifacts",
+        "/automations",
+        "/dashboard",
+        "/exhibits",
+        "/policies",
+        "/repositories",
         "/settings/status"
       ]
     },
     "/": {
       "filePath": "index.tsx"
     },
-    "/overview": {
-      "filePath": "overview.tsx"
+    "/artifacts": {
+      "filePath": "artifacts.tsx"
+    },
+    "/automations": {
+      "filePath": "automations.tsx"
+    },
+    "/dashboard": {
+      "filePath": "dashboard.tsx"
+    },
+    "/exhibits": {
+      "filePath": "exhibits.tsx"
+    },
+    "/policies": {
+      "filePath": "policies.tsx"
+    },
+    "/repositories": {
+      "filePath": "repositories.tsx"
     },
     "/settings/status": {
       "filePath": "settings.status.tsx"
