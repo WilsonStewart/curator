@@ -1,4 +1,4 @@
-import { Box, Divider, NavLink, Paper, Text } from "@mantine/core";
+import { Box, Divider, NavLink, Text } from "@mantine/core";
 import {
   GearIcon,
   BankIcon,
