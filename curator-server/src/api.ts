@@ -1,5 +1,6 @@
 import { OpenAPIHono } from "@hono/zod-openapi";
 import { notFound404Handler } from "@/middlewares/404-handler";
+import pkgdotjson from "@/../package.json" assert { type: "json" };
 
 export const api = new OpenAPIHono();
 
@@ -18,3 +19,6 @@ console.log(`
 ░ ░         ░        ░           ░  ░            ░ ░     ░              ░  ░          ░  
 ░                                                                                        
 `);
+console.log(`Package Name: ${pkgdotjson.name}`);
+console.log(`Version:      ${pkgdotjson.version}`);
+console.log("");
