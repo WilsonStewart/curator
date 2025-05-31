@@ -6,6 +6,7 @@ export const honoLogger = createMiddleware(async (c, next) => {
     timestamp: new Date().toISOString(),
     url: c.req.url,
     method: c.req.method,
+    response: c.res.status,
   };
 
   env.NODE_ENV === "production"
