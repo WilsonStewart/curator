@@ -12,4 +12,6 @@ export const honoLogger = createMiddleware(async (c, next) => {
   env.NODE_ENV === "production"
     ? console.log(JSON.stringify(logLine))
     : console.log(JSON.stringify(logLine, null, 2));
+
+  next()
 });
