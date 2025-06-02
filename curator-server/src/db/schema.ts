@@ -17,7 +17,6 @@ import {
 } from "./common-columns";
 import { check } from "drizzle-orm/sqlite-core";
 import { sql } from "drizzle-orm";
-import { number } from "zod";
 
 export const metadata = pgTable(
   "metadata",

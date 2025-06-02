@@ -1,22 +1,27 @@
-import { z } from "zod";
 import "dotenv/config";
+import { type } from "arktype"
 
-const ZEnvSchema = z.object({
-  NODE_ENV: z.enum(["production", "development"]),
-  CURATOR_MODE: z.enum(["api", "supervisor", "worker"]),
-  SERVER_PORT: z.coerce.number(),
-  DATABASE_URL: z.string().url(),
-});
+// const ZEnvSchema = z.object({
+//   NODE_ENV: z.enum(["production", "development"]),
+//   CURATOR_MODE: z.enum(["api", "supervisor", "worker"]),
+//   SERVER_PORT: z.coerce.number(),
+//   DATABASE_URL: z.string().url(),
+// });
 
-// eslint-disable-next-line ts/no-redeclare
-const { data: env, error } = ZEnvSchema.safeParse(process.env);
+const VEnv = type({
+  NODE_ENV: type.enumerated("production", "development"),
+  CURATOR_MODE: type.enumerated("api", "super", "worker"),
+  SERVER_PORT: "string.integer",
+  DATABASE_URL: "string.url"
+})
 
-if (error) {
+// const { data: env, error } = ZEnvSchema.safeParse(process.env);
+const env = VEnv.assert(process.env)
+
+if (env instanceof type.errors) {
   console.error("❌ Invalid env:");
-  console.error(JSON.stringify(error.flatten().fieldErrors, null, 2));
+  console.error(env.summary);
   process.exit(1);
 }
 
-export type TEnvVars = z.infer<typeof ZEnvSchema>;
-
-export default env!;
+export default env
