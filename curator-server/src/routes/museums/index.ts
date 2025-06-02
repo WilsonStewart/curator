@@ -18,7 +18,7 @@ musuemsRoute.get("/:eid",
             }
         }
     }),
-    validator("query", type({ eid: "string" })),
+    validator("param", type({ eid: "string.alphanumeric" })),
     (c) => {
         return c.json({ ok: true })
     }
