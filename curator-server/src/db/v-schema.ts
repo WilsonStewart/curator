@@ -1,5 +1,5 @@
 import { museums } from "@/db/schema";
 
-import { createSelectSchema } from "drizzle-arktype";
+import { createSelectSchema } from "drizzle-zod";
 
 export const VMuseumSelect = createSelectSchema(museums);
