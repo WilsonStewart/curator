@@ -5,8 +5,8 @@ import { Hono } from "hono";
 import { openAPISpecs } from "hono-openapi";
 import pkgdotjson from "@/../package.json" assert { type: "json" };
 import { Scalar } from "@scalar/hono-api-reference";
-import { RSelectOneMuseum } from "@/routes/route.musuems.select-one";
 import { honoLogger } from "@/middlewares/hono-logger";
+import { museumsRouter } from "@/routes/museums.index";
 
 export const api = new Hono();
 
@@ -14,7 +14,7 @@ export const api = new Hono();
 api.notFound(notFound404Handler);
 api.onError(errorHandler);
 
-api.route("/museums", RSelectOneMuseum);
+api.route("/museums", museumsRouter)
 
 api.get(
   "/openapi.json",
