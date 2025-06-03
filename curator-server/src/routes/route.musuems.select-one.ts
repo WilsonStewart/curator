@@ -1,15 +1,15 @@
 import { VMuseumSelect } from "@/db/v-schema";
+import { LSelectOneMuseum } from "@/logic/logic.musuems.select-one";
 import { Hono } from "hono";
 import { describeRoute } from "hono-openapi";
 import { resolver, validator } from "hono-openapi/zod";
 import z from "zod";
 
-export const selectOne = new Hono();
-
-selectOne.get(
+export const RSelectOneMuseum = new Hono().get(
   "/:eid",
   describeRoute({
-    description: "Gets a museum by its external id (eid).",
+    description: "Selects a museum by its external id (eid).",
+    tags: ["Museums"],
     responses: {
       200: {
         description: "Successful",
@@ -20,7 +20,8 @@ selectOne.get(
     },
   }),
   validator("param", z.object({ eid: z.string() })),
-  (c) => {
-    return c.text("a museum");
+  async (c) => {
+    let result = await LSelectOneMuseum(c.req.param('eid'))
+    return c.text(typeof result)
   }
 );

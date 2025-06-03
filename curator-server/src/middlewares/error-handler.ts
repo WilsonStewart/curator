@@ -6,5 +6,5 @@ export const errorHandler: ErrorHandler = (err, c) => {
     message: err.message,
     httpStatusCode: c.status,
     stack: env.NODE_ENV === "production" ? undefined : err.stack,
-  });
+  }, 500);
 };

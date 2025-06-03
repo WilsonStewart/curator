@@ -24,7 +24,7 @@ const printFiglet = () => {
   console.log("");
 };
 
-// export const db = drizzle(env.DATABASE_URL);
+export const db = drizzle(env.DATABASE_URL);
 
 const start = () => {
   printFiglet();
