@@ -6,7 +6,7 @@ import { openAPISpecs } from "hono-openapi";
 import pkgdotjson from "@/../package.json" assert { type: "json" };
 import { Scalar } from "@scalar/hono-api-reference";
 import { honoLogger } from "@/middlewares/hono-logger";
-import { museumsRouter } from "@/routes/museums.index";
+import { museumsRouter } from "@/routes/R.museums.index";
 
 export const api = new Hono();
 

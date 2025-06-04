@@ -1,5 +1,5 @@
 import { VMuseumSelect } from "@/db/v-schema";
-import { LSelectAllMuseums } from "@/logic/museums.select-all";
+import { LSelectAllMuseums } from "@/logic/L.museums.select-all";
 import { describeRoute } from "hono-openapi";
 import { resolver } from "hono-openapi/zod";
 import z from "zod";
