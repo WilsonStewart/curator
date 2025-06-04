@@ -1,6 +1,6 @@
-import { museums, users } from "@/db/schema"
-import { db } from "@/index"
+import { museums, users } from "@/db/schema";
+import { db } from "@/index";
 
-export const LSelectAllMuseums = async (eid: string) => {
-    return await db.select().from(museums).execute()
-}
+export const LSelectAllMuseums = async () => {
+  return await db.select().from(museums).execute();
+};
