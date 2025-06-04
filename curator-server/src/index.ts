@@ -14,6 +14,7 @@ const start = async () => {
   // Test db connection, kill if not up
   try { await db.select().from(metadata).where(eq(metadata.id, "curatorMetadata")) } catch (error) {
     console.error("🛜 Database check query failed!")
+    console.error("Check connection or check migration to at least 0001!")
     console.error(error)
     process.exit(1)
   }
