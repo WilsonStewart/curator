@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "bun run --hot src/index.ts",
     "db:genMigrations": "bun run drizzle-kit generate",
+    "db:migrate": "bun run drizzle-kit migrate",
     "devtools:genNanoids": "bun run dev-tools/gen-20-nanoids.ts"
   },
   "dependencies": {

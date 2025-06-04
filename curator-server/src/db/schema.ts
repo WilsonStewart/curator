@@ -28,7 +28,8 @@ export const metadata = pgTable(
 );
 
 export const users = pgTable("users", {
-  ...identityColumns,
+  id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
+  eid: text("eid").notNull().unique(),
   userId: text("user_id").notNull().unique(),
   userPassword: text("user_password"),
   displayName: text("display_name").notNull(),
@@ -36,14 +37,16 @@ export const users = pgTable("users", {
 });
 
 export const museums = pgTable("museums", {
-  ...identityColumns,
+  id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
+  eid: text("eid").notNull().unique(),
   displayName: text("display_name").notNull().unique(),
   ...ownerColumns,
   ...timestampColumns,
 });
 
 export const galleries = pgTable("galleries", {
-  ...identityColumns,
+  id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
+  eid: text("eid").notNull().unique(),
   displayName: text("display_name").notNull(),
   parentGalleryId: integer("parent_gallery_id").references(
     (): AnyPgColumn => galleries.id
@@ -55,7 +58,8 @@ export const galleries = pgTable("galleries", {
 });
 
 export const exhibitTypes = pgTable("exhibit_types", {
-  ...identityColumns,
+  id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
+  eid: text("eid").notNull().unique(),
   displayName: text("display_name").notNull().unique(),
   isAlias: boolean("is_alias").notNull().default(false),
   aliasedTypeId: integer("aliased_type_id").references(
@@ -89,7 +93,8 @@ export const ETYoutubeVideos = pgTable("exhibit_type_youtube_videos", {
 });
 
 export const exhibits = pgTable("exhibits", {
-  ...identityColumns,
+  id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
+  eid: text("eid").notNull().unique(),
   displayName: text("display_name").notNull().unique(),
   exhibitTypeId: integer("exhibit_type_id")
     .notNull()
@@ -103,7 +108,8 @@ export const exhibits = pgTable("exhibits", {
 });
 
 export const artifactTypes = pgTable("artifact_types", {
-  ...identityColumns,
+  id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
+  eid: text("eid").notNull().unique(),
   displayName: text("display_name").notNull().unique(),
   isAlias: boolean("is_alias").notNull().default(false),
   aliasedTypeId: integer("aliased_type_id").references(
@@ -145,7 +151,8 @@ export const ATImage = pgTable("artifact_type_image", {
 });
 
 export const artifacts = pgTable("artifacts", {
-  ...identityColumns,
+  id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
+  eid: text("eid").notNull().unique(),
   displayName: text("display_name"),
   fileName: text("file_name").notNull(),
   fileFormat: text("file_format").notNull(),
@@ -159,7 +166,8 @@ export const artifacts = pgTable("artifacts", {
 });
 
 export const policyTypes = pgTable("policy_types", {
-  ...identityColumns,
+  id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
+  eid: text("eid").notNull().unique(),
   displayName: text("display_name").notNull().unique(),
   isAlias: boolean("is_alias").notNull().default(false),
   aliasedTypeId: integer("aliased_type_id").references(
@@ -170,7 +178,8 @@ export const policyTypes = pgTable("policy_types", {
 });
 
 export const policies = pgTable("policies", {
-  ...identityColumns,
+  id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
+  eid: text("eid").notNull().unique(),
   displayName: text("display_name").notNull().unique(),
   policyTypeId: integer("policy_type_id")
     .notNull()
@@ -191,7 +200,8 @@ export const galleriesPolicies = pgTable(
 );
 
 export const repositoryTypes = pgTable("repository_types", {
-  ...identityColumns,
+  id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
+  eid: text("eid").notNull().unique(),
   displayName: text("display_name").notNull().unique(),
   isAlias: boolean("is_alias").notNull().default(false),
   aliasedTypeId: integer("aliased_type_id").references(
@@ -213,7 +223,8 @@ export const RTLocalFilesystem = pgTable("repository_type_local_filesystem", {
 });
 
 export const repositories = pgTable("repositories", {
-  ...identityColumns,
+  id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
+  eid: text("eid").notNull().unique(),
   displayName: text("display_name").notNull().unique(),
   ...museumColumns,
   ...ownerColumns,
