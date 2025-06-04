@@ -16,14 +16,16 @@ export const selectOne = (app: Hono) => {
         200: {
           description: "Successful",
           content: {
-            "application/json": { schema: resolver(VMuseumSelect) },
+            "application/json": {
+              schema: resolver(z.array(VMuseumSelect).length(1)),
+            },
           },
         },
       },
     }),
     validator(
       "param",
-      z.object({ eid: z.string().length(8).openapi({ example: "3q9qai4i" }) })
+      z.object({ eid: z.string().length(8).openapi({ example: "sU4ywaaa" }) })
     ),
     async (c) => {
       return c.json(await LSelectOneMuseum(c.req.param("eid")));
