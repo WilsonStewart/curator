@@ -14,7 +14,7 @@ export const api = new Hono();
 api.notFound(notFound404Handler);
 api.onError(errorHandler);
 
-api.route("/museums", museumsRouter)
+api.route("/museums", museumsRouter);
 
 api.get(
   "/openapi.json",
@@ -41,8 +41,8 @@ api.get(
     url: "/openapi.json",
     layout: "modern",
     defaultHttpClient: {
-      "clientKey": "fetch",
-      "targetKey": "js"
-    }
+      clientKey: "fetch",
+      targetKey: "js",
+    },
   })
 );

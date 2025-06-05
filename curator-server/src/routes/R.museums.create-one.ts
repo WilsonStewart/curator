@@ -8,28 +8,28 @@ import { Hono } from "hono";
 import { LCreateOneMuseum } from "@/logic/L.museums.create-one";
 
 export const createOne = (app: Hono) => {
-    app.post(
-        "/",
-        describeRoute({
-            description: "Creates a museum resource.",
-            tags: ["Museums"],
-            responses: {
-                200: {
-                    description: "Successful",
-                    content: {
-                        "application/json": {
-                            schema: resolver(z.array(VMuseumCreate).length(1)),
-                        },
-                    },
-                },
+  app.post(
+    "/",
+    describeRoute({
+      description: "Creates a museum resource.",
+      tags: ["Museums"],
+      responses: {
+        200: {
+          description: "Successful",
+          content: {
+            "application/json": {
+              schema: resolver(z.array(VMuseumCreate).length(1)),
             },
-        }),
-        validator(
-            "json",
-            VMuseumCreate
-        ),
-        async (c) => {
-            return c.json(await LCreateOneMuseum(await c.req.json()));
-        }
-    );
+          },
+        },
+      },
+    }),
+    validator(
+      "json",
+      VMuseumCreate.omit({ eid: true, createdAt: true, modifiedAt: true })
+    ),
+    async (c) => {
+      return c.json(await LCreateOneMuseum(await c.req.json()));
+    }
+  );
 };
