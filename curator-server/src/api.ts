@@ -7,12 +7,14 @@ import pkgdotjson from "@/../package.json" assert { type: "json" };
 import { Scalar } from "@scalar/hono-api-reference";
 import { honoLogger } from "@/middlewares/hono-logger";
 import { museumsRouter } from "@/routes/R.museums.index";
+import { cors } from "hono/cors";
 
 export const api = new Hono();
 
 // api.use(honoLogger);
 api.notFound(notFound404Handler);
 api.onError(errorHandler);
+api.use("*", cors());
 
 api.route("/museums", museumsRouter);
 

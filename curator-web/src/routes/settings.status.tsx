@@ -1,28 +1,33 @@
 import { MainLayout } from "@/components/main.layout";
+import { getMuseums } from "@/openapi-ts-client";
 import { Box, Title, Text, Flex, Pill, Table, Loader } from "@mantine/core";
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
+
 
 export const Route = createFileRoute("/settings/status")({
   component: RouteComponent,
 });
 
 function RouteComponent() {
-  const [serverVersion, setServerVersion] = useState(false);
-  const [serverVersionIsQueried, setServerVersionIsQueried] = useState(false);
-  const [backendStatus, setBackendStatus] = useState(false);
-  const [backendStatusIsQueried, setBackendStatusIsQueried] = useState(false);
+  // const [serverVersion, setServerVersion] = useState(false);
+  // const [serverVersionIsQueried, setServerVersionIsQueried] = useState(false);
+  // const [backendStatus, setBackendStatus] = useState(false);
+  // const [backendStatusIsQueried, setBackendStatusIsQueried] = useState(false);
 
   useEffect(() => {
-setServerVersion(false)
-setServerVersionIsQueried(false)
-setBackendStatus(false)
-setBackendStatusIsQueried(false)
+    // setServerVersion(false)
+    // setServerVersionIsQueried(false)
+    // setBackendStatus(false)
+    // setBackendStatusIsQueried(false)
+    (async () => { console.log(await getMuseums()) })()
   }, []);
+
+
 
   return (
     <MainLayout>
-      <Flex
+      {/* <Flex
         mih={50}
         justify="flex-start"
         align="flex-start"
@@ -39,6 +44,11 @@ setBackendStatusIsQueried(false)
                 <td>
                   <Text>Backend status:</Text>
                 </td>
+                <Box>
+                  <Suspense>
+                    { }
+                  </Suspense>
+                </Box>
                 {backendStatusIsQueried ? (
                   backendStatus ? (
                     <Pill c={"white"} bg={"green.7"}>
@@ -74,7 +84,7 @@ setBackendStatusIsQueried(false)
             </Table.Tbody>
           </Table>
         </Box>
-      </Flex>
+      </Flex> */}
     </MainLayout>
   );
 }
