@@ -10,4 +10,4 @@ selectOne(museumsRouter);
 selectAll(museumsRouter);
 deleteOne(museumsRouter);
 createOne(museumsRouter);
-updateOne(museumsRouter);
+// updateOne(museumsRouter);

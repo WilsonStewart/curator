@@ -21,6 +21,14 @@ export const deleteOne = (app: Hono) => {
                         },
                     },
                 },
+                404: {
+                    description: "Not Found",
+                    content: {
+                        "application/json": {
+                            schema: resolver(z.array(z.unknown()).length(0)),
+                        },
+                    },
+                },
             },
         }),
         validator(
@@ -29,7 +37,9 @@ export const deleteOne = (app: Hono) => {
                 { eid: z.string().length(8).openapi({ example: "frKxit2y" }) })
         ),
         async (c) => {
-            return c.json(await LDeleteOneMuseum(c.req.param("eid")))
+            let r = await LDeleteOneMuseum(c.req.param("eid"))
+            if (r.length < 1) { c.status(404) }
+            return c.json(r)
         }
     )
 };
