@@ -4,7 +4,6 @@ import {
   BankIcon,
   RobotIcon,
   ScrollIcon,
-  PresentationIcon,
   BoneIcon,
   HardDrivesIcon,
   PulseIcon,
@@ -52,17 +51,17 @@ export function MainLayout(props: PropsWithChildren) {
             href="/dashboard"
           />
           <NavLink
-            leftSection={<PresentationIcon size={15} />}
+            leftSection={<BoneIcon size={15} />}
             label={"Exhibits"}
             active={false}
             href="/exhibits"
           />
-          <NavLink
+          {/* <NavLink
             leftSection={<BoneIcon size={15} />}
             label={"Artifacts"}
             active={false}
             href="/artifacts"
-          />
+          /> */}
           <NavLink
             leftSection={<HardDrivesIcon size={15} />}
             label={"Repositories"}
