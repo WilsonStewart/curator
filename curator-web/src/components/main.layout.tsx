@@ -84,13 +84,14 @@ export function MainLayout(props: PropsWithChildren) {
           />
           <Divider my="sm" />
           <NavLink
-            //
+            href="/org-configuration"
             leftSection={<GearIcon size={15} />}
-            label={"Settings"}
+            label={"Org Config"}
             active={false}
           >
-            <NavLink leftSection={<PulseIcon size={15} />} label={"Status"} active={true} href="/settings/status" />
           </NavLink>
+          <NavLink leftSection={<PulseIcon size={15} />} label={"Status"} active={true} href="/settings/status" />
+
         </Box>
         <Box className="main-content">
           {props.children}
