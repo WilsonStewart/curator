@@ -95,7 +95,7 @@ code {
 }
 
 .layout-topbar {
-  background-color: --oc-(grape)-(4);
+  background-color: var(--oc-grape-5);
   height: 1.5em;
 
   @media only screen and (max-width: 600px) {
@@ -104,7 +104,7 @@ code {
 }
 
 .layout-nav {
-  background-color: cornflowerblue;
+  background-color: var(--oc-gray-0);
   width: 15em;
   height: 100%;
 
@@ -121,6 +121,6 @@ code {
 }
 
 .layout-shell-middle {
-  background-color: blueviolet;
+  background-color: white;
   height: 100vh;
 }
