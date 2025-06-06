@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import '../node_modules/open-color/open-color.css';
 
 html {}
 
@@ -94,7 +95,7 @@ code {
 }
 
 .layout-topbar {
-  background-color: pink;
+  background-color: --oc-(grape)-(4);
   height: 1.5em;
 
   @media only screen and (max-width: 600px) {
