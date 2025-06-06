@@ -92,3 +92,34 @@ code {
 .main-content {
   padding: 1em;
 }
+
+.layout-topbar {
+  background-color: pink;
+  height: 1.5em;
+
+  @media only screen and (max-width: 600px) {
+    height: 3em
+  }
+}
+
+.layout-nav {
+  background-color: cornflowerblue;
+  width: 15em;
+  height: 100%;
+
+  @media only screen and (max-width: 600px) {
+    display: none;
+    width: 70%;
+  }
+}
+
+.layout-shell {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.layout-shell-middle {
+  background-color: blueviolet;
+  height: 100vh;
+}

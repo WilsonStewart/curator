@@ -39,9 +39,7 @@ const rootElement = document.getElementById("app");
 if (rootElement && !rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement);
   root.render(
-    <MantineProvider theme={mantineTheme}>
-      <RouterProvider router={router} />
-    </MantineProvider>
+    <RouterProvider router={router} />
   );
 }
 
