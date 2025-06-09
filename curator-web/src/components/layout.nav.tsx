@@ -1,7 +1,11 @@
+import { LayoutNavItem } from "@/components/layout.nav.item"
+
 export const LayoutNav = () => {
     return (
         <div className="layout-nav">
-            This is the nav section
+            <LayoutNavItem
+                name="Org Configuration"
+            />
         </div>
     )
 }
