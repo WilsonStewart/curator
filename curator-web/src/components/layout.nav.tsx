@@ -1,7 +1,7 @@
 export const LayoutNav = () => {
     return (
         <div className="layout-nav">
-            ds
+            This is the nav section
         </div>
     )
 }

@@ -1,21 +1,12 @@
-import { createTheme, MantineProvider } from "@mantine/core";
 import ReactDOM from "react-dom/client";
 import { RouterProvider, createRouter } from "@tanstack/react-router";
-import "@mantine/core/styles.css";
 
 // Import the generated route tree
 import { routeTree } from "@/routeTree.gen";
 
 import "./styles.css";
-import reportWebVitals from "./reportWebVitals.ts";
 
-const mantineTheme = createTheme({
-  black: "#212529",
-  white: "white",
-  primaryColor: "grape",
-  fontFamily: "'Manrope', sans-serif",
-  cursorType: "pointer",
-});
+import "./styles/styles.scss"
 
 // Create a new router instance
 const router = createRouter({
@@ -42,8 +33,3 @@ if (rootElement && !rootElement.innerHTML) {
     <RouterProvider router={router} />
   );
 }
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
