@@ -1,13 +1,13 @@
 @use "theming/open-color" as *;
 
 .layout-shell {
-    background-color: red;
+
     height: 100vh;
     display: flex;
     flex-direction: column;
 
     .layout-shell-middle {
-        background-color: purple;
+
         height: 100%;
     }
 }
@@ -38,6 +38,7 @@
     align-items: center;
     padding: 5px;
     border-radius: 0 6px 6px 0;
+    transition: background-color 100ms ease-in-out 0s;
 
     -webkit-user-select: none;
     /* Safari */
@@ -52,6 +53,8 @@
 
     &:active {
         background-color: $oc-grape-1;
+        transition-duration: 0s;
+        transition-delay: 0s;
     }
 
     .nav-item-icon {
