@@ -10,7 +10,6 @@ export const LayoutShell = () => {
             <div className="layout-shell-middle">
                 <LayoutNav />
             </div>
-            <div className="layout-shell-lower"></div>
         </div>
     )
 }
