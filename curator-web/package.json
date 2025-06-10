@@ -10,16 +10,19 @@
     "test": "vitest run"
   },
   "dependencies": {
+    "@headlessui/react": "^2.2.4",
     "@mantine/core": "^8.0.1",
     "@mantine/hooks": "^8.0.1",
     "@phosphor-icons/react": "^2.1.8",
     "@tabler/icons-react": "^3.31.0",
     "@tanstack/react-router": "^1.114.3",
     "@tanstack/react-router-devtools": "^1.114.3",
+    "@tanstack/react-table": "^8.21.3",
     "@tanstack/router-plugin": "^1.114.3",
     "open-color": "^1.9.1",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-scan": "^0.3.4"
   },
   "devDependencies": {
     "@testing-library/dom": "^10.4.0",

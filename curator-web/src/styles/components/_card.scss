@@ -1,0 +1,99 @@
+// _card.scss
+
+// Theme variables (override these in your global _variables.scss)
+$card-bg: #fff !default;
+$card-border: 1px solid #e0e0e0 !default;
+$card-radius: 0.5rem !default;
+$card-padding: 1rem !default;
+$card-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !default;
+$card-hover-shadow: 0 4px 8px rgba(0, 0, 0, 0.15) !default;
+$card-transition: box-shadow 0.2s ease-in-out !default;
+
+// Mixin for card base
+@mixin card-base {
+    background: $card-bg;
+    border: $card-border;
+    border-radius: $card-radius;
+    box-shadow: $card-shadow;
+    transition: $card-transition;
+    overflow: hidden;
+}
+
+// Card component
+.card {
+    @include card-base;
+    display: flex;
+    flex-direction: column;
+    padding: 0; // reset—children handle spacing
+
+    &:hover,
+    &.is-hoverable {
+        box-shadow: $card-hover-shadow;
+    }
+
+    // Optional media slot (e.g. image, video)
+    &__media {
+        width: 100%;
+        height: auto;
+        display: block;
+
+        img,
+        video {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            display: block;
+        }
+    }
+
+    // Header slot
+    &__header {
+        padding: $card-padding;
+        border-bottom: $card-border;
+        font-weight: bold;
+        font-size: 1.25rem;
+        background: lighten($card-bg, 2%);
+    }
+
+    // Body slot
+    &__body {
+        padding: $card-padding;
+        flex: 1; // grow to fill available space
+        color: #333;
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+
+    // Footer slot
+    &__footer {
+        padding: $card-padding;
+        border-top: $card-border;
+        background: lighten($card-bg, 1%);
+        text-align: right;
+
+        // Example for action buttons
+        .btn {
+            margin-left: 0.5rem;
+        }
+    }
+
+    // Modifier for compact variant
+    &--compact {
+
+        .card__header,
+        .card__body,
+        .card__footer {
+            padding: $card-padding / 2;
+        }
+    }
+
+    // Modifier for no-shadow variant
+    &--flat {
+        box-shadow: none;
+
+        &:hover,
+        &.is-hoverable {
+            box-shadow: none;
+        }
+    }
+}

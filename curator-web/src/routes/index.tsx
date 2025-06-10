@@ -1,6 +1,11 @@
-import { createFileRoute } from '@tanstack/react-router'
-import { RouteComponent } from '@/routes/dashboard'
+import { createFileRoute, redirect } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/')({
     component: RouteComponent,
 })
+
+function RouteComponent() {
+    redirect({
+        to: "/org-configuration"
+    })
+}

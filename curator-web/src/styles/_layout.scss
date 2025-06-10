@@ -1,13 +1,12 @@
 @use "theming/open-color" as *;
 
 .layout-shell {
-
     height: 100vh;
     display: flex;
     flex-direction: column;
 
     .layout-shell-middle {
-
+        display: flex;
         height: 100%;
     }
 }
@@ -19,6 +18,10 @@
     @media only screen and (max-width: 600px) {
         height: 3em
     }
+}
+
+.layout-content {
+    padding: 1em;
 }
 
 .nav {
