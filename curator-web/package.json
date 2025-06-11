@@ -37,5 +37,8 @@
     "vite": "^6.1.0",
     "vitest": "^3.0.5",
     "sass": "^1.89.1"
-  }
+  },
+  "trustedDependencies": [
+    "@parcel/watcher"
+  ]
 }
