@@ -7,8 +7,10 @@ export const identityColumns = {
 };
 
 export const timestampColumns = {
-  createdAt: timestamp("created_at").notNull().defaultNow(),
-  modifiedAt: timestamp("modified_at").notNull().defaultNow(),
+  createdAt: timestamp("created_at", { mode: "string" }).notNull().defaultNow(),
+  modifiedAt: timestamp("modified_at", { mode: "string" })
+    .notNull()
+    .defaultNow(),
 };
 
 export const ownerColumns = {

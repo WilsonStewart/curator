@@ -6,15 +6,17 @@ import { openAPISpecs } from "hono-openapi";
 import pkgdotjson from "@/../package.json" assert { type: "json" };
 import { Scalar } from "@scalar/hono-api-reference";
 import { honoLogger } from "@/middlewares/hono-logger";
-import { museumsRouter } from "@/routes/museums.index";
+import { museumsRouter } from "@/routes/R.museums.index";
+import { cors } from "hono/cors";
 
 export const api = new Hono();
 
 // api.use(honoLogger);
 api.notFound(notFound404Handler);
 api.onError(errorHandler);
+api.use("*", cors());
 
-api.route("/museums", museumsRouter)
+api.route("/museums", museumsRouter);
 
 api.get(
   "/openapi.json",
@@ -41,8 +43,8 @@ api.get(
     url: "/openapi.json",
     layout: "modern",
     defaultHttpClient: {
-      "clientKey": "fetch",
-      "targetKey": "js"
-    }
+      clientKey: "fetch",
+      targetKey: "js",
+    },
   })
 );
