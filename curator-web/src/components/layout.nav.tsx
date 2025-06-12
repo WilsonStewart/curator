@@ -9,18 +9,22 @@ export const LayoutNav = () => {
             <LayoutNavItem
                 icon={BoneIcon}
                 name="Exhibits"
+                onclick={async () => { navigate({ to: "/exhibits" }) }}
             />
             <LayoutNavItem
                 icon={RobotIcon}
                 name="Automations"
+                onclick={async () => { navigate({ to: "/automations" }) }}
             />
             <LayoutNavItem
                 icon={ScrollIcon}
                 name="Policies"
+                onclick={async () => { navigate({ to: "/policies" }) }}
             />
             <LayoutNavItem
                 icon={BuildingIcon}
                 name="Org Configuration"
+                onclick={async () => { navigate({ to: "/org-configuration" }) }}
             />
         </div>
     )
