@@ -8,14 +8,14 @@
     "build": "vite build && tsc",
     "serve": "vite preview",
     "test": "vitest run",
-    "openapi-ts": "openapi-ts"
+    "gen:apiClient": "bunx orval"
   },
   "dependencies": {
     "@hey-api/client-fetch": "^0.12.0",
-    "@mantine/core": "^8.0.1",
     "@mantine/hooks": "^8.0.1",
     "@phosphor-icons/react": "^2.1.8",
     "@tabler/icons-react": "^3.31.0",
+    "@tanstack/react-query": "^5.80.7",
     "@tanstack/react-router": "^1.114.3",
     "@tanstack/react-router-devtools": "^1.114.3",
     "@tanstack/react-table": "^8.21.3",
@@ -35,6 +35,7 @@
     "@vitejs/plugin-react": "^4.3.4",
     "jsdom": "^26.0.0",
     "openapi-typescript": "^7.8.0",
+    "orval": "^7.10.0",
     "sass": "^1.89.1",
     "typescript": "^5.8.3",
     "vite": "^6.1.0",

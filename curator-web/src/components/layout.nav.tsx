@@ -1,5 +1,5 @@
 import { LayoutNavItem } from "@/components/layout.nav.item"
-import { BoneIcon, BuildingIcon, PaperclipIcon, RobotIcon, ScrollIcon } from "@phosphor-icons/react"
+import { BuildingIcon, PresentationIcon, RobotIcon, ScrollIcon } from "@phosphor-icons/react"
 import { useNavigate } from '@tanstack/react-router';
 
 export const LayoutNav = () => {
@@ -7,7 +7,7 @@ export const LayoutNav = () => {
     return (
         <div className="nav">
             <LayoutNavItem
-                icon={BoneIcon}
+                icon={PresentationIcon}
                 name="Exhibits"
                 onclick={async () => { navigate({ to: "/exhibits" }) }}
             />
