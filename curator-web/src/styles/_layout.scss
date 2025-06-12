@@ -1,34 +1,40 @@
 @use "theming/open-color" as *;
 
 .layout-shell {
-    height: 100vh;
     display: flex;
     flex-direction: column;
-
-    .layout-shell-middle {
-        display: flex;
-        height: 100%;
-    }
+    height: 100vh;
+    overflow: hidden;
 }
 
-.layout-topbar {
+.layout-lower {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+.topbar {
     background-color: $oc-grape-4;
-    height: 2em;
+    height: 2rem;
+    flex-shrink: 0;
 
     @media only screen and (max-width: 600px) {
-        height: 3em
+        height: 3rem
     }
 }
 
-.layout-content {
-    padding: 1em;
+.content {
+    padding: 1rem;
+    flex: 1;
+    overflow-y: auto;
 }
 
 .nav {
+    flex-shrink: 0;
     background-color: $oc-gray-0;
-    height: auto;
-    width: 18rem;
+    width: 15rem;
     height: 100%;
+    overflow-y: auto;
 
     padding: {
         top: 5px;
@@ -39,6 +45,11 @@
     cursor: pointer;
     display: flex;
     align-items: center;
+
+    margin: {
+        top: 5px;
+    }
+
     padding: 5px;
     border-radius: 0 6px 6px 0;
     transition: background-color 100ms ease-in-out 0s;

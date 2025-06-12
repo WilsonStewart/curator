@@ -1,7 +1,5 @@
 export const LayoutTopbar = () => {
     return (
-        <div className="layout-topbar">
-
-        </div>
+        <header className="topbar"></header>
     )
 }
