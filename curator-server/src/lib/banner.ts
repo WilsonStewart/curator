@@ -1,7 +1,6 @@
 import env from "@/env";
 import {
   GIT_BANNER_COMMIT_MESSAGE,
-  GIT_COMMIT_SHA,
   GIT_CURRENT_BRANCH_NAME,
 } from "@/lib/git-facts";
 import pkgdotjson from "@/../package.json" assert { type: "json" };
