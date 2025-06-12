@@ -1,11 +1,7 @@
 import { createFileRoute, redirect } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/')({
-    component: RouteComponent,
+    beforeLoad: () => {
+        throw redirect({ to: "/exhibits" })
+    }
 })
-
-function RouteComponent() {
-    redirect({
-        to: "/org-configuration"
-    })
-}
