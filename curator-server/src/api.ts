@@ -29,7 +29,11 @@ api.get(
       servers: [
         {
           url: `http://localhost:${env.SERVER_PORT}`,
-          description: "Localhost",
+          description: "development",
+        },
+        {
+          url: `http://localhost:80`,
+          description: "production",
         },
       ],
     },
