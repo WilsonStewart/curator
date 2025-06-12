@@ -13,11 +13,10 @@ import {
   ownerColumns,
   museumColumns,
   timestampColumns,
-  identityColumns,
 } from "./common-columns";
 import { check } from "drizzle-orm/sqlite-core";
 import { sql } from "drizzle-orm";
-import { genNanoid } from "@/lib/id-generators";
+import { genUlid } from "@/lib/id-generators";
 
 export const metadata = pgTable(
   "metadata",
@@ -29,12 +28,10 @@ export const metadata = pgTable(
 );
 
 export const users = pgTable("users", {
-  id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
-  eid: text("eid")
-    .notNull()
-    .unique()
+  id: text("id")
+    .primaryKey()
     .$defaultFn(() => {
-      return genNanoid();
+      return genUlid();
     }),
   userId: text("user_id").notNull().unique(),
   userPassword: text("user_password"),
@@ -43,24 +40,20 @@ export const users = pgTable("users", {
 });
 
 export const museums = pgTable("museums", {
-  id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
-  eid: text("eid")
-    .notNull()
-    .unique()
+  id: text("id")
+    .primaryKey()
     .$defaultFn(() => {
-      return genNanoid();
+      return genUlid();
     }),
   displayName: text("display_name").notNull().unique(),
   ...ownerColumns,
   ...timestampColumns,
 });
 export const galleries = pgTable("galleries", {
-  id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
-  eid: text("eid")
-    .notNull()
-    .unique()
+  id: text("id")
+    .primaryKey()
     .$defaultFn(() => {
-      return genNanoid();
+      return genUlid();
     }),
   displayName: text("display_name").notNull(),
   parentGalleryId: integer("parent_gallery_id").references(
@@ -73,12 +66,10 @@ export const galleries = pgTable("galleries", {
 });
 
 export const exhibitTypes = pgTable("exhibit_types", {
-  id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
-  eid: text("eid")
-    .notNull()
-    .unique()
+  id: text("id")
+    .primaryKey()
     .$defaultFn(() => {
-      return genNanoid();
+      return genUlid();
     }),
   displayName: text("display_name").notNull().unique(),
   isAlias: boolean("is_alias").notNull().default(false),
@@ -113,12 +104,10 @@ export const ETYoutubeVideos = pgTable("exhibit_type_youtube_videos", {
 });
 
 export const exhibits = pgTable("exhibits", {
-  id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
-  eid: text("eid")
-    .notNull()
-    .unique()
+  id: text("id")
+    .primaryKey()
     .$defaultFn(() => {
-      return genNanoid();
+      return genUlid();
     }),
   displayName: text("display_name").notNull().unique(),
   exhibitTypeId: integer("exhibit_type_id")
@@ -133,12 +122,10 @@ export const exhibits = pgTable("exhibits", {
 });
 
 export const artifactTypes = pgTable("artifact_types", {
-  id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
-  eid: text("eid")
-    .notNull()
-    .unique()
+  id: text("id")
+    .primaryKey()
     .$defaultFn(() => {
-      return genNanoid();
+      return genUlid();
     }),
   displayName: text("display_name").notNull().unique(),
   isAlias: boolean("is_alias").notNull().default(false),
@@ -181,12 +168,10 @@ export const ATImage = pgTable("artifact_type_image", {
 });
 
 export const artifacts = pgTable("artifacts", {
-  id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
-  eid: text("eid")
-    .notNull()
-    .unique()
+  id: text("id")
+    .primaryKey()
     .$defaultFn(() => {
-      return genNanoid();
+      return genUlid();
     }),
   displayName: text("display_name"),
   fileName: text("file_name").notNull(),
@@ -201,12 +186,10 @@ export const artifacts = pgTable("artifacts", {
 });
 
 export const policyTypes = pgTable("policy_types", {
-  id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
-  eid: text("eid")
-    .notNull()
-    .unique()
+  id: text("id")
+    .primaryKey()
     .$defaultFn(() => {
-      return genNanoid();
+      return genUlid();
     }),
   displayName: text("display_name").notNull().unique(),
   isAlias: boolean("is_alias").notNull().default(false),
@@ -218,12 +201,10 @@ export const policyTypes = pgTable("policy_types", {
 });
 
 export const policies = pgTable("policies", {
-  id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
-  eid: text("eid")
-    .notNull()
-    .unique()
+  id: text("id")
+    .primaryKey()
     .$defaultFn(() => {
-      return genNanoid();
+      return genUlid();
     }),
   displayName: text("display_name").notNull().unique(),
   policyTypeId: integer("policy_type_id")
@@ -245,12 +226,10 @@ export const galleriesPolicies = pgTable(
 );
 
 export const repositoryTypes = pgTable("repository_types", {
-  id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
-  eid: text("eid")
-    .notNull()
-    .unique()
+  id: text("id")
+    .primaryKey()
     .$defaultFn(() => {
-      return genNanoid();
+      return genUlid();
     }),
   displayName: text("display_name").notNull().unique(),
   isAlias: boolean("is_alias").notNull().default(false),
@@ -273,12 +252,10 @@ export const RTLocalFilesystem = pgTable("repository_type_local_filesystem", {
 });
 
 export const repositories = pgTable("repositories", {
-  id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
-  eid: text("eid")
-    .notNull()
-    .unique()
+  id: text("id")
+    .primaryKey()
     .$defaultFn(() => {
-      return genNanoid();
+      return genUlid();
     }),
   displayName: text("display_name").notNull().unique(),
   ...museumColumns,

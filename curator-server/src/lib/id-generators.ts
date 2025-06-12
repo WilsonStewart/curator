@@ -1,4 +1,5 @@
 import { customAlphabet } from "nanoid";
+import { ulid } from "ulid";
 
 export function genNanoid(): string {
   const nanoid = customAlphabet(
@@ -8,3 +9,5 @@ export function genNanoid(): string {
 
   return nanoid();
 }
+
+export function genUlid(): string { return ulid() }

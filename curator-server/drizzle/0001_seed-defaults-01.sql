@@ -7,57 +7,57 @@ VALUES
 
 --> statement-breakpoint
 INSERT INTO
-    users (id, eid, user_id, display_name) OVERRIDING SYSTEM VALUE
+    users (id, user_name, display_name) OVERRIDING SYSTEM VALUE
 VALUES
-    (1, '44AXOdad', 'system', 'SYSTEM');
+    ('01JXJWRHD2N17HVE9K5ZIAMDAD', 'system', 'SYSTEM');
 
 --> statement-breakpoint
 INSERT INTO
-    museums (id, eid, display_name, created_by) OVERRIDING SYSTEM VALUE
+    museums (id, display_name, created_by) OVERRIDING SYSTEM VALUE
 VALUES
-    (1, 'sU4ywaaa', 'Default', 1);
+    ('01JXJXS7X8P117BR45XNQZTKWW', 'Default', '01JXJWRHD2N17HVE9K5ZIAMDAD');
 
 --> statement-breakpoint
 INSERT INTO
-    galleries (id, eid, display_name, museum_id, created_by) OVERRIDING SYSTEM VALUE
+    galleries (id, display_name, museum_id, created_by) OVERRIDING SYSTEM VALUE
 VALUES
-    (1, 'nei2EWUP', 'ROOT', 1, 1);
+    ('01JXJXWGH0X1Q1KZFY6PDDZT43', 'ROOT', '01JXJXS7X8P117BR45XNQZTKWW', '01JXJWRHD2N17HVE9K5ZIAMDAD');
 
 --> statement-breakpoint
 INSERT INTO
-    exhibit_types (eid, display_name, created_by)
+    exhibit_types (id, display_name, created_by)
 VALUES
-    ('3q9qai4i', 'YouTube Channel', 1);
+    ('01JXJXZJCREM9Q5W9XX3WB1C13', 'YouTube Channel', '01JXJWRHD2N17HVE9K5ZIAMDAD');
 
 --> statement-breakpoint
 INSERT INTO
-    exhibit_types (eid, display_name, created_by)
+    exhibit_types (id, display_name, created_by)
 VALUES
-    ('PM2FReUH', 'YouTube Video', 1);
+    ('01JXJY0510HN94TB4Z4S9C5ZKM', 'YouTube Video', '01JXJWRHD2N17HVE9K5ZIAMDAD');
 
 --> statement-breakpoint
 INSERT INTO
-    artifact_types (eid, display_name, created_by)
+    artifact_types (id, display_name, created_by)
 VALUES
-    ('H5VgagDq', 'Audio Recording', 1);
+    ('01JXJY0J4JBHR56N63CR082AZQ', 'Audio Recording', '01JXJWRHD2N17HVE9K5ZIAMDAD');
 
 --> statement-breakpoint
 INSERT INTO
-    artifact_types (eid, display_name, created_by)
+    artifact_types (id, display_name, created_by)
 VALUES
-    ('MrHYJMGm', 'Video Recording', 1);
+    ('01JXJY0ZXVECEKEMJT548BMWP6', 'Video Recording', '01JXJWRHD2N17HVE9K5ZIAMDAD');
 
 --> statement-breakpoint
 INSERT INTO
-    artifact_types (eid, display_name, created_by)
+    artifact_types (id, display_name, created_by)
 VALUES
-    ('VbbYaRNr', 'Image', 1);
+    ('01JXJY18WSJ31PP536WWN4XRPV', 'Image', '01JXJWRHD2N17HVE9K5ZIAMDAD');
 
 --> statement-breakpoint
 INSERT INTO
-    repository_types (eid, display_name, created_by)
+    repository_types (id, display_name, created_by)
 VALUES
-    ('ALDCUTTR', 'Local Filesystem', 1);
+    ('01JXJY1FGVHRWFC9BTYE7W9F9F', 'Local Filesystem', '01JXJWRHD2N17HVE9K5ZIAMDAD');
 
 --> statement-breakpoint
 -- End of things for migration 0001
