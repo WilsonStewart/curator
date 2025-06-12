@@ -1,4 +1,4 @@
-import { VMuseumSelect } from "@/db/v-schema";
+import { VMuseumSelect } from "@/db/validator-schema";
 import { LSelectOneMuseum } from "@/logic/L.museums.select-one";
 import { describeRoute } from "hono-openapi";
 import { resolver, validator } from "hono-openapi/zod";

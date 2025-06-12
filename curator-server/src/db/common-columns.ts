@@ -1,5 +1,5 @@
 import { bigint, integer, text, timestamp, uuid } from "drizzle-orm/pg-core";
-import { museums, users } from "./schema";
+import { museums, users } from "./drizzle-schema";
 
 export const identityColumns = {
   id: integer("id").primaryKey().generatedAlwaysAsIdentity(),

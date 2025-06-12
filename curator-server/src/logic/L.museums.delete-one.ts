@@ -1,4 +1,4 @@
-import { museums } from "@/db/schema";
+import { museums } from "@/db/drizzle-schema";
 import { db } from "@/index";
 import { eq } from "drizzle-orm";
 

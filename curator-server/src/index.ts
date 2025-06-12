@@ -3,7 +3,7 @@ import { drizzle } from "drizzle-orm/node-postgres";
 import { api } from "@/api";
 import env from "@/env";
 import { printBanner } from "@/lib/banner";
-import { metadata } from "@/db/schema";
+import { metadata } from "@/db/drizzle-schema";
 import { eq } from "drizzle-orm";
 
 export const db = drizzle(env.DATABASE_URL);

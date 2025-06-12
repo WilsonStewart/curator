@@ -1,4 +1,4 @@
-import { VMuseumSelect } from "@/db/v-schema";
+import { VMuseumSelect } from "@/db/validator-schema";
 import { describeRoute } from "hono-openapi";
 import { resolver, validator } from "hono-openapi/zod";
 import z from "zod";

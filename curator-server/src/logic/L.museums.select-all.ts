@@ -1,4 +1,4 @@
-import { museums, users } from "@/db/schema";
+import { museums, users } from "@/db/drizzle-schema";
 import { db } from "@/index";
 
 export const LSelectAllMuseums = async () => {
