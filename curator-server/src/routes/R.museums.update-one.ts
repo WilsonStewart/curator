@@ -26,6 +26,7 @@ export const RMuseumsUpdateOne = (app: Hono) => {
         validator("json", VMuseumUpdate),
         async (c) => {
             let r = await LMuseumsUpdateOne(c.req.param("id"), await c.req.json())
+            return c.json(r)
         }
     )
 }

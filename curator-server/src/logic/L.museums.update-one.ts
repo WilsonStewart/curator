@@ -10,5 +10,6 @@ export const LMuseumsUpdateOne = async (id: string, body: z.infer<typeof VMuseum
         .update(museums)
         .set(updateModifiedDateBody(body))
         .where(eq(museums.id, id))
+        .returning()
         .execute()
 };
