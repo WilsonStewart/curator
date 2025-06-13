@@ -10,12 +10,30 @@ import { museumsRouter } from "@/routes/R.museums.index";
 import { cors } from "hono/cors";
 import { auth } from "@/lib/auth";
 
-export const api = new Hono();
+export const api = new Hono<{
+  Variables: {
+    user: typeof auth.$Infer.Session.user | null;
+    session: typeof auth.$Infer.Session.session | null
+  }
+}>();
 
 // api.use(honoLogger);
 api.notFound(notFound404Handler);
 api.onError(errorHandler);
 api.use("*", cors());
+api.use("*", async (c, next) => {
+  const session = await auth.api.getSession({ headers: c.req.raw.headers });
+
+  if (!session) {
+    c.set("user", null);
+    c.set("session", null);
+    return next();
+  }
+
+  c.set("user", session.user);
+  c.set("session", session.session);
+  return next();
+});
 api.on(["POST", "GET"], "/api/auth/**", (c) => auth.handler(c.req.raw));
 api.get(
   "/openapi.json",

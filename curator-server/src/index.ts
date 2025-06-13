@@ -1,12 +1,11 @@
 import "dotenv/config";
-import { drizzle } from "drizzle-orm/node-postgres";
 import { api } from "@/api";
 import env from "@/env";
 import { printBanner } from "@/lib/banner";
 import { metadata } from "@/schemas/drizzle-schema";
 import { eq } from "drizzle-orm";
+import { db } from "@/lib/db";
 
-export const db = drizzle(env.DATABASE_URL);
 
 const start = async () => {
   printBanner();

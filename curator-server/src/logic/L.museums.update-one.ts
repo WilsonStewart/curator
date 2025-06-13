@@ -1,4 +1,4 @@
-import { db } from "@/index";
+import { db } from "@/lib/db";
 import { updateModifiedDateBody } from "@/lib/update-modified-date-body";
 import { museums } from "@/schemas/drizzle-schema";
 import { VMuseumUpdate } from "@/schemas/validator-schema";

@@ -1,5 +1,5 @@
 import { museums } from "@/schemas/drizzle-schema";
-import { db } from "@/index";
+import { db } from "@/lib/db";
 import { eq } from "drizzle-orm";
 
 export const LMuseumsDeleteOne = async (id: string) => {
