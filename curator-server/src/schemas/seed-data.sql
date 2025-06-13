@@ -9,7 +9,7 @@ VALUES
 INSERT INTO
     users (id, name, email) OVERRIDING SYSTEM VALUE
 VALUES
-    ('01JXJWRHD2N17HVE9KZZZDADDY', 'system', 'system@curator.bellbellbell.com');
+    ('01JXJWRHD2N17HVE9KZZZDADDY', 'SYSTEM', 'system@curator.bellbellbell.com');
 
 --> statement-breakpoint
 INSERT INTO
