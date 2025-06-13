@@ -7,6 +7,7 @@ import { RMuseumsDeleteOne } from "@/routes/R.musuems.delete-one";
 import { Hono } from "hono";
 
 export const museumsRouter = new Hono();
+export const authRouter = new Hono();
 
 RMuseumsCreateOne(museumsRouter);
 RMuseumsSelectAll(museumsRouter);

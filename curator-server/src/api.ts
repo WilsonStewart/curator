@@ -6,9 +6,10 @@ import { openAPISpecs } from "hono-openapi";
 import pkgdotjson from "@/../package.json" assert { type: "json" };
 import { Scalar } from "@scalar/hono-api-reference";
 import { honoLogger } from "@/middlewares/hono-logger";
-import { museumsRouter } from "@/routes/R.museums.index";
+import { museumsRouter } from "@/routes/routes";
 import { cors } from "hono/cors";
 import { auth } from "@/lib/auth";
+import { authenticatedRoute } from "@/middlewares/auth-middleware";
 
 export const api = new Hono<{
   Variables: {
@@ -17,25 +18,23 @@ export const api = new Hono<{
   }
 }>();
 
+const protectedApi = new Hono<{
+  Variables: {
+    user: typeof auth.$Infer.Session.user | null;
+    session: typeof auth.$Infer.Session.session | null
+  }
+}>();
+
+
 // api.use(honoLogger);
 api.notFound(notFound404Handler);
 api.onError(errorHandler);
 api.use("*", cors());
-api.use("*", async (c, next) => {
-  const session = await auth.api.getSession({ headers: c.req.raw.headers });
-
-  if (!session) {
-    c.set("user", null);
-    c.set("session", null);
-    return next();
-  }
-
-  c.set("user", session.user);
-  c.set("session", session.session);
-  return next();
-});
 api.on(["POST", "GET"], "/api/auth/**", (c) => auth.handler(c.req.raw));
-api.get(
+
+protectedApi.use("*", authenticatedRoute)
+
+protectedApi.get(
   "/openapi.json",
   openAPISpecs(api, {
     documentation: {
@@ -56,10 +55,10 @@ api.get(
     },
   })
 );
-api.get(
+protectedApi.get(
   "/docs",
   Scalar({
-    theme: "fastify",
+    theme: "elysiajs",
     url: "/openapi.json",
     layout: "modern",
     defaultHttpClient: {
@@ -68,5 +67,6 @@ api.get(
     },
   })
 );
+protectedApi.route("/museums", museumsRouter);
 
-api.route("/museums", museumsRouter);
+api.route("/", protectedApi)
