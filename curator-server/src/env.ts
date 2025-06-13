@@ -4,8 +4,11 @@ import z from "zod";
 const ZEnvSchema = z.object({
   NODE_ENV: z.enum(["production", "development"]),
   CURATOR_MODE: z.enum(["api", "super", "worker"]),
-  SERVER_PORT: z.coerce.number(),
+  SERVER_URL: z.string().url(),
+  SERVER_PORT: z.coerce.number().min(2),
   DATABASE_URL: z.string().url(),
+  BETTER_AUTH_URL: z.string().url(),
+  BETTER_AUTH_SECRET: z.string().min(32)
 });
 
 // const VEnv = type({

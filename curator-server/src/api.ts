@@ -8,6 +8,7 @@ import { Scalar } from "@scalar/hono-api-reference";
 import { honoLogger } from "@/middlewares/hono-logger";
 import { museumsRouter } from "@/routes/R.museums.index";
 import { cors } from "hono/cors";
+import { auth } from "@/lib/auth";
 
 export const api = new Hono();
 
@@ -15,9 +16,7 @@ export const api = new Hono();
 api.notFound(notFound404Handler);
 api.onError(errorHandler);
 api.use("*", cors());
-
-api.route("/museums", museumsRouter);
-
+api.on(["POST", "GET"], "/api/auth/**", (c) => auth.handler(c.req.raw));
 api.get(
   "/openapi.json",
   openAPISpecs(api, {
@@ -39,11 +38,10 @@ api.get(
     },
   })
 );
-
 api.get(
   "/docs",
   Scalar({
-    theme: "elysiajs",
+    theme: "fastify",
     url: "/openapi.json",
     layout: "modern",
     defaultHttpClient: {
@@ -52,3 +50,5 @@ api.get(
     },
   })
 );
+
+api.route("/museums", museumsRouter);

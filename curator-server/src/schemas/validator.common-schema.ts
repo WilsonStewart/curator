@@ -6,5 +6,5 @@ export const VOwnerKVs = {
 
 export const VTimestampKVs = {
     createdAt: z.string().datetime().nonempty(),
-    modifiedAt: z.string().datetime().nonempty()
+    updatedAt: z.string().datetime().nonempty()
 };

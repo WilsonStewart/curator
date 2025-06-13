@@ -4,12 +4,14 @@
   "scripts": {
     "dev": "bun run --hot src/index.ts",
     "db:genMigrations": "bun run drizzle-kit generate",
+    "db:genBetterAuthMigrations": "bunx @better-auth/cli generate",
     "db:migrate": "bun run drizzle-kit migrate",
     "devtools:genNanoids": "bun run dev-tools/gen-20-nanoids.ts"
   },
   "dependencies": {
     "@hono/zod-validator": "^0.7.0",
     "@scalar/hono-api-reference": "^0.9.1",
+    "better-auth": "^1.2.9",
     "dotenv": "^16.5.0",
     "drizzle-orm": "^0.44.1",
     "drizzle-zod": "^0.7.1",

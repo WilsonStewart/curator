@@ -7,9 +7,9 @@ VALUES
 
 --> statement-breakpoint
 INSERT INTO
-    users (id, user_name, display_name) OVERRIDING SYSTEM VALUE
+    users (id, name, email) OVERRIDING SYSTEM VALUE
 VALUES
-    ('01JXJWRHD2N17HVE9KZZZDADDY', 'system', 'SYSTEM');
+    ('01JXJWRHD2N17HVE9KZZZDADDY', 'system', 'system@curator.bellbellbell.com');
 
 --> statement-breakpoint
 INSERT INTO

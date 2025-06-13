@@ -1,5 +1,5 @@
 import { integer, text, timestamp } from "drizzle-orm/pg-core";
-import { museums, users } from "./drizzle-schema";
+import { museums, user } from "./drizzle-schema";
 
 export const identityColumns = {
   id: text("id").primaryKey(),
@@ -7,7 +7,7 @@ export const identityColumns = {
 
 export const timestampColumns = {
   createdAt: timestamp("created_at", { mode: "string" }).notNull().defaultNow(),
-  modifiedAt: timestamp("modified_at", { mode: "string" })
+  updatedAt: timestamp("updated_at", { mode: "string" })
     .notNull()
     .defaultNow(),
 };
@@ -15,7 +15,7 @@ export const timestampColumns = {
 export const ownerColumns = {
   createdBy: text("created_by")
     .notNull()
-    .references(() => users.id),
+    .references(() => user.id),
 };
 
 export const museumColumns = {
