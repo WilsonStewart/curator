@@ -1,13 +1,12 @@
-import { VMuseum, VMuseumInsert, VMuseumSelect } from "@/db/validator-schema";
-import { LSelectOneMuseum } from "@/logic/L.museums.select-one";
 import { describeRoute } from "hono-openapi";
 import { resolver, validator } from "hono-openapi/zod";
 import z from "zod";
 import "zod-openapi/extend";
 import { Hono } from "hono";
-import { LCreateOneMuseum } from "@/logic/L.museums.create-one";
+import { LMuseumsCreateOne } from "@/logic/L.museums.create-one";
+import { VMuseumInsert, VMuseumSelect } from "@/schemas/validator-schema";
 
-export const createOne = (app: Hono) => {
+export const RMuseumsCreateOne = (app: Hono) => {
   app.post(
     "/",
     describeRoute({
@@ -24,9 +23,10 @@ export const createOne = (app: Hono) => {
         },
       },
     }),
-    validator("json", VMuseum.VInsert),
+    validator("json", VMuseumInsert),
     async (c) => {
-      return c.json(await LCreateOneMuseum(await c.req.json()));
+      let r = await LMuseumsCreateOne(await c.req.json())
+      return c.json(r, 200);
     }
   );
 };

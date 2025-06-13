@@ -1,16 +1,16 @@
-import { VMuseumSelect } from "@/db/validator-schema";
-import { LSelectOneMuseum } from "@/logic/L.museums.select-one";
+import { VMuseumIdParam, VMuseumSelect } from "@/schemas/validator-schema";
+import { LMuseumsSelectOne } from "@/logic/L.museums.select-one";
 import { describeRoute } from "hono-openapi";
 import { resolver, validator } from "hono-openapi/zod";
 import z from "zod";
 import "zod-openapi/extend";
 import { Hono } from "hono";
 
-export const selectOne = (app: Hono) => {
+export const RMuseumsSelectOne = (app: Hono) => {
   app.get(
-    "/:eid",
+    "/:id",
     describeRoute({
-      description: "Selects a museum resource by its external id (eid).",
+      description: "Selects a museum resource by its id.",
       tags: ["Museums"],
       responses: {
         200: {
@@ -25,10 +25,11 @@ export const selectOne = (app: Hono) => {
     }),
     validator(
       "param",
-      z.object({ eid: z.string().length(8).openapi({ example: "sU4ywaaa" }) })
+      VMuseumIdParam.openapi({ example: { id: "01JXJYQXH6A9GXPJF5V50Q1WES" } })
     ),
     async (c) => {
-      return c.json(await LSelectOneMuseum(c.req.param("eid")));
+      let r = await LMuseumsSelectOne(c.req.param("id"))
+      return c.json(r, 200)
     }
   );
 };

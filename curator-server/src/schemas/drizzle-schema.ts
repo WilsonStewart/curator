@@ -13,7 +13,7 @@ import {
   ownerColumns,
   museumColumns,
   timestampColumns,
-} from "./common-columns";
+} from "./drizzle.common-schema";
 import { check } from "drizzle-orm/sqlite-core";
 import { sql } from "drizzle-orm";
 import { genUlid } from "@/lib/id-generators";
@@ -49,6 +49,7 @@ export const museums = pgTable("museums", {
   ...ownerColumns,
   ...timestampColumns,
 });
+
 export const galleries = pgTable("galleries", {
   id: text("id")
     .primaryKey()

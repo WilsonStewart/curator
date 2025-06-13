@@ -1,9 +1,8 @@
-import { bigint, integer, text, timestamp, uuid } from "drizzle-orm/pg-core";
+import { integer, text, timestamp } from "drizzle-orm/pg-core";
 import { museums, users } from "./drizzle-schema";
 
 export const identityColumns = {
-  id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
-  eid: text("eid").notNull().unique(),
+  id: text("id").primaryKey(),
 };
 
 export const timestampColumns = {

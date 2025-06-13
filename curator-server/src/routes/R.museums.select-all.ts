@@ -1,12 +1,12 @@
-import { VMuseumSelect } from "@/db/validator-schema";
-import { LSelectAllMuseums } from "@/logic/L.museums.select-all";
+import { VMuseumSelect } from "@/schemas/validator-schema";
+import { LMuseumsSelectAll } from "@/logic/L.museums.select-all";
 import { describeRoute } from "hono-openapi";
 import { resolver } from "hono-openapi/zod";
 import z from "zod";
 import "zod-openapi/extend";
 import { Hono } from "hono";
 
-export const selectAll = (app: Hono) => {
+export const RMuseumsSelectAll = (app: Hono) => {
   app.get(
     "/",
     describeRoute({
@@ -22,7 +22,8 @@ export const selectAll = (app: Hono) => {
       },
     }),
     async (c) => {
-      return c.json(await LSelectAllMuseums());
+      let r = await LMuseumsSelectAll()
+      return c.json(r, 200);
     }
   );
 };

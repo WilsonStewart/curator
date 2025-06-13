@@ -1,7 +1,7 @@
-import { museums, users } from "@/db/drizzle-schema";
+import { museums, users } from "@/schemas/drizzle-schema";
 import { db } from "@/index";
 import { eq } from "drizzle-orm";
 
-export const LSelectOneMuseum = async (eid: string) => {
-  return await db.select().from(museums).where(eq(museums.eid, eid)).execute();
+export const LMuseumsSelectOne = async (id: string) => {
+  return await db.select().from(museums).where(eq(museums.id, id)).execute();
 };

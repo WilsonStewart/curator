@@ -1,16 +1,16 @@
-import { VMuseumSelect } from "@/db/validator-schema";
+import { VMuseumDelete, VMuseumIdParam, VMuseumSelect } from "@/schemas/validator-schema";
 import { describeRoute } from "hono-openapi";
 import { resolver, validator } from "hono-openapi/zod";
 import z from "zod";
 import "zod-openapi/extend";
 import { Hono } from "hono";
-import { LDeleteOneMuseum } from "@/logic/L.museums.delete-one"
+import { LMuseumsDeleteOne } from "@/logic/L.museums.delete-one"
 
-export const deleteOne = (app: Hono) => {
+export const RMuseumsDeleteOne = (app: Hono) => {
     app.delete(
-        "/:eid",
+        "/:id",
         describeRoute({
-            description: "Removes a museum resource by its external id (eid).",
+            description: "Removes a museum resource by its id.",
             tags: ["Museums"],
             responses: {
                 200: {
@@ -33,11 +33,10 @@ export const deleteOne = (app: Hono) => {
         }),
         validator(
             "param",
-            z.object(
-                { eid: z.string().length(8).openapi({ example: "frKxit2y" }) })
+            VMuseumDelete.openapi({ example: { id: "01JXMVE4F6VRRJ6ZM37S721DH4" } })
         ),
         async (c) => {
-            let r = await LDeleteOneMuseum(c.req.param("eid"))
+            let r = await LMuseumsDeleteOne(c.req.param("id"))
             if (r.length < 1) { c.status(404) }
             return c.json(r)
         }

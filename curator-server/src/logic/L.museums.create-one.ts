@@ -1,11 +1,10 @@
-import { museums } from "@/db/drizzle-schema";
+import { museums } from "@/schemas/drizzle-schema";
 import { db } from "@/index";
-import { eq } from "drizzle-orm";
-import { VMuseum, VMuseumInsert } from "@/db/validator-schema";
 import { z } from "zod";
+import { VMuseumInsert } from "@/schemas/validator-schema";
 
-export const LCreateOneMuseum = async (
-  body: z.infer<typeof VMuseum.VInsert>
+export const LMuseumsCreateOne = async (
+  body: z.infer<typeof VMuseumInsert>
 ) => {
   return await db.insert(museums).values(body).returning().execute();
 };

@@ -1,13 +1,15 @@
-import { createOne } from "@/routes/R.museums.create-one";
-import { selectAll } from "@/routes/R.museums.select-all";
-import { selectOne } from "@/routes/R.museums.select-one";
-import { deleteOne } from "@/routes/R.musuems.delete-one";
+
+import { RMuseumsCreateOne } from "@/routes/R.museums.create-one";
+import { RMuseumsSelectAll } from "@/routes/R.museums.select-all";
+import { RMuseumsSelectOne } from "@/routes/R.museums.select-one";
+import { RMuseumsUpdateOne } from "@/routes/R.museums.update-one";
+import { RMuseumsDeleteOne } from "@/routes/R.musuems.delete-one";
 import { Hono } from "hono";
 
 export const museumsRouter = new Hono();
 
-selectOne(museumsRouter);
-selectAll(museumsRouter);
-deleteOne(museumsRouter);
-createOne(museumsRouter);
-// updateOne(museumsRouter);
+RMuseumsCreateOne(museumsRouter);
+RMuseumsSelectAll(museumsRouter);
+RMuseumsSelectOne(museumsRouter);
+RMuseumsUpdateOne(museumsRouter);
+RMuseumsDeleteOne(museumsRouter);
