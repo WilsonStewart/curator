@@ -14,13 +14,13 @@ export const timestampColumns = {
 };
 
 export const ownerColumns = {
-  createdBy: integer("created_by")
+  createdBy: text("created_by")
     .notNull()
     .references(() => users.id),
 };
 
 export const museumColumns = {
-  museumId: integer("museum_id")
+  museumId: text("museum_id")
     .notNull()
     .references(() => museums.id),
 };

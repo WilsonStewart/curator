@@ -1,4 +1,4 @@
-import { VMuseumInsert, VMuseumSelect } from "@/db/validator-schema";
+import { VMuseum, VMuseumInsert, VMuseumSelect } from "@/db/validator-schema";
 import { LSelectOneMuseum } from "@/logic/L.museums.select-one";
 import { describeRoute } from "hono-openapi";
 import { resolver, validator } from "hono-openapi/zod";
@@ -24,10 +24,7 @@ export const createOne = (app: Hono) => {
         },
       },
     }),
-    validator(
-      "json",
-      VMuseumInsert
-    ),
+    validator("json", VMuseum.VInsert),
     async (c) => {
       return c.json(await LCreateOneMuseum(await c.req.json()));
     }
