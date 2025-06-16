@@ -10,4 +10,6 @@ export function genNanoid(): string {
   return nanoid();
 }
 
-export function genUlid(): string { return ulid() }
+export function genUlid(): string {
+  return ulid();
+}

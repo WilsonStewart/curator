@@ -1,41 +1,33 @@
 import env from "@/env";
 import { notFound404Handler } from "@/middlewares/404-handler";
 import { errorHandler } from "@/middlewares/error-handler";
-import { Hono } from "hono";
 import { openAPISpecs } from "hono-openapi";
 import pkgdotjson from "@/../package.json" assert { type: "json" };
 import { Scalar } from "@scalar/hono-api-reference";
 import { honoLogger } from "@/middlewares/hono-logger";
-import { museumsRouter } from "@/routes/routes";
+import { initializeRouter, museumsRouter } from "@/routes/routes";
 import { cors } from "hono/cors";
-import { auth } from "@/lib/auth";
+import { auth, authHono } from "@/lib/auth";
 import { authenticatedRoute } from "@/middlewares/auth-middleware";
+import { logger } from "hono/logger";
 
-export const api = new Hono<{
-  Variables: {
-    user: typeof auth.$Infer.Session.user | null;
-    session: typeof auth.$Infer.Session.session | null
-  }
-}>();
+export const api = authHono();
 
-const protectedApi = new Hono<{
-  Variables: {
-    user: typeof auth.$Infer.Session.user | null;
-    session: typeof auth.$Infer.Session.session | null
-  }
-}>();
+const protectedApi = authHono();
 
-
+api.use(logger());
 // api.use(honoLogger);
 api.notFound(notFound404Handler);
 api.onError(errorHandler);
 api.use("*", cors());
 api.on(["POST", "GET"], "/api/auth/**", (c) => auth.handler(c.req.raw));
 
-protectedApi.use("*", authenticatedRoute)
+api.route("/api/initialize", initializeRouter);
 
-protectedApi.get(
-  "/openapi.json",
+protectedApi.use("*", authenticatedRoute);
+
+api.get(
+  "/api/openapi.json",
   openAPISpecs(api, {
     documentation: {
       info: {
@@ -55,11 +47,11 @@ protectedApi.get(
     },
   })
 );
-protectedApi.get(
-  "/docs",
+api.get(
+  "/api/docs",
   Scalar({
     theme: "elysiajs",
-    url: "/openapi.json",
+    url: "/api/openapi.json",
     layout: "modern",
     defaultHttpClient: {
       clientKey: "fetch",
@@ -68,5 +60,6 @@ protectedApi.get(
   })
 );
 protectedApi.route("/museums", museumsRouter);
+protectedApi.route("/initialize", initializeRouter);
 
-api.route("/", protectedApi)
+api.route("/api/", protectedApi);

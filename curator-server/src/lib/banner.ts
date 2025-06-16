@@ -69,10 +69,10 @@ export const printBanner = () => {
   console.log(`Git commit:          ${GIT_BANNER_COMMIT_MESSAGE}`);
   if (env.CURATOR_MODE === "api") {
     console.log(
-      `OpenAPI endpoint:    http://localhost:${env.SERVER_PORT}/openapi.json`
+      `OpenAPI endpoint:    http://localhost:${env.SERVER_PORT}/api/openapi.json`
     );
     console.log(
-      `Scaler endpoint:     http://localhost:${env.SERVER_PORT}/docs`
+      `Scaler endpoint:     http://localhost:${env.SERVER_PORT}/api/docs`
     );
   }
   console.log("");

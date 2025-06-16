@@ -2,10 +2,9 @@ import "dotenv/config";
 import { api } from "@/api";
 import env from "@/env";
 import { printBanner } from "@/lib/banner";
-import { metadata } from "@/schemas/drizzle-schema";
 import { eq } from "drizzle-orm";
 import { db } from "@/lib/db";
-
+import { metadata } from "@/schemas/drizzle-schema/drizzle-schema.metadata";
 
 const start = async () => {
   printBanner();
