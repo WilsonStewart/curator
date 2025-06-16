@@ -74,6 +74,9 @@ export const printBanner = () => {
     console.log(
       `Scaler endpoint:     http://localhost:${env.SERVER_PORT}/api/docs`
     );
+    console.log(
+      `better-auth docs:    http://localhost:${env.SERVER_PORT}/api/auth/reference`
+    );
   }
   console.log("");
 };
