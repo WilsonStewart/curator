@@ -5,6 +5,13 @@ import { db } from "@/lib/db";
 import env from "@/env";
 import { genUlid } from "@/lib/id-generators";
 import { Hono } from "hono";
+import {
+  accounts,
+  apikeys,
+  sessions,
+  users,
+  verifications,
+} from "@/schemas/drizzle-schema/drizzle-schema.better-auth";
 
 // let betterAuthPlugins: any = [];
 
@@ -23,6 +30,7 @@ export const auth = betterAuth({
   database: drizzleAdapter(db, {
     provider: "pg",
     usePlural: true,
+    schema: { users, sessions, accounts, verifications, apikeys },
   }),
   emailAndPassword: {
     enabled: true,
