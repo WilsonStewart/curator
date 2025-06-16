@@ -7,7 +7,7 @@ export const Route = createRootRoute({
     const pathname = useLocation({ select: (loc) => loc.pathname });
 
     // list any “public” pages that shouldn’t render your shell
-    const noShellPages = ["/login", "/signup", "/forgot-password"];
+    const noShellPages = ["/login"];
 
     return (
       <>
