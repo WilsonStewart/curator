@@ -4,7 +4,7 @@ import { VOwnerKVs, VTimestampKVs } from "@/schemas/validator-schema.common";
 
 export const VMuseumSelect = z.object({
   id: z.string().ulid().nonempty(),
-  displayName: z.string().nonempty(),
+  name: z.string().nonempty(),
   ...VOwnerKVs,
   ...VTimestampKVs,
 });

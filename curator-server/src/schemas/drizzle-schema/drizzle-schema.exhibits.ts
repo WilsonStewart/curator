@@ -6,6 +6,7 @@ import {
   AnyPgColumn,
   boolean,
   pgTable,
+  pgView,
   text,
   timestamp,
 } from "drizzle-orm/pg-core";
@@ -43,9 +44,8 @@ export const ETYoutubeVideos = pgTable("exhibit_type_youtube_videos", {
     .references(() => exhibits.id),
   youtubeId: text("youtube_id").notNull().unique(),
   youtubeChannelId: text("youtube_channel_id")
-    .notNull()
     .references(() => ETYoutubeChannels.youtubeId),
-  exhibitTypeId: text("exhibit_type_id").references(() => exhibitTypes.id),
+  exhibitTypeId: text("exhibit_type_id").references(() => exhibitTypes.id).notNull(),
   title: text("title").notNull(),
   description: text("description"),
   uploadDate: timestamp("upload_date").notNull(),
@@ -73,3 +73,13 @@ export const exhibits = pgTable("exhibits", {
   createdAt: timestamp("created_at", { mode: "string" }).notNull().defaultNow(),
   updatedAt: timestamp("updated_at", { mode: "string" }).notNull().defaultNow(),
 });
+
+export const exibitsTypesIdView = pgView("exhibits_types_id_view").as((qb) => {
+  return qb.select(
+    {
+      id: exhibits.id,
+      exhibitTypeId: exhibits.exhibitTypeId
+    }
+  )
+    .from(exhibits)
+})
