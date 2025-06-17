@@ -2,7 +2,7 @@ import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { betterAuth } from "better-auth";
 import { admin, apiKey, openAPI, organization } from "better-auth/plugins";
 import { db } from "@/lib/db";
-import env from "@/env";
+import env from "@/dotenv";
 import { genUlid } from "@/lib/id-generators";
 import { Hono } from "hono";
 import {

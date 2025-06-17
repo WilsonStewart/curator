@@ -1,10 +1,12 @@
 import "dotenv/config";
 import { api } from "@/api";
-import env from "@/env";
+import env from "@/dotenv";
 import { printBanner } from "@/lib/banner";
 import { eq } from "drizzle-orm";
 import { db } from "@/lib/db";
 import { metadata } from "@/schemas/drizzle-schema/drizzle-schema.metadata";
+import { refreshExhibitIdTypeIdCache } from "@/lib/id-type-cache";
+import { r } from "@/lib/cache";
 
 const start = async () => {
   printBanner();
@@ -18,6 +20,10 @@ const start = async () => {
     console.error(error);
     process.exit(1);
   }
+  //
+  // Fill caches
+  //
+  await refreshExhibitIdTypeIdCache();
 
   switch (env.CURATOR_MODE) {
     case "api":

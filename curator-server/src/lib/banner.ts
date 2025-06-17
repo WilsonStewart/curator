@@ -1,4 +1,4 @@
-import env from "@/env";
+import env from "@/dotenv";
 import {
   GIT_BANNER_COMMIT_MESSAGE,
   GIT_CURRENT_BRANCH_NAME,

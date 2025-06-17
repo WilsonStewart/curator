@@ -1,4 +1,4 @@
-import env from "@/env";
+import env from "@/dotenv";
 import { ErrorHandler } from "hono";
 
 export const errorHandler: ErrorHandler = (err, c) => {

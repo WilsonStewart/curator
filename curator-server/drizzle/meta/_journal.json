@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1750186210842,
+      "tag": "0000_natural_thunderbolts",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1750186361587,
+      "tag": "0001_seed-builtin-01",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1750186545619,
+      "tag": "0002_reflective_dracula",
+      "breakpoints": true
+    }
+  ]
+}

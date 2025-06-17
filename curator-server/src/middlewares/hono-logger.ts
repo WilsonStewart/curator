@@ -1,4 +1,4 @@
-import env from "@/env";
+import env from "@/dotenv";
 import { createMiddleware } from "hono/factory";
 
 export const honoLogger = createMiddleware(async (c, next) => {

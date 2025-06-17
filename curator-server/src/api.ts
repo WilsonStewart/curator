@@ -1,4 +1,4 @@
-import env from "@/env";
+import env from "@/dotenv";
 import { notFound404Handler } from "@/middlewares/404-handler";
 import { errorHandler } from "@/middlewares/error-handler";
 import { openAPISpecs } from "hono-openapi";

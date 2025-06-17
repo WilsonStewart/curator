@@ -8,7 +8,10 @@ const ZEnvSchema = z.object({
   SERVER_PORT: z.coerce.number().min(2),
   DATABASE_URL: z.string().url(),
   BETTER_AUTH_URL: z.string().url(),
-  BETTER_AUTH_SECRET: z.string().min(32)
+  BETTER_AUTH_SECRET: z.string().min(32),
+  REDIS_URL: z.string().url(),
+  REDIS_PORT: z.coerce.number().min(2),
+  REDIS_PASSWORD: z.string(),
 });
 
 // const VEnv = type({

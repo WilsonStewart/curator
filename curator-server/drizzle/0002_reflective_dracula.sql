@@ -1,0 +1,1 @@
+DROP VIEW "public"."exhibits_types_id_view";

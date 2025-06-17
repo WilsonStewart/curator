@@ -74,12 +74,12 @@ export const exhibits = pgTable("exhibits", {
   updatedAt: timestamp("updated_at", { mode: "string" }).notNull().defaultNow(),
 });
 
-export const exibitsTypesIdView = pgView("exhibits_types_id_view").as((qb) => {
-  return qb.select(
-    {
-      id: exhibits.id,
-      exhibitTypeId: exhibits.exhibitTypeId
-    }
-  )
-    .from(exhibits)
-})
+// export const exibitsTypesIdView = pgView("exhibits_types_id_view").as((qb) => {
+//   return qb.select(
+//     {
+//       id: exhibits.id,
+//       exhibitTypeId: exhibits.exhibitTypeId
+//     }
+//   )
+//     .from(exhibits)
+// })
