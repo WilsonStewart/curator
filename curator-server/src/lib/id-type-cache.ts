@@ -6,7 +6,7 @@ import { exhibits } from "@/schemas/drizzle-schema/drizzle-schema.exhibits"
 export const refreshExhibitIdTypeIdCache = async (): Promise<void> => {
     let doRefresh = false
 
-    let updatedAt = await r.hget("exhibits:idTypeId", "updatedAt")
+    let updatedAt = await r.get("exhibits:idToTypeId--meta")
     if (updatedAt) { if ((Date.now() - parseInt(updatedAt)) > MtoMS(5)) { doRefresh = true } }
     else { doRefresh = true }
 
@@ -17,15 +17,15 @@ export const refreshExhibitIdTypeIdCache = async (): Promise<void> => {
             .execute()
 
         await r.hset(
-            "exhibits:idTypeId",
+            "exhibits:idToTypeId",
             Object.fromEntries(
                 dbResults.map(({ id, exhibitTypeId }) => { return [id, exhibitTypeId] })
             )
         )
 
-        await r.hset(
-            "exhibits:idTypeId",
-            { updatedAt: Date.now() }
+        await r.set(
+            "exhibits:idToTypeId--meta",
+            Date.now()
         )
     }
 }
