@@ -1,8 +1,21 @@
 import { LayoutShell } from "@/components/layout.shell";
-import { Outlet, createRootRoute, useLocation } from "@tanstack/react-router";
+import { authAtom, stateStore } from "@/lib/state";
+import {
+  Outlet,
+  createRootRoute,
+  redirect,
+  useLocation,
+} from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 
 export const Route = createRootRoute({
+  beforeLoad: (c) => {
+    if (c.location.pathname !== "/login") {
+      if (!stateStore.get(authAtom).isUserLoggedIn) {
+        throw redirect({ to: "/login" });
+      }
+    }
+  },
   component: () => {
     const pathname = useLocation({ select: (loc) => loc.pathname });
 
@@ -12,7 +25,6 @@ export const Route = createRootRoute({
     return (
       <div className="root-container">
         {noShellPages.includes(pathname) ? (
-
           <Outlet />
         ) : (
           <LayoutShell>
