@@ -1,10 +1,15 @@
 @use "layout";
 @use "theming/open-color" as *;
+@use "components/overlay";
+@use "components/_login-form";
+@import url('https://fonts.googleapis.com/css2?family=Faculty+Glyphic&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Arsenal+SC:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Mono+One&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 
 * {
     padding: 0;
     margin: 0;
-    font-family: Inter, sans-serif;
+    font-family: Rubik, sans-serif;
     font-feature-settings: 'liga' 1, 'calt' 1;
     font-weight: 300;
     font-size: 11pt;
@@ -56,6 +61,40 @@ tr {
 .container {
     display: flex;
     flex-direction: column;
-    width: 100vw;
     max-width: 1300px;
+}
+
+.root-container {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    overscroll-behavior: none;
+}
+
+input {
+    height: 2.3rem;
+    padding: 5px;
+}
+
+button {
+    height: 3rem;
+    cursor: pointer;
+}
+
+.logo {
+    color: black;
+    // font-family: "Faculty Glyphic", sans-serif;
+    // font-weight: 600;
+    // font-style: normal;
+    font-family: "Rubik", monospace;
+    font-weight: 600;
+    font-style: normal;
+}
+
+.logo-xl {
+    font-size: 40pt;
+}
+
+.flex-center {
+    display: flex;
 }

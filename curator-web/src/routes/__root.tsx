@@ -10,18 +10,17 @@ export const Route = createRootRoute({
     const noShellPages = ["/login"];
 
     return (
-      <>
+      <div className="root-container">
         {noShellPages.includes(pathname) ? (
-          <div className="container-noshell">
-            <Outlet />
-          </div>
+
+          <Outlet />
         ) : (
           <LayoutShell>
             <Outlet />
           </LayoutShell>
         )}
         <TanStackRouterDevtools />
-      </>
+      </div>
     );
   },
 });
