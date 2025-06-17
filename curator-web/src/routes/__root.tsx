@@ -1,5 +1,5 @@
 import { LayoutShell } from "@/components/layout.shell";
-import { authAtom, stateStore } from "@/lib/state";
+import { isAuthedAtom, stateStore } from "@/lib/state";
 import {
   Outlet,
   createRootRoute,
@@ -11,7 +11,10 @@ import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 export const Route = createRootRoute({
   beforeLoad: (c) => {
     if (c.location.pathname !== "/login") {
-      if (!stateStore.get(authAtom).isUserLoggedIn) {
+      console.log(stateStore.get(isAuthedAtom));
+      console.log(stateStore.get(isAuthedAtom));
+      console.log(stateStore.get(isAuthedAtom));
+      if (!stateStore.get(isAuthedAtom)) {
         throw redirect({ to: "/login" });
       }
     }
