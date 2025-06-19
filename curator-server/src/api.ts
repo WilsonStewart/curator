@@ -5,7 +5,7 @@ import { openAPISpecs } from "hono-openapi";
 import pkgdotjson from "@/../package.json" assert { type: "json" };
 import { Scalar } from "@scalar/hono-api-reference";
 import { honoLogger } from "@/middlewares/hono-logger";
-import { initializeRouter, museumsRouter } from "@/routes/routes";
+import { exhibitsRouter, initializeRouter, museumsRouter } from "@/routes/routes";
 import { cors } from "hono/cors";
 import { auth, authHono } from "@/lib/auth";
 import { authenticatedRoute } from "@/middlewares/auth-middleware";
@@ -23,6 +23,7 @@ api.use("*", cors());
 api.on(["POST", "GET"], "/api/auth/**", (c) => auth.handler(c.req.raw));
 
 api.route("/api/initialize", initializeRouter);
+api.route("/api/exhibits", exhibitsRouter)
 
 protectedApi.use("*", authenticatedRoute);
 

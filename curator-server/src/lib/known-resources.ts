@@ -9,3 +9,5 @@ export const knownResourceIds = {
         image: "01JXJY18WSJ31PP536WWN4XRPV"
     }
 }
+
+export type TExhibitTypeId = "01JXJY0510HN94TB4Z4S9C5ZKM" | "01JXJXZJCREM9Q5W9XX3WB1C13"

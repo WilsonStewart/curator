@@ -1,3 +1,4 @@
+import { RExhibitsSelectOne } from "@/routes/R.exhibits.select-one";
 import { RInitializeGetStatus } from "@/routes/R.initialize.get-status";
 import { RMuseumsCreateOne } from "@/routes/R.museums.create-one";
 import { RMuseumsSelectAll } from "@/routes/R.museums.select-all";
@@ -8,6 +9,7 @@ import { Hono } from "hono";
 
 export const museumsRouter = new Hono();
 export const initializeRouter = new Hono();
+export const exhibitsRouter = new Hono();
 
 RMuseumsCreateOne(museumsRouter);
 RMuseumsSelectAll(museumsRouter);
@@ -16,3 +18,5 @@ RMuseumsUpdateOne(museumsRouter);
 RMuseumsDeleteOne(museumsRouter);
 
 RInitializeGetStatus(initializeRouter);
+
+RExhibitsSelectOne(exhibitsRouter)

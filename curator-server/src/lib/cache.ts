@@ -1,16 +1,19 @@
 import env from "@/dotenv";
+import { TExhibitTypeId } from "@/lib/known-resources";
 import { Redis } from "ioredis"
 
 export const r = new Redis({
     password: env.REDIS_PASSWORD,
 });
 
+export type TLazyRedisHashOpts = {
+    key: string
+    field: string
+    asyncLoader: () => Promise<string>
+}
+
 export const lazyRedisHash = async (
-    opts: {
-        key: string
-        field: string
-        asyncLoader: () => Promise<string>
-    }
+    opts: TLazyRedisHashOpts
 ): Promise<string | undefined> => {
     let result = await r.hget(opts.key, opts.field)
     if (!result) {
@@ -19,4 +22,9 @@ export const lazyRedisHash = async (
         let result = await r.hget(opts.key, opts.field)
     }
     if (result) { return result }
+}
+
+export const typeIdLookup = async (opts: TLazyRedisHashOpts): Promise<TExhibitTypeId | undefined> => {
+    let result = await lazyRedisHash(opts)
+    if (result) { return <TExhibitTypeId>result }
 }
