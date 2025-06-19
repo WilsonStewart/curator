@@ -5,7 +5,7 @@ import { eq } from "drizzle-orm";
 import { alias } from "drizzle-orm/pg-core";
 
 export const LExhibitsSelectOne = async (id: string, typeId: TExhibitTypeId) => {
-    const typeData = alias(knownTypeIds.exhibits[typeId].table, "typeData")
+    const typeData = alias(knownTypeIds.exhibits.byId[typeId].table, "typeData")
 
     let r = await db
         .select()

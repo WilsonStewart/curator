@@ -4,10 +4,11 @@
   "scripts": {
     "dev": "bun run --hot src/index.ts",
     "db:genMigrations": "bun run drizzle-kit generate",
-    "db:reinit": "rm -rf ./src/drizzle; bun run ./src/dev-tools/db-schemas-reinit.ts; bun run drizzle-kit generate;bunx drizzle-kit generate --custom --name=seed-builtin; cp -f ./src/schemas/0001_seed-builtin.sql ./src/drizzle/0001_seed-builtin.sql",
     "db:genBetterAuthMigrations": "bunx @better-auth/cli generate",
     "db:migrate": "bun run drizzle-kit migrate",
-    "devtools:genNanoids": "bun run dev-tools/gen-20-nanoids.ts"
+    "dev:genNanoids": "bun run dev-tools/gen-20-nanoids.ts",
+    "dev:db:reinit": "rm -rf ./drizzle; bun run ./dev-tools/db-schemas-reinit.ts; bun run drizzle-kit generate;bunx drizzle-kit generate --custom --name=seed-builtin; cp -f ./seed-data/0001_seed-builtin.sql ./drizzle/0001_seed-builtin.sql; bun run drizzle-kit migrate; bun run dev:db:seed-data",
+    "dev:db:seed-data": "bun run ./dev-tools/seed-test-data.ts"
   },
   "dependencies": {
     "@hono/zod-validator": "^0.7.0",

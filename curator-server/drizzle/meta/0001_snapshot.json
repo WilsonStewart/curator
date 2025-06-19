@@ -1,6 +1,6 @@
 {
-  "id": "709efbdd-78ef-4a3c-8dbd-157325ae89a8",
-  "prevId": "d615ef97-3f97-41e8-954a-8b8507d6bc7b",
+  "id": "d6d608bc-ee28-46c4-8f83-919ddc82ccca",
+  "prevId": "15475fed-72b6-4d35-94c6-3379ce89300c",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -13,12 +13,6 @@
           "type": "text",
           "primaryKey": true,
           "notNull": true
-        },
-        "artifact_type_id": {
-          "name": "artifact_type_id",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
         },
         "length_seconds": {
           "name": "length_seconds",
@@ -41,19 +35,6 @@
           ],
           "onUpdate": "no action",
           "onDelete": "no action"
-        },
-        "atd_audio_artifact_type_id_artifact_types_id_fk": {
-          "name": "atd_audio_artifact_type_id_artifact_types_id_fk",
-          "tableFrom": "atd_audio",
-          "columnsFrom": [
-            "artifact_type_id"
-          ],
-          "tableTo": "artifact_types",
-          "columnsTo": [
-            "id"
-          ],
-          "onUpdate": "no action",
-          "onDelete": "no action"
         }
       },
       "compositePrimaryKeys": {},
@@ -71,12 +52,6 @@
           "type": "text",
           "primaryKey": true,
           "notNull": true
-        },
-        "artifact_type_id": {
-          "name": "artifact_type_id",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
         },
         "width_px": {
           "name": "width_px",
@@ -105,19 +80,6 @@
           ],
           "onUpdate": "no action",
           "onDelete": "no action"
-        },
-        "atd_image_artifact_type_id_artifact_types_id_fk": {
-          "name": "atd_image_artifact_type_id_artifact_types_id_fk",
-          "tableFrom": "atd_image",
-          "columnsFrom": [
-            "artifact_type_id"
-          ],
-          "tableTo": "artifact_types",
-          "columnsTo": [
-            "id"
-          ],
-          "onUpdate": "no action",
-          "onDelete": "no action"
         }
       },
       "compositePrimaryKeys": {},
@@ -136,12 +98,6 @@
           "primaryKey": true,
           "notNull": true
         },
-        "artifact_type_id": {
-          "name": "artifact_type_id",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
         "length_seconds": {
           "name": "length_seconds",
           "type": "integer",
@@ -158,19 +114,6 @@
             "artifact_id"
           ],
           "tableTo": "artifacts",
-          "columnsTo": [
-            "id"
-          ],
-          "onUpdate": "no action",
-          "onDelete": "no action"
-        },
-        "atd_video_artifact_type_id_artifact_types_id_fk": {
-          "name": "atd_video_artifact_type_id_artifact_types_id_fk",
-          "tableFrom": "atd_video",
-          "columnsFrom": [
-            "artifact_type_id"
-          ],
-          "tableTo": "artifact_types",
           "columnsTo": [
             "id"
           ],
@@ -864,17 +807,17 @@
           "primaryKey": true,
           "notNull": true
         },
-        "exhibit_type_id": {
-          "name": "exhibit_type_id",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
         "youtube_id": {
           "name": "youtube_id",
           "type": "text",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
+        },
+        "youtube_channel_handle": {
+          "name": "youtube_channel_handle",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
         },
         "name": {
           "name": "name",
@@ -897,19 +840,6 @@
           ],
           "onUpdate": "no action",
           "onDelete": "no action"
-        },
-        "etd_youtube_channels_exhibit_type_id_exhibit_types_id_fk": {
-          "name": "etd_youtube_channels_exhibit_type_id_exhibit_types_id_fk",
-          "tableFrom": "etd_youtube_channels",
-          "columnsFrom": [
-            "exhibit_type_id"
-          ],
-          "tableTo": "exhibit_types",
-          "columnsTo": [
-            "id"
-          ],
-          "onUpdate": "no action",
-          "onDelete": "no action"
         }
       },
       "compositePrimaryKeys": {},
@@ -918,6 +848,13 @@
           "name": "etd_youtube_channels_youtube_id_unique",
           "columns": [
             "youtube_id"
+          ],
+          "nullsNotDistinct": false
+        },
+        "etd_youtube_channels_youtube_channel_handle_unique": {
+          "name": "etd_youtube_channels_youtube_channel_handle_unique",
+          "columns": [
+            "youtube_channel_handle"
           ],
           "nullsNotDistinct": false
         }
@@ -947,12 +884,6 @@
           "type": "text",
           "primaryKey": false,
           "notNull": false
-        },
-        "exhibit_type_id": {
-          "name": "exhibit_type_id",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true
         },
         "title": {
           "name": "title",
@@ -997,19 +928,6 @@
           "tableTo": "etd_youtube_channels",
           "columnsTo": [
             "youtube_id"
-          ],
-          "onUpdate": "no action",
-          "onDelete": "no action"
-        },
-        "etd_youtube_videos_exhibit_type_id_exhibit_types_id_fk": {
-          "name": "etd_youtube_videos_exhibit_type_id_exhibit_types_id_fk",
-          "tableFrom": "etd_youtube_videos",
-          "columnsFrom": [
-            "exhibit_type_id"
-          ],
-          "tableTo": "exhibit_types",
-          "columnsTo": [
-            "id"
           ],
           "onUpdate": "no action",
           "onDelete": "no action"

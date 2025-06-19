@@ -15,28 +15,41 @@ export const knownResourceIds = {
 
 export const knownTypeIds = {
     exhibits: {
-        "01JXJY0510HN94TB4Z4S9C5ZKM": {
-            name: "YouTube Video",
-            table: ETDYoutubeVideos
+        byId: {
+            "01JXJY0510HN94TB4Z4S9C5ZKM": {
+                name: "YouTube Video",
+                table: ETDYoutubeVideos
+            },
+            "01JXJXZJCREM9Q5W9XX3WB1C13": {
+                name: "YouTube Channel",
+                table: ETDYoutubeChannels
+            },
         },
-        "01JXJXZJCREM9Q5W9XX3WB1C13": {
-            name: "YouTube Channel",
-            table: ETDYoutubeChannels
-        },
+        byTableName: {
+            etd_youtube_video: "01JXJY0510HN94TB4Z4S9C5ZKM",
+            etd_youtube_channel: "01JXJXZJCREM9Q5W9XX3WB1C13"
+        }
     },
     artifacts: {
-        "01JXJY0J4JBHR56N63CR082AZQ": {
-            name: "Audio Recording",
-            table: ATDAudio
+        byId: {
+            "01JXJY0J4JBHR56N63CR082AZQ": {
+                name: "Audio Recording",
+                table: ATDAudio
+            },
+            "01JXJY0ZXVECEKEMJT548BMWP6": {
+                name: "Video Recording",
+                table: ATDVideo
+            },
+            "01JXJY18WSJ31PP536WWN4XRPV": {
+                name: "Image",
+                table: ATDImage
+            },
         },
-        "01JXJY0ZXVECEKEMJT548BMWP6": {
-            name: "Video Recording",
-            table: ATDVideo
-        },
-        "01JXJY18WSJ31PP536WWN4XRPV": {
-            name: "Image",
-            table: ATDImage
-        },
+        byTableName: {
+            atd_audio: "01JXJY0J4JBHR56N63CR082AZQ",
+            atd_video: "01JXJY0ZXVECEKEMJT548BMWP6",
+            atd_image: "01JXJY18WSJ31PP536WWN4XRPV"
+        }
     }
 }
 
