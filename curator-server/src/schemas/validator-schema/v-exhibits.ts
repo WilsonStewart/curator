@@ -19,32 +19,59 @@ const VETYoutubeChannels = z.object({
     name: z.string().nonempty()
 })
 
-export const VExhibitsSelect = z.object({
-    id: z.string().ulid().nonempty(),
-    name: z.string().nonempty(),
-    exhibitTypeId: z.string().ulid().nonempty(),
-    exhibitTypeData: z.union([VETYoutubeVideos, VETYoutubeChannels,]),
-    galleryId: z.string().ulid().nonempty(),
-    museumId: z.string().ulid().nonempty(),
-    ...VOwnerKVs,
-    ...VTimestampKVs,
+const VExhibitsType = z.union([VETYoutubeVideos, VETYoutubeChannels,])
+
+export const VExhibitsSelectBase = z.object(
+    {
+        id: z.string().ulid().nonempty(),
+        name: z.string().nonempty(),
+        exhibitTypeId: z.string().ulid().nonempty(),
+        galleryId: z.string().ulid().nonempty(),
+        museumId: z.string().ulid().nonempty(),
+        ...VOwnerKVs,
+        ...VTimestampKVs,
+    }
+)
+
+export const VExhibitsSelectAll = z.array(z.object(
+    {
+        exhibits: VExhibitsSelectBase,
+        etd_youtube_channels: z.nullable(VETYoutubeChannels),
+        etd_youtube_videos: z.nullable(VETYoutubeVideos)
+    }
+))
+
+export const VExhibitsSelectOne = z.object(
+    {
+        exhibits: VExhibitsSelectBase,
+        typeData: VExhibitsType,
+    }
+)
+
+export const VExhibitsInsert = VExhibitsSelectOne.extend({
+    exhibits: VExhibitsSelectOne.shape.exhibits.omit({
+        id: true,
+        createdAt: true,
+        updatedAt: true
+    }),
 })
 
-export const VExhibitsInsert = VExhibitsSelect.omit({
-    id: true,
-    createdAt: true,
-    updatedAt: true,
-})
-
-export const VExhibitsUpdate = VExhibitsInsert.partial().omit({
-    exhibitTypeId: true
+export const VExhibitsUpdate = VExhibitsInsert.partial().extend({
+    exhibits: VExhibitsInsert.shape.exhibits.omit({
+        createdBy: true
+    }),
 })
 
 export const VExhibitsDelete = z.object({
     id: z.string().ulid().nonempty(),
 })
 
-export const VExhibitsIdParam = z.object({ id: z.string().ulid().nonempty() });
+export const VExhibitsIdTypeIdParam = z.object(
+    {
+        id: z.string().ulid().nonempty(),
+        exhibitTypeId: z.string().ulid().nonempty()
+    }
+);
 
 export const VExhibitsUpdateType = z.object({
     updatedTypeId: z.string().ulid().nonempty(),

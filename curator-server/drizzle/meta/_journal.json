@@ -5,22 +5,15 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1750186210842,
-      "tag": "0000_natural_thunderbolts",
+      "when": 1750362675697,
+      "tag": "0000_panoramic_arachne",
       "breakpoints": true
     },
     {
       "idx": 1,
       "version": "7",
-      "when": 1750186361587,
+      "when": 1750362687584,
       "tag": "0001_seed-builtin-01",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "7",
-      "when": 1750186545619,
-      "tag": "0002_reflective_dracula",
       "breakpoints": true
     }
   ]

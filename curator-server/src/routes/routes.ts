@@ -1,3 +1,4 @@
+import { RExhibitsSelectAll } from "@/routes/R.exhibits.select-all";
 import { RExhibitsSelectOne } from "@/routes/R.exhibits.select-one";
 import { RInitializeGetStatus } from "@/routes/R.initialize.get-status";
 import { RMuseumsCreateOne } from "@/routes/R.museums.create-one";
@@ -19,4 +20,5 @@ RMuseumsDeleteOne(museumsRouter);
 
 RInitializeGetStatus(initializeRouter);
 
-RExhibitsSelectOne(exhibitsRouter)
+RExhibitsSelectOne(exhibitsRouter);
+RExhibitsSelectAll(exhibitsRouter);

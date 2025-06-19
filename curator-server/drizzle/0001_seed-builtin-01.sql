@@ -1,4 +1,4 @@
--- -- -- -- -- -- -- -- -- -- -- -- --
+-- Custom SQL migration file, put your code below! ---- -- -- -- -- -- -- -- -- -- -- -- --
 -- The following is for migration 0001:
 INSERT INTO
     metadata (id)

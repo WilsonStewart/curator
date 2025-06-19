@@ -1,17 +1,17 @@
-CREATE TABLE "artifact_type_audio" (
+CREATE TABLE "atd_audio" (
 	"artifact_id" text PRIMARY KEY NOT NULL,
 	"artifact_type_id" text,
 	"length_seconds" integer NOT NULL
 );
 --> statement-breakpoint
-CREATE TABLE "artifact_type_image" (
+CREATE TABLE "atd_image" (
 	"artifact_id" text PRIMARY KEY NOT NULL,
 	"artifact_type_id" text,
 	"width_px" integer NOT NULL,
 	"height_px" integer NOT NULL
 );
 --> statement-breakpoint
-CREATE TABLE "artifact_type_video" (
+CREATE TABLE "atd_video" (
 	"artifact_id" text PRIMARY KEY NOT NULL,
 	"artifact_type_id" text,
 	"length_seconds" integer NOT NULL
@@ -113,15 +113,15 @@ CREATE TABLE "verifications" (
 	"updated_at" timestamp DEFAULT now()
 );
 --> statement-breakpoint
-CREATE TABLE "exhibit_type_youtube_channels" (
+CREATE TABLE "etd_youtube_channels" (
 	"exhibit_id" text PRIMARY KEY NOT NULL,
 	"exhibit_type_id" text,
 	"youtube_id" text NOT NULL,
 	"name" text NOT NULL,
-	CONSTRAINT "exhibit_type_youtube_channels_youtube_id_unique" UNIQUE("youtube_id")
+	CONSTRAINT "etd_youtube_channels_youtube_id_unique" UNIQUE("youtube_id")
 );
 --> statement-breakpoint
-CREATE TABLE "exhibit_type_youtube_videos" (
+CREATE TABLE "etd_youtube_videos" (
 	"exhibit_id" text PRIMARY KEY NOT NULL,
 	"youtube_id" text NOT NULL,
 	"youtube_channel_id" text,
@@ -129,7 +129,7 @@ CREATE TABLE "exhibit_type_youtube_videos" (
 	"title" text NOT NULL,
 	"description" text,
 	"upload_date" timestamp NOT NULL,
-	CONSTRAINT "exhibit_type_youtube_videos_youtube_id_unique" UNIQUE("youtube_id")
+	CONSTRAINT "etd_youtube_videos_youtube_id_unique" UNIQUE("youtube_id")
 );
 --> statement-breakpoint
 CREATE TABLE "exhibit_types" (
@@ -234,12 +234,12 @@ CREATE TABLE "repository_types" (
 	CONSTRAINT "repository_types_name_unique" UNIQUE("name")
 );
 --> statement-breakpoint
-ALTER TABLE "artifact_type_audio" ADD CONSTRAINT "artifact_type_audio_artifact_id_artifacts_id_fk" FOREIGN KEY ("artifact_id") REFERENCES "public"."artifacts"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "artifact_type_audio" ADD CONSTRAINT "artifact_type_audio_artifact_type_id_artifact_types_id_fk" FOREIGN KEY ("artifact_type_id") REFERENCES "public"."artifact_types"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "artifact_type_image" ADD CONSTRAINT "artifact_type_image_artifact_id_artifacts_id_fk" FOREIGN KEY ("artifact_id") REFERENCES "public"."artifacts"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "artifact_type_image" ADD CONSTRAINT "artifact_type_image_artifact_type_id_artifact_types_id_fk" FOREIGN KEY ("artifact_type_id") REFERENCES "public"."artifact_types"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "artifact_type_video" ADD CONSTRAINT "artifact_type_video_artifact_id_artifacts_id_fk" FOREIGN KEY ("artifact_id") REFERENCES "public"."artifacts"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "artifact_type_video" ADD CONSTRAINT "artifact_type_video_artifact_type_id_artifact_types_id_fk" FOREIGN KEY ("artifact_type_id") REFERENCES "public"."artifact_types"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "atd_audio" ADD CONSTRAINT "atd_audio_artifact_id_artifacts_id_fk" FOREIGN KEY ("artifact_id") REFERENCES "public"."artifacts"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "atd_audio" ADD CONSTRAINT "atd_audio_artifact_type_id_artifact_types_id_fk" FOREIGN KEY ("artifact_type_id") REFERENCES "public"."artifact_types"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "atd_image" ADD CONSTRAINT "atd_image_artifact_id_artifacts_id_fk" FOREIGN KEY ("artifact_id") REFERENCES "public"."artifacts"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "atd_image" ADD CONSTRAINT "atd_image_artifact_type_id_artifact_types_id_fk" FOREIGN KEY ("artifact_type_id") REFERENCES "public"."artifact_types"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "atd_video" ADD CONSTRAINT "atd_video_artifact_id_artifacts_id_fk" FOREIGN KEY ("artifact_id") REFERENCES "public"."artifacts"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "atd_video" ADD CONSTRAINT "atd_video_artifact_type_id_artifact_types_id_fk" FOREIGN KEY ("artifact_type_id") REFERENCES "public"."artifact_types"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "artifact_types" ADD CONSTRAINT "artifact_types_aliased_type_id_artifact_types_id_fk" FOREIGN KEY ("aliased_type_id") REFERENCES "public"."artifact_types"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "artifact_types" ADD CONSTRAINT "artifact_types_created_by_users_id_fk" FOREIGN KEY ("created_by") REFERENCES "public"."users"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "artifacts" ADD CONSTRAINT "artifacts_artifact_type_id_artifact_types_id_fk" FOREIGN KEY ("artifact_type_id") REFERENCES "public"."artifact_types"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
@@ -248,11 +248,11 @@ ALTER TABLE "artifacts" ADD CONSTRAINT "artifacts_created_by_users_id_fk" FOREIG
 ALTER TABLE "accounts" ADD CONSTRAINT "accounts_user_id_users_id_fk" FOREIGN KEY ("user_id") REFERENCES "public"."users"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "apikeys" ADD CONSTRAINT "apikeys_user_id_users_id_fk" FOREIGN KEY ("user_id") REFERENCES "public"."users"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "sessions" ADD CONSTRAINT "sessions_user_id_users_id_fk" FOREIGN KEY ("user_id") REFERENCES "public"."users"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "exhibit_type_youtube_channels" ADD CONSTRAINT "exhibit_type_youtube_channels_exhibit_id_exhibits_id_fk" FOREIGN KEY ("exhibit_id") REFERENCES "public"."exhibits"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "exhibit_type_youtube_channels" ADD CONSTRAINT "exhibit_type_youtube_channels_exhibit_type_id_exhibit_types_id_fk" FOREIGN KEY ("exhibit_type_id") REFERENCES "public"."exhibit_types"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "exhibit_type_youtube_videos" ADD CONSTRAINT "exhibit_type_youtube_videos_exhibit_id_exhibits_id_fk" FOREIGN KEY ("exhibit_id") REFERENCES "public"."exhibits"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "exhibit_type_youtube_videos" ADD CONSTRAINT "exhibit_type_youtube_videos_youtube_channel_id_exhibit_type_youtube_channels_youtube_id_fk" FOREIGN KEY ("youtube_channel_id") REFERENCES "public"."exhibit_type_youtube_channels"("youtube_id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "exhibit_type_youtube_videos" ADD CONSTRAINT "exhibit_type_youtube_videos_exhibit_type_id_exhibit_types_id_fk" FOREIGN KEY ("exhibit_type_id") REFERENCES "public"."exhibit_types"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "etd_youtube_channels" ADD CONSTRAINT "etd_youtube_channels_exhibit_id_exhibits_id_fk" FOREIGN KEY ("exhibit_id") REFERENCES "public"."exhibits"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "etd_youtube_channels" ADD CONSTRAINT "etd_youtube_channels_exhibit_type_id_exhibit_types_id_fk" FOREIGN KEY ("exhibit_type_id") REFERENCES "public"."exhibit_types"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "etd_youtube_videos" ADD CONSTRAINT "etd_youtube_videos_exhibit_id_exhibits_id_fk" FOREIGN KEY ("exhibit_id") REFERENCES "public"."exhibits"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "etd_youtube_videos" ADD CONSTRAINT "etd_youtube_videos_youtube_channel_id_etd_youtube_channels_youtube_id_fk" FOREIGN KEY ("youtube_channel_id") REFERENCES "public"."etd_youtube_channels"("youtube_id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "etd_youtube_videos" ADD CONSTRAINT "etd_youtube_videos_exhibit_type_id_exhibit_types_id_fk" FOREIGN KEY ("exhibit_type_id") REFERENCES "public"."exhibit_types"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "exhibit_types" ADD CONSTRAINT "exhibit_types_aliased_type_id_exhibit_types_id_fk" FOREIGN KEY ("aliased_type_id") REFERENCES "public"."exhibit_types"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "exhibit_types" ADD CONSTRAINT "exhibit_types_created_by_users_id_fk" FOREIGN KEY ("created_by") REFERENCES "public"."users"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "exhibits" ADD CONSTRAINT "exhibits_exhibit_type_id_exhibit_types_id_fk" FOREIGN KEY ("exhibit_type_id") REFERENCES "public"."exhibit_types"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
@@ -273,5 +273,4 @@ ALTER TABLE "repository_type_local_filesystem" ADD CONSTRAINT "repository_type_l
 ALTER TABLE "repositories" ADD CONSTRAINT "repositories_museum_id_museums_id_fk" FOREIGN KEY ("museum_id") REFERENCES "public"."museums"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "repositories" ADD CONSTRAINT "repositories_created_by_users_id_fk" FOREIGN KEY ("created_by") REFERENCES "public"."users"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "repository_types" ADD CONSTRAINT "repository_types_aliased_type_id_repository_types_id_fk" FOREIGN KEY ("aliased_type_id") REFERENCES "public"."repository_types"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
-ALTER TABLE "repository_types" ADD CONSTRAINT "repository_types_created_by_users_id_fk" FOREIGN KEY ("created_by") REFERENCES "public"."users"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
-CREATE VIEW "public"."exhibits_types_id_view" AS (select "id", "exhibit_type_id" from "exhibits");
+ALTER TABLE "repository_types" ADD CONSTRAINT "repository_types_created_by_users_id_fk" FOREIGN KEY ("created_by") REFERENCES "public"."users"("id") ON DELETE no action ON UPDATE no action;

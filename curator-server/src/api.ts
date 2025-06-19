@@ -4,7 +4,6 @@ import { errorHandler } from "@/middlewares/error-handler";
 import { openAPISpecs } from "hono-openapi";
 import pkgdotjson from "@/../package.json" assert { type: "json" };
 import { Scalar } from "@scalar/hono-api-reference";
-import { honoLogger } from "@/middlewares/hono-logger";
 import { exhibitsRouter, initializeRouter, museumsRouter } from "@/routes/routes";
 import { cors } from "hono/cors";
 import { auth, authHono } from "@/lib/auth";

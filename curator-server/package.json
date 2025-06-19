@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "bun run --hot src/index.ts",
     "db:genMigrations": "bun run drizzle-kit generate",
+    "db:reinit": "rm -rf ./src/drizzle; bun run ./src/dev-tools/db-schemas-reinit.ts; bun run drizzle-kit generate;bunx drizzle-kit generate --custom --name=seed-builtin; cp -f ./src/schemas/0001_seed-builtin.sql ./src/drizzle/0001_seed-builtin.sql",
     "db:genBetterAuthMigrations": "bunx @better-auth/cli generate",
     "db:migrate": "bun run drizzle-kit migrate",
     "devtools:genNanoids": "bun run dev-tools/gen-20-nanoids.ts"

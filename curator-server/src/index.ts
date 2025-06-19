@@ -6,7 +6,6 @@ import { eq } from "drizzle-orm";
 import { db } from "@/lib/db";
 import { metadata } from "@/schemas/drizzle-schema/drizzle-schema.metadata";
 import { refreshExhibitIdTypeIdCache } from "@/lib/id-type-cache";
-import { r } from "@/lib/cache";
 
 const start = async () => {
   printBanner();
@@ -20,10 +19,6 @@ const start = async () => {
     console.error(error);
     process.exit(1);
   }
-  //
-  // Fill caches
-  //
-  await refreshExhibitIdTypeIdCache();
 
   switch (env.CURATOR_MODE) {
     case "api":
