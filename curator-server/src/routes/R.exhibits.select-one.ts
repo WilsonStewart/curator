@@ -1,10 +1,12 @@
 import { describeRoute } from "hono-openapi";
-import { resolver, validator } from "hono-openapi/zod";
+import { validator } from "hono-openapi/zod";
+
 import { Hono } from "hono";
-import { VExhibitsIdTypeIdParam, VExhibitsSelectOne } from "@/schemas/validator-schema/v-exhibits";
+import { VExhibitsIdTypeIdParam, VExhibitsSelect } from "@/schemas/validator-schema/v-exhibits";
 import { LExhibitsSelectOne } from "@/logic/L.exhibits.select-one";
 import { TExhibitTypeId } from "@/lib/known-resources";
 import "zod-openapi/extend";
+import { res200Successful, res401Unauthorized } from "@/lib/describe-route-responses";
 
 export const RExhibitsSelectOne = (app: Hono) => {
     app.get(
@@ -13,14 +15,8 @@ export const RExhibitsSelectOne = (app: Hono) => {
             description: "Selects a exhibit resource by its id.",
             tags: ["Exhibits"],
             responses: {
-                200: {
-                    description: "Successful",
-                    content: {
-                        "application/json": {
-                            schema: resolver(VExhibitsSelectOne),
-                        },
-                    },
-                },
+                ...res200Successful({ zodSchema: VExhibitsSelect }),
+                ...res401Unauthorized({})
             },
         }),
         validator("param", VExhibitsIdTypeIdParam.openapi({ example: { id: "01JXJXZJCREM9Q5W9XX3WB1CF", exhibitTypeId: "01JXJXZJCREM9Q5W9XX3WB1C13" } })),

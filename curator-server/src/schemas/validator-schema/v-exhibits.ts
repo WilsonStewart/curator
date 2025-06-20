@@ -33,23 +33,23 @@ export const VExhibitsSelectBase = z.object(
     }
 )
 
-export const VExhibitsSelectAll = z.array(z.object(
-    {
-        exhibits: VExhibitsSelectBase,
-        etd_youtube_channels: z.nullable(VETYoutubeChannels),
-        etd_youtube_videos: z.nullable(VETYoutubeVideos)
-    }
-))
+// export const VExhibitsSelectAll = z.array(z.object(
+//     {
+//         exhibits: VExhibitsSelectBase,
+//         etd_youtube_channels: z.nullable(VETYoutubeChannels),
+//         etd_youtube_videos: z.nullable(VETYoutubeVideos)
+//     }
+// ))
 
-export const VExhibitsSelectOne = z.object(
+export const VExhibitsSelect = z.object(
     {
         exhibits: VExhibitsSelectBase,
         typeData: VExhibitsType,
     }
 )
 
-export const VExhibitsInsert = VExhibitsSelectOne.extend({
-    exhibits: VExhibitsSelectOne.shape.exhibits.omit({
+export const VExhibitsInsert = VExhibitsSelect.extend({
+    exhibits: VExhibitsSelect.shape.exhibits.omit({
         id: true,
         createdAt: true,
         updatedAt: true

@@ -1,9 +1,10 @@
 import { describeRoute } from "hono-openapi";
-import { resolver } from "hono-openapi/zod";
 import { Hono } from "hono";
-import { VExhibitsSelectAll } from "@/schemas/validator-schema/v-exhibits";
+import { VExhibitsSelect } from "@/schemas/validator-schema/v-exhibits";
 import { LExhibitsSelectAll } from "@/logic/L.exhibits.select-all";
 import "zod-openapi/extend";
+import { res200Successful, res401Unauthorized } from "@/lib/describe-route-responses";
+import { z } from "zod";
 
 export const RExhibitsSelectAll = (app: Hono) => {
     app.get(
@@ -12,14 +13,8 @@ export const RExhibitsSelectAll = (app: Hono) => {
             description: "Selects all exhibit resource.",
             tags: ["Exhibits"],
             responses: {
-                200: {
-                    description: "Successful",
-                    content: {
-                        "application/json": {
-                            schema: resolver(VExhibitsSelectAll),
-                        },
-                    },
-                },
+                ...res200Successful({ zodSchema: z.array(VExhibitsSelect) }),
+                ...res401Unauthorized({})
             },
         }),
         async (c) => {
@@ -28,3 +23,5 @@ export const RExhibitsSelectAll = (app: Hono) => {
         }
     );
 };
+
+
