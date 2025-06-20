@@ -2,26 +2,35 @@ import { VMuseumInsert } from "@/schemas/validator-schema";
 import { VOwnerKVs, VTimestampKVs } from "@/schemas/validator-schema.common";
 import z from "zod";
 
-const VETYoutubeVideos = z.object({
+const VETDYoutubeVideosSelect = z.object({
     exhibitId: z.string().ulid().nonempty(),
     youtubeId: z.string().nonempty(),
     youtubeChannelId: z.optional(z.string().nonempty()),
-    exhibitsTypeId: z.string().ulid().nonempty(),
     title: z.string().nonempty(),
     description: z.optional(z.string().nonempty()),
     uploadDate: z.string().datetime().nonempty()
 })
 
-const VETYoutubeChannels = z.object({
+const VETDYoutubeVideosInsert = VETDYoutubeVideosSelect
+
+const VETDYoutubeVideosUpdate = VETDYoutubeVideosSelect
+    .omit({ exhibitId: true })
+    .partial()
+
+const VETDYoutubeChannelsSelect = z.object({
     exhibitId: z.string().ulid().nonempty(),
     exhibitsTypeId: z.string().ulid().nonempty(),
     youtubeId: z.string().nonempty(),
     name: z.string().nonempty()
 })
 
-const VExhibitsType = z.union([VETYoutubeVideos, VETYoutubeChannels,])
+const VETDYoutubeChannelsInsert = VETDYoutubeChannelsSelect
 
-export const VExhibitsSelectBase = z.object(
+const VETDYoutubeChannelsUpdate = VETDYoutubeChannelsSelect
+    .omit({ exhibitId: true })
+    .partial()
+
+const VExhibitsBaseSelect = z.object(
     {
         id: z.string().ulid().nonempty(),
         name: z.string().nonempty(),
@@ -33,43 +42,33 @@ export const VExhibitsSelectBase = z.object(
     }
 )
 
-// export const VExhibitsSelectAll = z.array(z.object(
-//     {
-//         exhibits: VExhibitsSelectBase,
-//         etd_youtube_channels: z.nullable(VETYoutubeChannels),
-//         etd_youtube_videos: z.nullable(VETYoutubeVideos)
-//     }
-// ))
+const VExhibitsBaseInsert = VExhibitsBaseSelect
+    .omit({ id: true, createdBy: true, createdAt: true, updatedAt: true, })
 
-export const VExhibitsSelect = z.object(
+const VExhibitsBaseUpdate = VExhibitsBaseSelect
+    .omit({ id: true, createdBy: true, createdAt: true, })
+    .partial()
+
+export const VExhibitSelect = z.object(
     {
-        exhibits: VExhibitsSelectBase,
-        typeData: VExhibitsType,
+        exhibits: VExhibitsBaseSelect,
+        typeData: z.union([VETDYoutubeVideosSelect, VETDYoutubeChannelsSelect,]),
     }
 )
 
-export const VExhibitsInsert = VExhibitsSelect.extend({
-    exhibits: VExhibitsSelect.shape.exhibits.omit({
-        id: true,
-        createdAt: true,
-        updatedAt: true,
-    }),
-})
+export const VExhibitsInsert = z.object(
+    {
+        exhibits: VExhibitsBaseInsert,
+        typeData: z.union([VETDYoutubeVideosInsert, VETDYoutubeChannelsInsert,]),
+    }
+)
 
-export const VExhibitsUpdate = VExhibitsInsert.partial().extend({
-    exhibits: z.optional(
-        VExhibitsSelect.shape.exhibits
-            .omit({
-                id: true,
-                createdBy: true,
-                createdAt: true,
-            })
-            .partial()
-    ),
-    typeData: z.optional(
-        VExhibitsSelect.shape.typeData
-    )
-})
+export const VExhibitsUpdate = z.object(
+    {
+        exhibits: VExhibitsBaseUpdate,
+        typeData: z.union([VETDYoutubeVideosUpdate, VETDYoutubeChannelsUpdate,])
+    }
+)
 
 export const VExhibitsDelete = z.object({
     id: z.string().ulid().nonempty(),
@@ -81,8 +80,3 @@ export const VExhibitsIdTypeIdParam = z.object(
         exhibitTypeId: z.string().ulid().nonempty()
     }
 );
-
-export const VExhibitsUpdateType = z.object({
-    updatedTypeId: z.string().ulid().nonempty(),
-    updatedTypedData: z.union([VETYoutubeVideos, VETYoutubeChannels,]),
-})

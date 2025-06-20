@@ -6,12 +6,14 @@ import { eq } from "drizzle-orm"
 import { z } from "zod"
 
 export const LExhibitsUpdateOne = async (opts: { id: string, exhibitTypeId: TExhibitTypeId, body: z.infer<typeof VExhibitsUpdate> }) => {
-    let r = {
+    let dataToSubmit = {
         exhibits: opts.body.exhibits ?? {},
         typeData: opts.body.typeData ?? {}
     }
 
-    r.exhibits = { ...r.exhibits, updatedAt: new Date().toISOString() }
+    dataToSubmit.exhibits.updatedAt = dataToSubmit.exhibits.updatedAt ?? new Date().toISOString()
+
+    let r = {}
 
     if (opts.body.exhibits) {
         r = {
