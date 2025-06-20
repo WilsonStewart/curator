@@ -52,14 +52,23 @@ export const VExhibitsInsert = VExhibitsSelect.extend({
     exhibits: VExhibitsSelect.shape.exhibits.omit({
         id: true,
         createdAt: true,
-        updatedAt: true
+        updatedAt: true,
     }),
 })
 
 export const VExhibitsUpdate = VExhibitsInsert.partial().extend({
-    exhibits: VExhibitsInsert.shape.exhibits.omit({
-        createdBy: true
-    }),
+    exhibits: z.optional(
+        VExhibitsSelect.shape.exhibits
+            .omit({
+                id: true,
+                createdBy: true,
+                createdAt: true,
+            })
+            .partial()
+    ),
+    typeData: z.optional(
+        VExhibitsSelect.shape.typeData
+    )
 })
 
 export const VExhibitsDelete = z.object({
