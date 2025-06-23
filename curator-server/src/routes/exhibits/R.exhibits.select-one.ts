@@ -1,9 +1,8 @@
 import { describeRoute } from "hono-openapi";
 import { validator } from "hono-openapi/zod";
-
 import { Hono } from "hono";
 import { VExhibitsIdTypeIdParam, VExhibitsSelect } from "@/schemas/validator-schema/v-exhibits";
-import { LExhibitsSelectOne } from "@/logic/L.exhibits.select-one";
+import { LExhibitsSelectOne } from "@/logic/exhibits/L.exhibits.select-one";
 import { TExhibitTypeId } from "@/lib/known-resources";
 import "zod-openapi/extend";
 import { res200Successful, res401Unauthorized } from "@/lib/describe-route-responses";

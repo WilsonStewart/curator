@@ -1,5 +1,5 @@
 import { res200Successful, res401Unauthorized } from "@/lib/describe-route-responses";
-import { LInitializeGetStatus } from "@/logic/L.initialize.get-status";
+import { LInitializeGetStatus } from "@/logic/initialize/L.initialize.get-status";
 import { Hono } from "hono";
 import { describeRoute } from "hono-openapi";
 import { resolver } from "hono-openapi/zod";

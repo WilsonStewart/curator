@@ -1,6 +1,6 @@
 import { res200Successful, res401Unauthorized } from "@/lib/describe-route-responses"
-import { knownTypeIds } from "@/lib/known-resources"
-import { LExhibitsUpdateOne } from "@/logic/L.exhibits.update-one"
+import { knownTypeIds, TExhibitTypeId } from "@/lib/known-resources"
+import { LExhibitsUpdateOne } from "@/logic/exhibits/L.exhibits.update-one"
 import { VExhibitsIdTypeIdParam, VExhibitsSelect, VExhibitsUpdate } from "@/schemas/validator-schema/v-exhibits"
 import { Hono } from "hono"
 import { describeRoute } from "hono-openapi"
@@ -22,7 +22,7 @@ export const RExhibitsUpdateOne = (app: Hono) => {
         async (c) => {
             let r = await LExhibitsUpdateOne({
                 id: c.req.param("id"),
-                exhibitTypeId: await c.req.json(),
+                exhibitTypeId: c.req.param("exhibitTypeId")! as TExhibitTypeId,
                 body: await c.req.json()
             })
 

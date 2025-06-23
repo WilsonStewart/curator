@@ -1,5 +1,5 @@
 import { VMuseumIdParam, VMuseumSelect } from "@/schemas/validator-schema";
-import { LMuseumsSelectOne } from "@/logic/L.museums.select-one";
+import { LMuseumsSelectOne } from "@/logic/museums/L.museums.select-one";
 import { describeRoute } from "hono-openapi";
 import { resolver, validator } from "hono-openapi/zod";
 import z from "zod";

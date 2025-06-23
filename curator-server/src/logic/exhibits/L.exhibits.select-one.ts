@@ -5,13 +5,14 @@ import { eq } from "drizzle-orm";
 import { alias } from "drizzle-orm/pg-core";
 
 export const LExhibitsSelectOne = async (id: string, typeId: TExhibitTypeId) => {
+    const data = alias(exhibits, "data")
     const typeData = alias(knownTypeIds.exhibits.byId[typeId].table, "typeData")
 
     let r = await db
         .select()
-        .from(exhibits)
-        .where(eq(exhibits.id, id))
-        .leftJoin((typeData), eq(exhibits.id, typeData.exhibitId))
+        .from(data)
+        .where(eq(data.id, id))
+        .leftJoin((typeData), eq(data.id, typeData.exhibitId))
         .execute()
 
     return r[0]

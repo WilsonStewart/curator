@@ -49,24 +49,24 @@ const VExhibitsBaseUpdate = VExhibitsBaseSelect
     .omit({ id: true, createdBy: true, createdAt: true, })
     .partial()
 
-export const VExhibitSelect = z.object(
+export const VExhibitsSelect = z.object(
     {
-        exhibits: VExhibitsBaseSelect,
+        data: VExhibitsBaseSelect,
         typeData: z.union([VETDYoutubeVideosSelect, VETDYoutubeChannelsSelect,]),
     }
 )
 
 export const VExhibitsInsert = z.object(
     {
-        exhibits: VExhibitsBaseInsert,
+        data: VExhibitsBaseInsert,
         typeData: z.union([VETDYoutubeVideosInsert, VETDYoutubeChannelsInsert,]),
     }
 )
 
 export const VExhibitsUpdate = z.object(
     {
-        exhibits: VExhibitsBaseUpdate,
-        typeData: z.union([VETDYoutubeVideosUpdate, VETDYoutubeChannelsUpdate,])
+        data: z.optional(VExhibitsBaseUpdate),
+        typeData: z.optional(z.union([VETDYoutubeVideosUpdate, VETDYoutubeChannelsUpdate,])),
     }
 )
 

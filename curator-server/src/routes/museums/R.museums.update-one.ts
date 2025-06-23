@@ -1,5 +1,5 @@
 import { res200Successful, res401Unauthorized } from "@/lib/describe-route-responses"
-import { LMuseumsUpdateOne } from "@/logic/L.museums.update-one"
+import { LMuseumsUpdateOne } from "@/logic/museums/L.museums.update-one"
 import { VMuseumIdParam, VMuseumSelect, VMuseumUpdate } from "@/schemas/validator-schema"
 import { Hono } from "hono"
 import { describeRoute } from "hono-openapi"
