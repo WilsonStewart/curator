@@ -16,6 +16,7 @@ const VETDYoutubeVideosInsert = VETDYoutubeVideosSelect
 const VETDYoutubeVideosUpdate = VETDYoutubeVideosSelect
     .omit({ exhibitId: true })
     .partial()
+    .refine(o => Object.keys(0).length > 0, { message: "Update body must have at least 1 field." })
 
 const VETDYoutubeChannelsSelect = z.object({
     exhibitId: z.string().ulid().nonempty(),
@@ -29,6 +30,7 @@ const VETDYoutubeChannelsInsert = VETDYoutubeChannelsSelect
 const VETDYoutubeChannelsUpdate = VETDYoutubeChannelsSelect
     .omit({ exhibitId: true })
     .partial()
+    .refine(o => Object.keys(0).length > 0, { message: "Update body must have at least 1 field." })
 
 const VExhibitsBaseSelect = z.object(
     {
@@ -44,6 +46,7 @@ const VExhibitsBaseSelect = z.object(
 
 const VExhibitsBaseInsert = VExhibitsBaseSelect
     .omit({ id: true, createdBy: true, createdAt: true, updatedAt: true, })
+    .refine(o => Object.keys(0).length > 0, { message: "Update body must have at least 1 field." })
 
 const VExhibitsBaseUpdate = VExhibitsBaseSelect
     .omit({ id: true, createdBy: true, createdAt: true, })
