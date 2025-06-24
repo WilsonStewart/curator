@@ -3,7 +3,7 @@ import { resolver, validator } from "hono-openapi/zod";
 import z from "zod";
 import "zod-openapi/extend";
 import { Hono } from "hono";
-import { LMuseumsCreateOne } from "@/logic/L.museums.create-one";
+import { LMuseumsCreateOne } from "@/logic/museums/L.museums.create-one";
 import { VMuseumInsert, VMuseumSelect } from "@/schemas/validator-schema";
 
 export const RMuseumsCreateOne = (app: Hono) => {

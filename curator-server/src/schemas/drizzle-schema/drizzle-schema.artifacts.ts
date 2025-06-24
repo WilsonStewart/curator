@@ -28,27 +28,24 @@ export const artifactTypes = pgTable("artifact_types", {
   updatedAt: timestamp("updated_at", { mode: "string" }).notNull().defaultNow(),
 });
 
-export const ATVideo = pgTable("artifact_type_video", {
+export const ATDVideo = pgTable("atd_video", {
   artifactId: text("artifact_id")
     .primaryKey()
     .references(() => artifacts.id),
-  artifactTypeId: text("artifact_type_id").references(() => artifactTypes.id),
   lengthSeconds: integer("length_seconds").notNull(),
 });
 
-export const ATAudio = pgTable("artifact_type_audio", {
+export const ATDAudio = pgTable("atd_audio", {
   artifactId: text("artifact_id")
     .primaryKey()
     .references(() => artifacts.id),
-  artifactTypeId: text("artifact_type_id").references(() => artifactTypes.id),
   lengthSeconds: integer("length_seconds").notNull(),
 });
 
-export const ATImage = pgTable("artifact_type_image", {
+export const ATDImage = pgTable("atd_image", {
   artifactId: text("artifact_id")
     .primaryKey()
     .references(() => artifacts.id),
-  artifactTypeId: text("artifact_type_id").references(() => artifactTypes.id),
   widthPx: integer("width_px").notNull(),
   heightPx: integer("height_px").notNull(),
 });

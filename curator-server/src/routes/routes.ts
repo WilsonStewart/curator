@@ -1,10 +1,12 @@
-import { RExhibitsSelectOne } from "@/routes/R.exhibits.select-one";
-import { RInitializeGetStatus } from "@/routes/R.initialize.get-status";
-import { RMuseumsCreateOne } from "@/routes/R.museums.create-one";
-import { RMuseumsSelectAll } from "@/routes/R.museums.select-all";
-import { RMuseumsSelectOne } from "@/routes/R.museums.select-one";
-import { RMuseumsUpdateOne } from "@/routes/R.museums.update-one";
-import { RMuseumsDeleteOne } from "@/routes/R.musuems.delete-one";
+import { RExhibitsSelectAll } from "@/routes/exhibits/R.exhibits.select-all";
+import { RExhibitsSelectOne } from "@/routes/exhibits/R.exhibits.select-one";
+import { RExhibitsUpdateOne } from "@/routes/exhibits/R.exhibits.update-one";
+import { RInitializeGetStatus } from "@/routes/initialize/R.initialize.get-status";
+import { RMuseumsCreateOne } from "@/routes/museums/R.museums.create-one";
+import { RMuseumsSelectAll } from "@/routes/museums/R.museums.select-all";
+import { RMuseumsSelectOne } from "@/routes/museums/R.museums.select-one";
+import { RMuseumsUpdateOne } from "@/routes/museums/R.museums.update-one";
+import { RMuseumsDeleteOne } from "@/routes/museums/R.musuems.delete-one";
 import { Hono } from "hono";
 
 export const museumsRouter = new Hono();
@@ -19,4 +21,6 @@ RMuseumsDeleteOne(museumsRouter);
 
 RInitializeGetStatus(initializeRouter);
 
-RExhibitsSelectOne(exhibitsRouter)
+RExhibitsSelectOne(exhibitsRouter);
+RExhibitsSelectAll(exhibitsRouter);
+RExhibitsUpdateOne(exhibitsRouter)

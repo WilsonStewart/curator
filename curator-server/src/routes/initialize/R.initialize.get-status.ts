@@ -1,4 +1,5 @@
-import { LInitializeGetStatus } from "@/logic/L.initialize.get-status";
+import { res200Successful, res401Unauthorized } from "@/lib/describe-route-responses";
+import { LInitializeGetStatus } from "@/logic/initialize/L.initialize.get-status";
 import { Hono } from "hono";
 import { describeRoute } from "hono-openapi";
 import { resolver } from "hono-openapi/zod";
@@ -11,19 +12,10 @@ export const RInitializeGetStatus = (app: Hono) => {
       description: "Gets the status of app initialization.",
       tags: ["Initialization"],
       responses: {
-        200: {
-          description: "Successful",
-          content: {
-            "application/json": {
-              schema: resolver(
-                z.object({
-                  isInitialized: z.boolean(),
-                  isBuiltinDataClean: z.boolean(),
-                })
-              ),
-            },
-          },
-        },
+        ...res200Successful({
+          zodSchema: z.object({ isInitialized: z.boolean(), isBuiltinDataClean: z.boolean(), })
+        }),
+        ...res401Unauthorized({})
       },
     }),
     async (c) => {
@@ -32,3 +24,4 @@ export const RInitializeGetStatus = (app: Hono) => {
     }
   );
 };
+

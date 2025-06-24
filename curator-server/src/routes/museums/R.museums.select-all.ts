@@ -1,5 +1,5 @@
 import { VMuseumSelect } from "@/schemas/validator-schema";
-import { LMuseumsSelectAll } from "@/logic/L.museums.select-all";
+import { LMuseumsSelectAll } from "@/logic/museums/L.museums.select-all";
 import { describeRoute } from "hono-openapi";
 import { resolver } from "hono-openapi/zod";
 import z from "zod";

@@ -1,4 +1,5 @@
-import { LMuseumsUpdateOne } from "@/logic/L.museums.update-one"
+import { res200Successful, res401Unauthorized } from "@/lib/describe-route-responses"
+import { LMuseumsUpdateOne } from "@/logic/museums/L.museums.update-one"
 import { VMuseumIdParam, VMuseumSelect, VMuseumUpdate } from "@/schemas/validator-schema"
 import { Hono } from "hono"
 import { describeRoute } from "hono-openapi"
@@ -12,15 +13,9 @@ export const RMuseumsUpdateOne = (app: Hono) => {
             description: "Updates a museum resource by its id.",
             tags: ["Museums"],
             responses: {
-                200: {
-                    description: "Successful",
-                    content: {
-                        "application/json": {
-                            schema: resolver(z.array(VMuseumSelect).length(1)),
-                        },
-                    },
-                },
-            },
+                ...res200Successful({ zodSchema: z.array(VMuseumSelect).length(1) }),
+                ...res401Unauthorized({}),
+            }
         }),
         validator("param", VMuseumIdParam.openapi({ example: { id: "01JXMVE4F6VRRJ6ZM37S721DH4" } })),
         validator("json", VMuseumUpdate),
@@ -30,3 +25,4 @@ export const RMuseumsUpdateOne = (app: Hono) => {
         }
     )
 }
+

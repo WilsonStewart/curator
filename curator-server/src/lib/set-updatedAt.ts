@@ -1,0 +1,1 @@
+const setUpdatedAt = (o: PropertyKey) => { o ?? new Date().toISOString() }

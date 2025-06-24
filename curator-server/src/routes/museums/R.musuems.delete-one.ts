@@ -8,7 +8,7 @@ import { resolver, validator } from "hono-openapi/zod";
 import z from "zod";
 import "zod-openapi/extend";
 import { Hono } from "hono";
-import { LMuseumsDeleteOne } from "@/logic/L.museums.delete-one";
+import { LMuseumsDeleteOne } from "@/logic/museums/L.museums.delete-one";
 
 export const RMuseumsDeleteOne = (app: Hono) => {
   app.delete(
