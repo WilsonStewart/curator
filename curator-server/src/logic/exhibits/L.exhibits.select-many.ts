@@ -1,5 +1,5 @@
 import { db } from "@/lib/db";
-import { exhibitsData, exhibitsTypeData_YoutubeChannels, exhibitsTypeData_YoutubeVideos } from "@/lib/table-aliases";
+import { et_youtubeChannels, et_youtubeVideos, exhibits } from "@/schemas/drizzle-schema/drizzle-schema.exhibits";
 import { VExhibitsSelectManyQuery } from "@/schemas/validator-schema/v-exhibits";
 import { eq, like } from "drizzle-orm";
 import { z } from "zod";
@@ -7,17 +7,17 @@ import { z } from "zod";
 export const LExhibitsSelectMany = async (query: z.infer<typeof VExhibitsSelectManyQuery>) => {
   let q = db
     .select()
-    .from(exhibitsData)
-    .leftJoin(exhibitsTypeData_YoutubeChannels, eq(exhibitsData.id, exhibitsTypeData_YoutubeChannels.exhibitId))
-    .leftJoin(exhibitsTypeData_YoutubeVideos, eq(exhibitsData.id, exhibitsTypeData_YoutubeVideos.exhibitId))
+    .from(exhibits)
+    .leftJoin(et_youtubeChannels, eq(exhibits.id, et_youtubeChannels.exhibitId))
+    .leftJoin(et_youtubeVideos, eq(exhibits.id, et_youtubeVideos.exhibitId))
 
   Object.keys(query).forEach(k => {
     switch (k) {
       case "nameLike": {
-        q.where(like(exhibitsData.name, `%${query[k]}%`))
+        q.where(like(exhibits.name, `%${query[k]}%`))
       }
       case "youtubeChannelHandle": {
-        q.where(like(exhibitsTypeData_YoutubeChannels.youtubeChannelHandle, `%${query[k]}%`))
+        q.where(like(et_youtubeChannels.youtubeChannelHandle, `%${query[k]}%`))
       }
     }
   });

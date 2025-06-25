@@ -63,20 +63,21 @@ const VExhibitsBaseUpdate = VExhibitsBaseSelect.omit({
 }).partial();
 
 export const VExhibitsSelect = z.object({
-    data: VExhibitsBaseSelect,
-    typeData: z.union([VETDYoutubeVideosSelect, VETDYoutubeChannelsSelect]),
+    exhibits: VExhibitsBaseSelect,
+    td_youtubeVideos: z.nullable(VETDYoutubeChannelsSelect),
+    td_youtubeChannels: z.nullable(VETDYoutubeChannelsInsert)
 });
 
 export const VExhibitsInsert = z.object({
-    data: VExhibitsBaseInsert,
-    typeData: z.union([VETDYoutubeVideosInsert, VETDYoutubeChannelsInsert]),
+    exhibits: VExhibitsBaseInsert,
+    td_youtubeVideos: z.optional(VETDYoutubeVideosInsert),
+    td_youtubeChannels: z.optional(VETDYoutubeChannelsInsert),
 });
 
 export const VExhibitsUpdate = z.object({
-    data: z.optional(VExhibitsBaseUpdate),
-    typeData: z.optional(
-        z.union([VETDYoutubeVideosUpdate, VETDYoutubeChannelsUpdate])
-    ),
+    exhibits: z.optional(VExhibitsBaseUpdate),
+    td_youtubeVideos: z.optional(VETDYoutubeVideosUpdate),
+    td_youtubeChannels: z.optional(VETDYoutubeChannelsUpdate),
 });
 
 export const VExhibitsDelete = z.object({

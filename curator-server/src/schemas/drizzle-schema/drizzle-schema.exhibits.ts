@@ -29,7 +29,7 @@ export const exhibitTypes = pgTable("exhibit_types", {
   updatedAt: timestamp("updated_at", { mode: "string" }).notNull().defaultNow(),
 });
 
-export const ETDYoutubeChannels = pgTable("etd_youtube_channels", {
+export const et_youtubeChannels = pgTable("et_youtubeChannels", {
   exhibitId: text("exhibit_id")
     .primaryKey()
     .references(() => exhibits.id),
@@ -38,13 +38,13 @@ export const ETDYoutubeChannels = pgTable("etd_youtube_channels", {
   name: text("name").notNull(),
 });
 
-export const ETDYoutubeVideos = pgTable("etd_youtube_videos", {
+export const et_youtubeVideos = pgTable("et_youtubeVideos", {
   exhibitId: text("exhibit_id")
     .primaryKey()
     .references(() => exhibits.id),
   youtubeId: text("youtube_id").notNull().unique(),
   youtubeChannelId: text("youtube_channel_id")
-    .references(() => ETDYoutubeChannels.youtubeId),
+    .references(() => et_youtubeChannels.youtubeId),
   title: text("title").notNull(),
   description: text("description"),
   uploadDate: timestamp("upload_date").notNull(),

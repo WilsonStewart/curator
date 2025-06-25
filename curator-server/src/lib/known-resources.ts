@@ -1,5 +1,5 @@
-import { ATDAudio, ATDImage, ATDVideo } from "@/schemas/drizzle-schema/drizzle-schema.artifacts"
-import { ETDYoutubeChannels, ETDYoutubeVideos, exhibits } from "@/schemas/drizzle-schema/drizzle-schema.exhibits"
+import { at_audio_recordings, at_images, at_videos } from "@/schemas/drizzle-schema/drizzle-schema.artifacts"
+import { et_youtubeChannels, et_youtubeVideos } from "@/schemas/drizzle-schema/drizzle-schema.exhibits"
 
 export const knownResourceIds = {
     users: {
@@ -18,11 +18,11 @@ export const knownTypeIds = {
         byId: {
             "01JXJY0510HN94TB4Z4S9C5ZKM": {
                 name: "YouTube Video",
-                table: ETDYoutubeVideos
+                table: et_youtubeVideos
             },
             "01JXJXZJCREM9Q5W9XX3WB1C13": {
                 name: "YouTube Channel",
-                table: ETDYoutubeChannels
+                table: et_youtubeChannels
             },
         },
         byTableName: {
@@ -34,15 +34,15 @@ export const knownTypeIds = {
         byId: {
             "01JXJY0J4JBHR56N63CR082AZQ": {
                 name: "Audio Recording",
-                table: ATDAudio
+                table: at_audio_recordings
             },
             "01JXJY0ZXVECEKEMJT548BMWP6": {
                 name: "Video Recording",
-                table: ATDVideo
+                table: at_videos
             },
             "01JXJY18WSJ31PP536WWN4XRPV": {
                 name: "Image",
-                table: ATDImage
+                table: at_images
             },
         },
         byTableName: {
