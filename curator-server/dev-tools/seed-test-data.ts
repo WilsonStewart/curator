@@ -1,6 +1,6 @@
 import { db } from "@/lib/db"
 import { knownResourceIds, knownTypeIds } from "@/lib/known-resources"
-import { ETDYoutubeChannels, ETDYoutubeVideos, exhibits } from "@/schemas/drizzle-schema/drizzle-schema.exhibits"
+import { et_youtubeChannels, et_youtubeVideos, exhibits } from "@/schemas/drizzle-schema/drizzle-schema.exhibits"
 
 const seedTestData = async () => {
     try {
@@ -11,7 +11,7 @@ const seedTestData = async () => {
                     {
                         name: "dave's garage - youtube channel",
                         createdBy: knownResourceIds.users.SYSTEM,
-                        exhibitTypeId: knownTypeIds.exhibits.byTableName.etd_youtube_channel,
+                        exhibitTypeId: knownTypeIds.exhibits.byTableName.et_youtube_channel,
                         museumId: knownResourceIds.musuems.DEFAULT_MUSEUM,
                         galleryId: knownResourceIds.galleries.ROOT
                     }
@@ -20,7 +20,7 @@ const seedTestData = async () => {
                 .execute()
 
             let insertToTypeDataTable = await tx
-                .insert(ETDYoutubeChannels)
+                .insert(et_youtubeChannels)
                 .values(
                     {
                         exhibitId: insertToMainTable[0].id,
@@ -39,7 +39,7 @@ const seedTestData = async () => {
                     {
                         name: "how I made task manager",
                         createdBy: knownResourceIds.users.SYSTEM,
-                        exhibitTypeId: knownTypeIds.exhibits.byTableName.etd_youtube_video,
+                        exhibitTypeId: knownTypeIds.exhibits.byTableName.et_youtube_video,
                         museumId: knownResourceIds.musuems.DEFAULT_MUSEUM,
                         galleryId: knownResourceIds.galleries.ROOT
                     }
@@ -48,7 +48,7 @@ const seedTestData = async () => {
                 .execute()
 
             let insertToTypeDataTable = await tx
-                .insert(ETDYoutubeVideos)
+                .insert(et_youtubeVideos)
                 .values(
                     {
                         exhibitId: insertToMainTable[0].id,

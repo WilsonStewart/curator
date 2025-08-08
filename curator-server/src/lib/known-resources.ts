@@ -26,8 +26,8 @@ export const knownTypeIds = {
             },
         },
         byTableName: {
-            etd_youtube_video: "01JXJY0510HN94TB4Z4S9C5ZKM",
-            etd_youtube_channel: "01JXJXZJCREM9Q5W9XX3WB1C13"
+            et_youtube_video: "01JXJY0510HN94TB4Z4S9C5ZKM",
+            et_youtube_channel: "01JXJXZJCREM9Q5W9XX3WB1C13"
         }
     },
     artifacts: {
@@ -46,9 +46,9 @@ export const knownTypeIds = {
             },
         },
         byTableName: {
-            atd_audio: "01JXJY0J4JBHR56N63CR082AZQ",
-            atd_video: "01JXJY0ZXVECEKEMJT548BMWP6",
-            atd_image: "01JXJY18WSJ31PP536WWN4XRPV"
+            at_audio: "01JXJY0J4JBHR56N63CR082AZQ",
+            at_video: "01JXJY0ZXVECEKEMJT548BMWP6",
+            at_image: "01JXJY18WSJ31PP536WWN4XRPV"
         }
     }
 }
