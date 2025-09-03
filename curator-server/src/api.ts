@@ -9,6 +9,9 @@ import { cors } from "hono/cors";
 import { auth, authHono } from "@/lib/auth";
 import { authenticatedRoute } from "@/middlewares/auth-middleware";
 import { logger } from "hono/logger";
+import { Context } from "hono";
+import { BlankInput } from "hono/types";
+import { readFileSync } from 'fs'
 
 export const api = authHono();
 
@@ -59,7 +62,20 @@ api.get(
     },
   })
 );
+
+const favicon = readFileSync('./public/favicon.ico')
+
+api.get('/favicon.ico', (c) => {
+  return c.body(favicon, 200, {
+    'Content-Type': 'image/x-icon',
+  })
+})
+
 protectedApi.route("/museums", museumsRouter);
 protectedApi.route("/initialize", initializeRouter);
 
 api.route("/api/", protectedApi);
+function serveFile(c: Context<{ Variables: { user: typeof auth.$Infer.Session.user | null; session: typeof auth.$Infer.Session.session | null; }; }, "/favicon.ico", BlankInput>, arg1: string): any {
+  throw new Error("Function not implemented.");
+}
+
