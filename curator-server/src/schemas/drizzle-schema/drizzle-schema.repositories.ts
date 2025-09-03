@@ -28,7 +28,7 @@ export const repositoryTypes = pgTable("repository_types", {
   updatedAt: timestamp("updated_at", { mode: "string" }).notNull().defaultNow(),
 });
 
-export const RTLocalFilesystem = pgTable("repository_type_local_filesystem", {
+export const rt_localFilesystem = pgTable("rt_localFilesystem", {
   repositoryId: text("repository_id")
     .primaryKey()
     .references(() => repositories.id),
