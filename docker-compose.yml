@@ -1,38 +1,41 @@
 services:
-  server-boss:
-    build: ./curator-server
-    restart: always
-    profiles: [production, development]
-    depends_on: [server-db,server-redis]
-    env_file: curator-server/boss.env
-    networks: [curator-server]
-    volumes:
-      - ./curator-server:/app:ro
-    command: |
-      sh -c '
-        if [ "$NODE_ENV" = "production" ]; then
-          /root/.bun/bin/bun run ./src/index.ts
-        else
-          /root/.bun/bin/bun run --hot ./src/index.ts
-        fi
-      '
+  # server-boss:
+  #   build: ./curator-server
+  #   restart: always
+  #   profiles: [production, development]
+  #   depends_on: [server-db,server-redis]
+  #   env_file: curator-server/boss.env
+  #   networks: [curator-server]
+  #   volumes:
+  #     - ./curator-server:/app:ro
+  #     - ./.data/repos:/app/repos:rw
+  #   command: |
+  #     sh -c '
+  #       if [ "$NODE_ENV" = "production" ]; then
+  #         /root/.bun/bin/bun run ./src/index.ts
+  #       else
+  #         /root/.bun/bin/bun run --hot ./src/index.ts
+  #       fi
+  #     '
   server-api:
     build: ./curator-server
     restart: always
     profiles: [production, development]
-    depends_on: [server-boss, server-db, server-redis]
-    env_file: curator-server/.env
+    depends_on: [server-db, server-redis]
+    env_file: ./curator-server/.env
     ports:
      - 4000:80
     networks: [curator-server]
     volumes:
-      - ./curator-server:/app:ro
+      - ./curator-server:/curator/server:ro
+      - ./.data/server-repos:/curator/repos:rw
     command: |
       sh -c '
-        if [ "$NODE_ENV" = "production" ]; then
-          /root/.bun/bin/bun run ./src/index.ts
+        if [ "$$NODE_ENV" = "production" ]; then
+          
+          /root/.bun/bin/bun run /curator/server/src/index.ts
         else
-          /root/.bun/bin/bun run --hot ./src/index.ts
+          /root/.bun/bin/bun run --hot /curator/server/src/index.ts
         fi
       '
   server-db:
