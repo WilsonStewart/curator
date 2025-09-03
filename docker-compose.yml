@@ -1,23 +1,96 @@
 services:
-  curator-server-db:
-    image: postgres:17-trixie
+  server-api:
+    build: ./curator-server
+    restart: always
+    profiles:
+      - production
+      - development
+    depends_on:
+      - server-db
+      - server-redis
     env_file:
       - curator-server/.env
+    ports:
+     - 4000:80
+    networks:
+      - curator-server
+    volumes:
+      - ./curator-server:/app:ro
+    command: |
+      sh -c '
+        if [ "$NODE_ENV" = "production" ]; then
+          /root/.bun/bin/bun run ./src/index.ts
+        else
+          /root/.bun/bin/bun run --hot ./src/index.ts
+        fi
+      '
+  server-db:
+    image: postgres:17-trixie
+    restart: always
+    profiles:
+      - production
+      - development
+    env_file:
+      - curator-server/.env
+    networks:
+      - curator-server
     volumes:
       - curator-server-db-data:/var/lib/postgresql/data
-    networks:
-      - curatorServer
 
-  curator-server-redis:
+  server-redis:
     image: redis/redis-stack-server:7.4.0-v6
-    volumes:
-      - ./.data/curator-server-redis/data:/data
-      - ./.data/curator-server-redis:/redis-stack.conf
+    restart: always
+    profiles:
+      - production
+      - development
     networks:
-      - curatorServer
+      - curator-server
+    volumes:
+      - ./.data/server-redis/data:/data
+      - ./.data/server-redis:/redis-stack.conf
 
+  server-db-init:
+    build: ./curator-server
+    profiles:
+      - tools
+    depends_on:
+      - server-db
+      - server-redis
+    env_file:
+      - curator-server/.env
+    networks:
+      - curator-server
+    volumes:
+      - ./curator-server:/app
+      - ./curator-server/.env:/app/.env:ro
+    command: >
+      sh -c "
+        rm -rf ./drizzle &&
+        /root/.bun/bin/bun run ./dev-tools/db-schemas-reinit.ts &&
+        /root/.bun/bin/bun run drizzle-kit generate &&
+        /root/.bun/bin/bunx drizzle-kit generate --custom --name=seed-builtin &&
+        cp -f ./seed-data/0001_seed-builtin.sql ./drizzle/0001_seed-builtin.sql &&
+        /root/.bun/bin/bun run drizzle-kit migrate &&
+        /root/.bun/bin/bun run dev:db:seed-data
+      "
+  # dev-container:
+  #   build: ./curator-server
+  #   working_dir: /app
+  #   profiles:
+  #     - development
+  #   depends_on:
+  #     - server-api
+  #     - server-db
+  #     - server-redis
+  #   # env_file:
+  #   #   - curator-server/.env
+  #   networks:
+  #     - curator-server
+  #   volumes:
+  #     - ./curator-server:/app
+      
 networks:
-  curatorServer:
+  curator-server:
     driver: bridge
 
 volumes:

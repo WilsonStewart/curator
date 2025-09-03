@@ -65,8 +65,8 @@ export const printBanner = () => {
   console.log(`Package version:     ${pkgdotjson.version}`);
   console.log(`NODE_ENV:            ${env.NODE_ENV}`);
   console.log(`CURATOR_MODE:        ${env.CURATOR_MODE}`);
-  console.log(`Git branch:          ${GIT_CURRENT_BRANCH_NAME}`);
-  console.log(`Git commit:          ${GIT_BANNER_COMMIT_MESSAGE}`);
+  // console.log(`Git branch:          ${GIT_CURRENT_BRANCH_NAME}`);
+  // console.log(`Git commit:          ${GIT_BANNER_COMMIT_MESSAGE}`);
   if (env.CURATOR_MODE === "api") {
     console.log(
       `OpenAPI endpoint:    http://localhost:${env.SERVER_PORT}/api/openapi.json`
