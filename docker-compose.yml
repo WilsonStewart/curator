@@ -1,0 +1,24 @@
+services:
+  curator-server-db:
+    image: postgres:17-trixie
+    env_file:
+      - curator-server/.env
+    volumes:
+      - curator-server-db-data:/var/lib/postgresql/data
+    networks:
+      - curatorServer
+
+  curator-server-redis:
+    image: redis/redis-stack-server:7.4.0-v6
+    volumes:
+      - ./.data/curator-server-redis/data:/data
+      - ./.data/curator-server-redis:/redis-stack.conf
+    networks:
+      - curatorServer
+
+networks:
+  curatorServer:
+    driver: bridge
+
+volumes:
+  curator-server-db-data:

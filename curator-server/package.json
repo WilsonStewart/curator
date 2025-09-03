@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "scripts": {
     "dev": "bun run --hot src/index.ts",
+    "prod": "bun run src/index.ts",
     "db:genMigrations": "bun run drizzle-kit generate",
     "db:genBetterAuthMigrations": "bunx @better-auth/cli generate",
     "db:migrate": "bun run drizzle-kit migrate",
