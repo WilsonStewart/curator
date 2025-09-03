@@ -28,7 +28,7 @@ const start = async () => {
         fetch: api.fetch,
       };
 
-    case "super":
+    case "boss":
       boss()
   }
 };
