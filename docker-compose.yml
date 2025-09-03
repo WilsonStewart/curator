@@ -2,18 +2,12 @@ services:
   server-api:
     build: ./curator-server
     restart: always
-    profiles:
-      - production
-      - development
-    depends_on:
-      - server-db
-      - server-redis
-    env_file:
-      - curator-server/.env
+    profiles: [production, development]
+    depends_on: [server-db,server-redis]
+    env_file: curator-server/.env
     ports:
      - 4000:80
-    networks:
-      - curator-server
+    networks: [curator-server]
     volumes:
       - ./curator-server:/app:ro
     command: |
