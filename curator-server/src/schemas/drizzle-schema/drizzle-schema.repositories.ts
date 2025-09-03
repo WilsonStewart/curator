@@ -1,4 +1,4 @@
-import { genUlid } from "@/lib/id-generators";
+import { genUuidv7 } from "@/lib/id-generators";
 import { users } from "@/schemas/drizzle-schema/drizzle-schema.better-auth";
 import { museums } from "@/schemas/drizzle-schema/drizzle-schema.museums";
 import {
@@ -8,13 +8,14 @@ import {
   pgTable,
   text,
   timestamp,
+  uuid,
 } from "drizzle-orm/pg-core";
 
 export const repositoryTypes = pgTable("repository_types", {
-  id: text("id")
+  id: uuid("id")
     .primaryKey()
     .$defaultFn(() => {
-      return genUlid();
+      return genUuidv7();
     }),
   name: text("name").notNull().unique(),
   isAlias: boolean("is_alias").notNull().default(false),
@@ -32,20 +33,21 @@ export const rt_localFilesystem = pgTable("rt_localFilesystem", {
   repositoryId: text("repository_id")
     .primaryKey()
     .references(() => repositories.id),
-  repositoryTypeId: text("repository_type_id").references(
-    () => repositoryTypes.id
-  ),
   path: text("path").notNull(),
   capacityMb: bigint("capacity_mb", { mode: "number" }),
 });
 
 export const repositories = pgTable("repositories", {
-  id: text("id")
+  id: uuid("id")
     .primaryKey()
     .$defaultFn(() => {
-      return genUlid();
+      return genUuidv7();
     }),
+  repositoryTypeId: text("repository_type_id")
+    .notNull()
+    .references(() => repositoryTypes.id),
   name: text("name").notNull().unique(),
+  role: text("role").notNull(),
   museumId: text("museum_id")
     .notNull()
     .references(() => museums.id),
