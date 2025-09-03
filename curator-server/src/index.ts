@@ -6,6 +6,7 @@ import { eq } from "drizzle-orm";
 import { db } from "@/lib/db";
 import { metadata } from "@/schemas/drizzle-schema/drizzle-schema.metadata";
 import { refreshExhibitIdTypeIdCache } from "@/lib/id-type-cache";
+import { boss } from "@/boss";
 
 const start = async () => {
   printBanner();
@@ -26,6 +27,9 @@ const start = async () => {
         port: env.SERVER_PORT,
         fetch: api.fetch,
       };
+
+    case "super":
+      boss()
   }
 };
 

@@ -3,7 +3,7 @@ import z from "zod";
 
 const ZEnvSchema = z.object({
   NODE_ENV: z.enum(["production", "development"]),
-  CURATOR_MODE: z.enum(["api", "super", "worker"]),
+  CURATOR_MODE: z.enum(["api", "boss", "worker"]),
   SERVER_URL: z.string().url(),
   SERVER_PORT: z.coerce.number().min(2),
   DATABASE_URL: z.string().url(),
