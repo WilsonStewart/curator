@@ -6,6 +6,7 @@ import {
   rt_localFilesystem,
 } from "@/schemas/drizzle-schema/drizzle-schema.repositories";
 import { eq } from "drizzle-orm";
+import chokidar from "chokidar";
 
 export const boss = async () => {
   let boss = new Boss();
@@ -14,10 +15,10 @@ export const boss = async () => {
 
 class Boss {
   async init() {
-    await this.ensureRepositories();
+    await this.startRepositories();
   }
 
-  async ensureRepositories() {
+  async startRepositories() {
     console.log("Ensuring repositories...");
 
     let repos = await db
@@ -54,5 +55,16 @@ class Boss {
           }
       }
     });
+
+    repos.forEach(async (repo) => {
+      switch (repo.repositories.role) {
+        case "ingest":
+          chokidar
+            .watch("/curator/repositories/ingest")
+            .on("add", async (path) => {});
+      }
+    });
   }
+
+  async addItemToIngestQueue() {}
 }
