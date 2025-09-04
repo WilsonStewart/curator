@@ -103,16 +103,49 @@ INSERT INTO
         repository_type_id,
         name,
         role,
-        museum_id,
         created_by
     ) OVERRIDING SYSTEM VALUE
 VALUES
     (
         '019911c0-d39b-737b-95b8-9c20dbc87db0',
         '019911ca-1ad8-70fc-a897-6e7f5c37eaa5',
-        'Media (default)',
+        'Media',
         'media',
-        '019911c3-0611-7f70-8432-085904fd7cc2',
+        '019911be-0680-7fb9-84aa-694831111dad'
+    );
+--> statement-breakpoint
+INSERT INTO
+    repositories (
+        id,
+        repository_type_id,
+        name,
+        role,
+        created_by
+    ) OVERRIDING SYSTEM VALUE
+VALUES
+    (
+        '0199151e-3b59-78db-a24b-de3301ee279a',
+        '019911ca-1ad8-70fc-a897-6e7f5c37eaa5',
+        'TEMP',
+        'temp',
+        '019911be-0680-7fb9-84aa-694831111dad'
+    );
+
+--> statement-breakpoint
+INSERT INTO
+    repositories (
+        id,
+        repository_type_id,
+        name,
+        role,
+        created_by
+    ) OVERRIDING SYSTEM VALUE
+VALUES
+    (
+        '01991518-1159-7aad-860d-fc553377b794',
+        '019911ca-1ad8-70fc-a897-6e7f5c37eaa5',
+        'Ingest',
+        'ingest',
         '019911be-0680-7fb9-84aa-694831111dad'
     );
 
@@ -124,6 +157,25 @@ VALUES
         '019911c0-d39b-737b-95b8-9c20dbc87db0',
         '/curator/repositories/media'
     )
+
     --> statement-breakpoint
+INSERT INTO
+    rt_local_filesystem (repository_id, path)
+VALUES
+    (
+        '01991518-1159-7aad-860d-fc553377b794',
+        '/curator/repositories/ingest'
+    )
+
+--> statement-breakpoint
+INSERT INTO
+    rt_local_filesystem (repository_id, path)
+VALUES
+    (
+        '0199151e-3b59-78db-a24b-de3301ee279a',
+        '/curator/temp'
+    )
+
+--> statement-breakpoint
     -- End of things for migration 0001
     -- -- -- -- -- -- -- -- -- -- -- --
