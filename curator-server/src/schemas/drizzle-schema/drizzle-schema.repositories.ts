@@ -1,6 +1,5 @@
 import { genUuidv7 } from "@/lib/id-generators";
 import { users } from "@/schemas/drizzle-schema/drizzle-schema.better-auth";
-import { museums } from "@/schemas/drizzle-schema/drizzle-schema.museums";
 import {
   AnyPgColumn,
   bigint,
@@ -48,9 +47,6 @@ export const repositories = pgTable("repositories", {
     .references(() => repositoryTypes.id),
   name: text("name").notNull().unique(),
   role: text("role").notNull(),
-  museumId: uuid("museum_id")
-    .notNull()
-    .references(() => museums.id),
   createdBy: text("created_by")
     .notNull()
     .references(() => users.id),
