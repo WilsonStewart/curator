@@ -1,6 +1,6 @@
 import { customAlphabet } from "nanoid";
 import { ulid } from "ulid";
-import { v7 } from "uuid"
+import { v7 } from "uuid";
 
 export function genNanoid(): string {
   const nanoid = customAlphabet(
@@ -16,5 +16,5 @@ export function genUlid(): string {
 }
 
 export function genUuidv7(): string {
-  return v7()
+  return v7();
 }

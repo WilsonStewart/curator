@@ -1,2 +1,3 @@
 #! /bin/bash
-docker compose build; docker compose run --rm server-db-init
+docker compose build
+docker compose --profile tools run --rm server-db-init

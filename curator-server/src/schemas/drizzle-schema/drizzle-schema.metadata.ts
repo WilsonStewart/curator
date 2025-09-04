@@ -1,5 +1,5 @@
 import { sql } from "drizzle-orm";
-import { boolean, check, pgTable, text } from "drizzle-orm/pg-core";
+import { boolean, check, pgTable, text, uuid } from "drizzle-orm/pg-core";
 
 export const metadata = pgTable(
   "metadata",

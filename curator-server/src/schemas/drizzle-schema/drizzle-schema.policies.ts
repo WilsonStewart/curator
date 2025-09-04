@@ -1,4 +1,4 @@
-import { genUlid } from "@/lib/id-generators";
+import { genUuidv7 } from "@/lib/id-generators";
 import { users } from "@/schemas/drizzle-schema/drizzle-schema.better-auth";
 import {
   AnyPgColumn,
@@ -6,17 +6,18 @@ import {
   pgTable,
   text,
   timestamp,
+  uuid,
 } from "drizzle-orm/pg-core";
 
 export const policyTypes = pgTable("policy_types", {
-  id: text("id")
+  id: uuid("id")
     .primaryKey()
     .$defaultFn(() => {
-      return genUlid();
+      return genUuidv7();
     }),
   name: text("name").notNull().unique(),
   isAlias: boolean("is_alias").notNull().default(false),
-  aliasedTypeId: text("aliased_type_id").references(
+  aliasedTypeId: uuid("aliased_type_id").references(
     (): AnyPgColumn => policyTypes.id
   ),
   createdBy: text("created_by")
@@ -27,13 +28,13 @@ export const policyTypes = pgTable("policy_types", {
 });
 
 export const policies = pgTable("policies", {
-  id: text("id")
+  id: uuid("id")
     .primaryKey()
     .$defaultFn(() => {
-      return genUlid();
+      return genUuidv7();
     }),
   name: text("name").notNull().unique(),
-  policyTypeId: text("policy_type_id")
+  policyTypeId: uuid("policy_type_id")
     .notNull()
     .references(() => policyTypes.id),
 });

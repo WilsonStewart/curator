@@ -1,4 +1,4 @@
-import { genUlid } from "@/lib/id-generators";
+import { genUuidv7 } from "@/lib/id-generators";
 import { users } from "@/schemas/drizzle-schema/drizzle-schema.better-auth";
 import { galleries } from "@/schemas/drizzle-schema/drizzle-schema.galleries";
 import { museums } from "@/schemas/drizzle-schema/drizzle-schema.museums";
@@ -9,17 +9,18 @@ import {
   pgView,
   text,
   timestamp,
+  uuid,
 } from "drizzle-orm/pg-core";
 
 export const exhibitTypes = pgTable("exhibit_types", {
-  id: text("id")
+  id: uuid("id")
     .primaryKey()
     .$defaultFn(() => {
-      return genUlid();
+      return genUuidv7();
     }),
   name: text("name").notNull().unique(),
   isAlias: boolean("is_alias").notNull().default(false),
-  aliasedTypeId: text("aliased_type_id").references(
+  aliasedTypeId: uuid("aliased_type_id").references(
     (): AnyPgColumn => exhibitTypes.id
   ),
   createdBy: text("created_by")
@@ -29,8 +30,8 @@ export const exhibitTypes = pgTable("exhibit_types", {
   updatedAt: timestamp("updated_at", { mode: "string" }).notNull().defaultNow(),
 });
 
-export const et_youtubeChannels = pgTable("et_youtubeChannels", {
-  exhibitId: text("exhibit_id")
+export const et_youtubeChannels = pgTable("et_youtube_channels", {
+  exhibitId: uuid("exhibit_id")
     .primaryKey()
     .references(() => exhibits.id),
   youtubeId: text("youtube_id").unique(),
@@ -38,32 +39,33 @@ export const et_youtubeChannels = pgTable("et_youtubeChannels", {
   name: text("name").notNull(),
 });
 
-export const et_youtubeVideos = pgTable("et_youtubeVideos", {
-  exhibitId: text("exhibit_id")
+export const et_youtubeVideos = pgTable("et_youtube_videos", {
+  exhibitId: uuid("exhibit_id")
     .primaryKey()
     .references(() => exhibits.id),
   youtubeId: text("youtube_id").notNull().unique(),
-  youtubeChannelId: text("youtube_channel_id")
-    .references(() => et_youtubeChannels.youtubeId),
+  youtubeChannelId: text("youtube_channel_id").references(
+    () => et_youtubeChannels.youtubeId
+  ),
   title: text("title").notNull(),
   description: text("description"),
   uploadDate: timestamp("upload_date").notNull(),
 });
 
 export const exhibits = pgTable("exhibits", {
-  id: text("id")
+  id: uuid("id")
     .primaryKey()
     .$defaultFn(() => {
-      return genUlid();
+      return genUuidv7();
     }),
   name: text("name").notNull().unique(),
-  exhibitTypeId: text("exhibit_type_id")
+  exhibitTypeId: uuid("exhibit_type_id")
     .notNull()
     .references(() => exhibitTypes.id),
-  galleryId: text("gallery_id")
+  galleryId: uuid("gallery_id")
     .notNull()
     .references(() => galleries.id),
-  museumId: text("museum_id")
+  museumId: uuid("museum_id")
     .notNull()
     .references(() => museums.id),
   createdBy: text("created_by")

@@ -1,4 +1,4 @@
-import { genUlid } from "@/lib/id-generators";
+import { genUuidv7 } from "@/lib/id-generators";
 import { users } from "@/schemas/drizzle-schema/drizzle-schema.better-auth";
 import { museums } from "@/schemas/drizzle-schema/drizzle-schema.museums";
 import {
@@ -7,20 +7,21 @@ import {
   pgTable,
   text,
   timestamp,
+  uuid,
 } from "drizzle-orm/pg-core";
 
 export const galleries = pgTable("galleries", {
-  id: text("id")
+  id: uuid("id")
     .primaryKey()
     .$defaultFn(() => {
-      return genUlid();
+      return genUuidv7();
     }),
   name: text("name").notNull(),
-  parentGalleryId: text("parent_gallery_id").references(
+  parentGalleryId: uuid("parent_gallery_id").references(
     (): AnyPgColumn => galleries.id
   ),
   resultantPolicy: jsonb("resultant_policy"),
-  museumId: text("museum_id")
+  museumId: uuid("museum_id")
     .notNull()
     .references(() => museums.id),
   createdBy: text("created_by")

@@ -1,12 +1,12 @@
 import { galleries } from "@/schemas/drizzle-schema/drizzle-schema.galleries";
 import { policies } from "@/schemas/drizzle-schema/drizzle-schema.policies";
-import { pgTable, primaryKey, text } from "drizzle-orm/pg-core";
+import { pgTable, primaryKey, text, uuid } from "drizzle-orm/pg-core";
 
 export const galleriesPolicies = pgTable(
   "galleries_policies",
   {
-    policyId: text("policy_id").references(() => policies.id),
-    galleryId: text("gallery_id").references(() => galleries.id),
+    policyId: uuid("policy_id").references(() => policies.id),
+    galleryId: uuid("gallery_id").references(() => galleries.id),
   },
   (table) => [
     primaryKey({

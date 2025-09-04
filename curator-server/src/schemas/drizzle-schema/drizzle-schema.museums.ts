@@ -1,12 +1,12 @@
-import { genUlid } from "@/lib/id-generators";
+import { genUuidv7 } from "@/lib/id-generators";
 import { users } from "@/schemas/drizzle-schema/drizzle-schema.better-auth";
-import { pgTable, text, timestamp } from "drizzle-orm/pg-core";
+import { pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
 
 export const museums = pgTable("museums", {
-  id: text("id")
+  id: uuid("id")
     .primaryKey()
     .$defaultFn(() => {
-      return genUlid();
+      return genUuidv7();
     }),
   name: text("name").notNull().unique(),
   createdBy: text("created_by")

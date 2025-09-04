@@ -1,4 +1,4 @@
-import { genUlid } from "@/lib/id-generators";
+import { genUuidv7 } from "@/lib/id-generators";
 import { users } from "@/schemas/drizzle-schema/drizzle-schema.better-auth";
 import { museums } from "@/schemas/drizzle-schema/drizzle-schema.museums";
 import {
@@ -8,17 +8,18 @@ import {
   pgTable,
   text,
   timestamp,
+  uuid,
 } from "drizzle-orm/pg-core";
 
 export const artifactTypes = pgTable("artifact_types", {
-  id: text("id")
+  id: uuid("id")
     .primaryKey()
     .$defaultFn(() => {
-      return genUlid();
+      return genUuidv7();
     }),
   name: text("name").notNull().unique(),
   isAlias: boolean("is_alias").notNull().default(false),
-  aliasedTypeId: text("aliased_type_id").references(
+  aliasedTypeId: uuid("aliased_type_id").references(
     (): AnyPgColumn => artifactTypes.id
   ),
   createdBy: text("created_by")
@@ -29,21 +30,21 @@ export const artifactTypes = pgTable("artifact_types", {
 });
 
 export const at_videos = pgTable("at_videos", {
-  artifactId: text("artifact_id")
+  artifactId: uuid("artifact_id")
     .primaryKey()
     .references(() => artifacts.id),
   lengthSeconds: integer("length_seconds").notNull(),
 });
 
 export const at_audio_recordings = pgTable("at_audio_recordings", {
-  artifactId: text("artifact_id")
+  artifactId: uuid("artifact_id")
     .primaryKey()
     .references(() => artifacts.id),
   lengthSeconds: integer("length_seconds").notNull(),
 });
 
 export const at_images = pgTable("at_images", {
-  artifactId: text("artifact_id")
+  artifactId: uuid("artifact_id")
     .primaryKey()
     .references(() => artifacts.id),
   widthPx: integer("width_px").notNull(),
@@ -51,19 +52,19 @@ export const at_images = pgTable("at_images", {
 });
 
 export const artifacts = pgTable("artifacts", {
-  id: text("id")
+  id: uuid("id")
     .primaryKey()
     .$defaultFn(() => {
-      return genUlid();
+      return genUuidv7();
     }),
   name: text("name"),
   fileName: text("file_name").notNull(),
   fileFormat: text("file_format").notNull(),
   sizeBytes: integer("size_bytes").notNull(),
-  artifactTypeId: text("artifact_type_id")
+  artifactTypeId: uuid("artifact_type_id")
     .notNull()
     .references(() => artifactTypes.id),
-  museumId: text("museum_id")
+  museumId: uuid("museum_id")
     .notNull()
     .references(() => museums.id),
   createdBy: text("created_by")

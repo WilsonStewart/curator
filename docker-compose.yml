@@ -2,7 +2,7 @@ services:
   server-boss:
     build: ./curator-server
     restart: always
-    profiles: [production, development]
+    profiles: [production, development, tools]
     depends_on: [server-db,server-redis]
     env_file: curator-server/boss.env
     networks: [curator-server]
@@ -21,7 +21,7 @@ services:
   server-api:
     build: ./curator-server
     restart: always
-    profiles: [production, development]
+    profiles: [production, development, tools]
     depends_on: [server-db, server-redis, server-boss]
     env_file: ./curator-server/.env
     ports:
@@ -42,9 +42,7 @@ services:
   server-db:
     image: postgres:17-trixie
     restart: always
-    profiles:
-      - production
-      - development
+    profiles: [production, development, tools]
     env_file:
       - curator-server/.env
     networks:
@@ -55,9 +53,7 @@ services:
   server-redis:
     image: redis/redis-stack-server:7.4.0-v6
     restart: always
-    profiles:
-      - production
-      - development
+    profiles: [production, development, tools]
     networks:
       - curator-server
     volumes:
@@ -66,8 +62,7 @@ services:
 
   server-db-init:
     build: ./curator-server
-    profiles:
-      - tools
+    profiles: [tools]
     depends_on:
       - server-db
       - server-redis
@@ -76,8 +71,7 @@ services:
     networks:
       - curator-server
     volumes:
-      - ./curator-server:/app
-      - ./curator-server/.env:/app/.env:ro
+      - ./curator-server:/curator/server
     command: >
       sh -c "
         rm -rf ./drizzle &&

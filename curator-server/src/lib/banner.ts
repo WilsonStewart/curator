@@ -53,7 +53,7 @@ export const printBanner = () => {
     case "api":
       console.log(apiFiglet);
       break;
-    case "super":
+    case "boss":
       console.log(superFiglet);
       break;
     case "worker":

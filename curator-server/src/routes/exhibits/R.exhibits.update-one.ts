@@ -29,7 +29,7 @@ export const RExhibitsUpdateOne = (app: Hono) => {
       VExhibitsIdTypeIdParam.openapi({
         example: {
           id: "01JXMVE4F6VRRJ6ZM37S721DH4",
-          exhibitTypeId: knownTypeIds.exhibits.byTableName.etd_youtube_channel,
+          exhibitTypeId: knownTypeIds.exhibits.byTableName.et_youtube_channel,
         },
       })
     ),

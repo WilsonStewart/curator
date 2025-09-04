@@ -1,7 +1,7 @@
 import z from "zod";
 
 export const VOwnerKVs = {
-  createdBy: z.string().ulid().nonempty(),
+  createdBy: z.string().uuid().nonempty(),
 };
 
 export const VTimestampKVs = {

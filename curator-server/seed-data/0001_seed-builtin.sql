@@ -98,11 +98,18 @@ VALUES
 
 --> statement-breakpoint
 INSERT INTO
-    repositories (id, repository_type_id, name, role, museumId, created_by)
+    repositories (
+        id,
+        repository_type_id,
+        name,
+        role,
+        museum_id,
+        created_by
+    ) OVERRIDING SYSTEM VALUE
 VALUES
     (
         '019911c0-d39b-737b-95b8-9c20dbc87db0',
-        '019911ca-1ad8-70fc-a897-6e7f5c37eaa5'
+        '019911ca-1ad8-70fc-a897-6e7f5c37eaa5',
         'Media (default)',
         'media',
         '019911c3-0611-7f70-8432-085904fd7cc2',
@@ -111,13 +118,12 @@ VALUES
 
 --> statement-breakpoint
 INSERT INTO
-    rt_localFilesystem (repository_id, path)
+    rt_local_filesystem (repository_id, path)
 VALUES
     (
         '019911c0-d39b-737b-95b8-9c20dbc87db0',
         '/curator/repositories/media'
     )
-
---> statement-breakpoint
--- End of things for migration 0001
--- -- -- -- -- -- -- -- -- -- -- --
+    --> statement-breakpoint
+    -- End of things for migration 0001
+    -- -- -- -- -- -- -- -- -- -- -- --

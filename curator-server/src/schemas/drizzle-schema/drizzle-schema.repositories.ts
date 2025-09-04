@@ -19,7 +19,7 @@ export const repositoryTypes = pgTable("repository_types", {
     }),
   name: text("name").notNull().unique(),
   isAlias: boolean("is_alias").notNull().default(false),
-  aliasedTypeId: text("aliased_type_id").references(
+  aliasedTypeId: uuid("aliased_type_id").references(
     (): AnyPgColumn => repositoryTypes.id
   ),
   createdBy: text("created_by")
@@ -29,8 +29,8 @@ export const repositoryTypes = pgTable("repository_types", {
   updatedAt: timestamp("updated_at", { mode: "string" }).notNull().defaultNow(),
 });
 
-export const rt_localFilesystem = pgTable("rt_localFilesystem", {
-  repositoryId: text("repository_id")
+export const rt_localFilesystem = pgTable("rt_local_filesystem", {
+  repositoryId: uuid("repository_id")
     .primaryKey()
     .references(() => repositories.id),
   path: text("path").notNull(),
@@ -43,12 +43,12 @@ export const repositories = pgTable("repositories", {
     .$defaultFn(() => {
       return genUuidv7();
     }),
-  repositoryTypeId: text("repository_type_id")
+  repositoryTypeId: uuid("repository_type_id")
     .notNull()
     .references(() => repositoryTypes.id),
   name: text("name").notNull().unique(),
   role: text("role").notNull(),
-  museumId: text("museum_id")
+  museumId: uuid("museum_id")
     .notNull()
     .references(() => museums.id),
   createdBy: text("created_by")

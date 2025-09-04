@@ -1,0 +1,4 @@
+ services:
+     server-db:
+         ports:
+             - "7654:5432"
