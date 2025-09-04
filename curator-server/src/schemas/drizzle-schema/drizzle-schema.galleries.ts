@@ -17,7 +17,7 @@ export const galleries = pgTable("galleries", {
       return genUuidv7();
     }),
   name: text("name").notNull(),
-  safeName: text("name").notNull(),
+  safeName: text("safe_name").notNull(),
   parentGalleryId: uuid("parent_gallery_id").references(
     (): AnyPgColumn => galleries.id
   ),

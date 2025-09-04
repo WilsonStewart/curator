@@ -9,7 +9,7 @@ export const museums = pgTable("museums", {
       return genUuidv7();
     }),
   name: text("name").notNull(),
-  safeName: text("name").notNull(),
+  safeName: text("safe_name").notNull(),
   createdBy: text("created_by")
     .notNull()
     .references(() => users.id),

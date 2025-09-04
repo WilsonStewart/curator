@@ -17,21 +17,23 @@ VALUES
 
 --> statement-breakpoint
 INSERT INTO
-    museums (id, name, created_by) OVERRIDING SYSTEM VALUE
+    museums (id, name, safe_name, created_by) OVERRIDING SYSTEM VALUE
 VALUES
     (
         '019911c3-0611-7f70-8432-085904fd7cc2',
         'Default Museum',
+        'default-museum'
         '019911be-0680-7fb9-84aa-694831111dad'
     );
 
 --> statement-breakpoint
 INSERT INTO
-    galleries (id, name, museum_id, created_by) OVERRIDING SYSTEM VALUE
+    galleries (id, name, safe_name, museum_id, created_by) OVERRIDING SYSTEM VALUE
 VALUES
     (
         '019911c8-bfac-7f90-9e05-f9b681338ccc',
         'ROOT',
+        'root'
         '019911c3-0611-7f70-8432-085904fd7cc2',
         '019911be-0680-7fb9-84aa-694831111dad'
     );
@@ -102,6 +104,7 @@ INSERT INTO
         id,
         repository_type_id,
         name,
+        safe_name,
         role,
         created_by
     ) OVERRIDING SYSTEM VALUE
@@ -110,6 +113,7 @@ VALUES
         '019911c0-d39b-737b-95b8-9c20dbc87db0',
         '019911ca-1ad8-70fc-a897-6e7f5c37eaa5',
         'Media',
+        'media'
         'media',
         '019911be-0680-7fb9-84aa-694831111dad'
     );
@@ -119,6 +123,7 @@ INSERT INTO
         id,
         repository_type_id,
         name,
+        safe_name,
         role,
         created_by
     ) OVERRIDING SYSTEM VALUE
@@ -127,6 +132,7 @@ VALUES
         '0199151e-3b59-78db-a24b-de3301ee279a',
         '019911ca-1ad8-70fc-a897-6e7f5c37eaa5',
         'TEMP',
+        'temp',
         'temp',
         '019911be-0680-7fb9-84aa-694831111dad'
     );
@@ -137,6 +143,7 @@ INSERT INTO
         id,
         repository_type_id,
         name,
+        safe_name,
         role,
         created_by
     ) OVERRIDING SYSTEM VALUE
@@ -145,6 +152,7 @@ VALUES
         '01991518-1159-7aad-860d-fc553377b794',
         '019911ca-1ad8-70fc-a897-6e7f5c37eaa5',
         'Ingest',
+        'ingest',
         'ingest',
         '019911be-0680-7fb9-84aa-694831111dad'
     );

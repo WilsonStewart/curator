@@ -16,7 +16,7 @@ export const policyTypes = pgTable("policy_types", {
       return genUuidv7();
     }),
   name: text("name").notNull().unique(),
-  safeName: text("name").notNull().unique(),
+  safeName: text("safe_name").notNull().unique(),
   isAlias: boolean("is_alias").notNull().default(false),
   aliasedTypeId: uuid("aliased_type_id").references(
     (): AnyPgColumn => policyTypes.id

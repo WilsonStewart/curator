@@ -59,7 +59,7 @@ export const exhibits = pgTable("exhibits", {
       return genUuidv7();
     }),
   name: text("name").notNull(),
-  safeName: text("name").notNull(),
+  safeName: text("safe_name").notNull(),
   exhibitTypeId: uuid("exhibit_type_id")
     .notNull()
     .references(() => exhibitTypes.id),
