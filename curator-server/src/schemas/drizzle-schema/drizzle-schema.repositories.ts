@@ -17,6 +17,7 @@ export const repositoryTypes = pgTable("repository_types", {
       return genUuidv7();
     }),
   name: text("name").notNull().unique(),
+  safeName: text("name").notNull().unique(),
   isAlias: boolean("is_alias").notNull().default(false),
   aliasedTypeId: uuid("aliased_type_id").references(
     (): AnyPgColumn => repositoryTypes.id

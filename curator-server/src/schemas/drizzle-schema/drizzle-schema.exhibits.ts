@@ -58,7 +58,8 @@ export const exhibits = pgTable("exhibits", {
     .$defaultFn(() => {
       return genUuidv7();
     }),
-  name: text("name").notNull().unique(),
+  name: text("name").notNull(),
+  safeName: text("name").notNull(),
   exhibitTypeId: uuid("exhibit_type_id")
     .notNull()
     .references(() => exhibitTypes.id),

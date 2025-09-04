@@ -57,7 +57,8 @@ export const artifacts = pgTable("artifacts", {
     .$defaultFn(() => {
       return genUuidv7();
     }),
-  name: text("name"),
+  name: text("name").notNull(),
+  safeName: text("name").notNull(),
   fileName: text("file_name").notNull(),
   fileFormat: text("file_format").notNull(),
   sizeBytes: integer("size_bytes").notNull(),

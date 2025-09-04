@@ -8,7 +8,8 @@ export const museums = pgTable("museums", {
     .$defaultFn(() => {
       return genUuidv7();
     }),
-  name: text("name").notNull().unique(),
+  name: text("name").notNull(),
+  safeName: text("name").notNull(),
   createdBy: text("created_by")
     .notNull()
     .references(() => users.id),
