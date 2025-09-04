@@ -22,7 +22,7 @@ VALUES
     (
         '019911c3-0611-7f70-8432-085904fd7cc2',
         'Default Museum',
-        'default-museum'
+        'default-museum',
         '019911be-0680-7fb9-84aa-694831111dad'
     );
 
@@ -33,7 +33,7 @@ VALUES
     (
         '019911c8-bfac-7f90-9e05-f9b681338ccc',
         'ROOT',
-        'root'
+        'root',
         '019911c3-0611-7f70-8432-085904fd7cc2',
         '019911be-0680-7fb9-84aa-694831111dad'
     );
@@ -113,7 +113,7 @@ VALUES
         '019911c0-d39b-737b-95b8-9c20dbc87db0',
         '019911ca-1ad8-70fc-a897-6e7f5c37eaa5',
         'Media',
-        'media'
+        'media',
         'media',
         '019911be-0680-7fb9-84aa-694831111dad'
     );
