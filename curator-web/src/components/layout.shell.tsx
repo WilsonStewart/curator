@@ -8,7 +8,7 @@ export const LayoutShell = (props: PropsWithChildren) => {
         <div className="layout-shell">
             <LayoutTopbar />
             <div className="layout-lower">
-                <LayoutNav />
+                {/* <LayoutNav /> */}
                 <LayoutContent>{props.children}</LayoutContent>
             </div>
         </div>
