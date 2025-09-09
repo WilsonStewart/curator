@@ -2,21 +2,28 @@
 
 .layout-topbar {
     background-color: $oc-grape-5;
-    // padding: 0 2.5%;
-    width: 100%;
-    margin: 0 auto;
-    width: 100vw;
-    overflow: hidden;
-    // max-width: 1000px;
-    position: relative;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
-    flex-flow: row nowrap;
+    justify-content: space-between;
     align-items: center;
-    justify-content: flex-start;
     height: 52px;
+    padding: 0 4px;
+
+    .middle {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        flex: 1;
+        height: 100%;
+    }
+
+    .left,
+    .right {
+        background-color: red;
+        height: 100%;
+        display: flex;
+        justify-items: center;
+        align-items: center;
+    }
 }
 
 .layout-shell {

@@ -1,0 +1,10 @@
+@use "theming/open-color" as *;
+
+.hamburger {
+    // background-color: $oc-indigo-1;
+    color: white;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 42pt;
+    padding: 3px;
+}
