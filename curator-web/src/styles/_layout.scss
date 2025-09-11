@@ -1,12 +1,13 @@
 @use "theming/open-color" as *;
 
 .layout-topbar {
-    background-color: $oc-grape-5;
+    background-color: $oc-grape-3;
+    background-image: linear-gradient(5deg, $oc-grape-3 0%, $oc-violet-3 100%);
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 52px;
-    padding: 0 4px;
+    padding: 0 10px;
 
     .middle {
         display: flex;
@@ -18,7 +19,7 @@
 
     .left,
     .right {
-        background-color: red;
+        // background-color: red;
         height: 100%;
         display: flex;
         justify-items: center;
@@ -27,7 +28,7 @@
 }
 
 .layout-shell {
-    background: red;
+    // background: red;
     align-items: stretch;
     background-color: transparent;
     background-repeat: no-repeat;

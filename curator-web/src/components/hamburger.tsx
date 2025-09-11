@@ -1,3 +1,3 @@
 export const Hamburger = () => {
-    return <div className="hamburger">🍔</div>
+    return <div className="hamburger">≡</div>
 }

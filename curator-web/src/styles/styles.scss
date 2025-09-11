@@ -4,6 +4,7 @@
 @use "superbar";
 // @use "components/overlay";
 // @use "components/_login-form";
+@import url('https://fonts.googleapis.com/css2?family=Cascadia+Code:ital,wght@0,200..700;1,200..700&display=swap');
 
 html {
     height: 100%;
@@ -66,4 +67,28 @@ div {
     outline: 0;
     padding: 0;
     text-decoration: none;
+}
+
+input {
+    font-size: 1rem;
+    border: none;
+    outline: none;
+    padding: 0 1rem;
+
+
+}
+
+.code {
+    font-family: 'Cascadia Code', 'Courier New', Courier, monospace;
+    font-weight: 400;
+}
+
+input:focus::placeholder {
+    color: transparent;
+}
+
+.logo-top-left {
+    cursor: pointer;
+    width: 40px;
+    filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.2));
 }

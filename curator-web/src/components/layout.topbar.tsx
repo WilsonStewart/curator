@@ -4,7 +4,7 @@ import { Superbar } from "@/components/superbar"
 export const LayoutTopbar = () => {
     return (
         <div className="layout-topbar">
-            <div className="left">logo</div>
+            <div className="left"><img className="logo-top-left" src="/bone.png" /></div>
             <div className="middle">
                 <Superbar />
             </div>

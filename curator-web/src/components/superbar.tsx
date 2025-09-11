@@ -1,3 +1,3 @@
 export const Superbar = () => {
-    return <input className="superbar"></input>
+    return <input placeholder="🔎 Search for anything" className="superbar code"></input>
 }
