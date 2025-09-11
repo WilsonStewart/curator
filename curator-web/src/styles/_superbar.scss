@@ -6,4 +6,9 @@
     min-width: 170px;
     cursor: pointer;
     border-radius: 10px;
+    filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.2));
+}
+
+.superbar:hover {
+    filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.5));
 }
