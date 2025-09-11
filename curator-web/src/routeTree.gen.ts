@@ -10,7 +10,6 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as PoliciesRouteImport } from './routes/policies'
-import { Route as OrgConfigurationRouteImport } from './routes/org-configuration'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as ExhibitsRouteImport } from './routes/exhibits'
 import { Route as AutomationsRouteImport } from './routes/automations'
@@ -19,11 +18,6 @@ import { Route as IndexRouteImport } from './routes/index'
 const PoliciesRoute = PoliciesRouteImport.update({
   id: '/policies',
   path: '/policies',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const OrgConfigurationRoute = OrgConfigurationRouteImport.update({
-  id: '/org-configuration',
-  path: '/org-configuration',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginRoute = LoginRouteImport.update({
@@ -52,7 +46,6 @@ export interface FileRoutesByFullPath {
   '/automations': typeof AutomationsRoute
   '/exhibits': typeof ExhibitsRoute
   '/login': typeof LoginRoute
-  '/org-configuration': typeof OrgConfigurationRoute
   '/policies': typeof PoliciesRoute
 }
 export interface FileRoutesByTo {
@@ -60,7 +53,6 @@ export interface FileRoutesByTo {
   '/automations': typeof AutomationsRoute
   '/exhibits': typeof ExhibitsRoute
   '/login': typeof LoginRoute
-  '/org-configuration': typeof OrgConfigurationRoute
   '/policies': typeof PoliciesRoute
 }
 export interface FileRoutesById {
@@ -69,34 +61,14 @@ export interface FileRoutesById {
   '/automations': typeof AutomationsRoute
   '/exhibits': typeof ExhibitsRoute
   '/login': typeof LoginRoute
-  '/org-configuration': typeof OrgConfigurationRoute
   '/policies': typeof PoliciesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/automations'
-    | '/exhibits'
-    | '/login'
-    | '/org-configuration'
-    | '/policies'
+  fullPaths: '/' | '/automations' | '/exhibits' | '/login' | '/policies'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/automations'
-    | '/exhibits'
-    | '/login'
-    | '/org-configuration'
-    | '/policies'
-  id:
-    | '__root__'
-    | '/'
-    | '/automations'
-    | '/exhibits'
-    | '/login'
-    | '/org-configuration'
-    | '/policies'
+  to: '/' | '/automations' | '/exhibits' | '/login' | '/policies'
+  id: '__root__' | '/' | '/automations' | '/exhibits' | '/login' | '/policies'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -104,7 +76,6 @@ export interface RootRouteChildren {
   AutomationsRoute: typeof AutomationsRoute
   ExhibitsRoute: typeof ExhibitsRoute
   LoginRoute: typeof LoginRoute
-  OrgConfigurationRoute: typeof OrgConfigurationRoute
   PoliciesRoute: typeof PoliciesRoute
 }
 
@@ -138,13 +109,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/org-configuration': {
-      id: '/org-configuration'
-      path: '/org-configuration'
-      fullPath: '/org-configuration'
-      preLoaderRoute: typeof OrgConfigurationRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/policies': {
       id: '/policies'
       path: '/policies'
@@ -160,7 +124,6 @@ const rootRouteChildren: RootRouteChildren = {
   AutomationsRoute: AutomationsRoute,
   ExhibitsRoute: ExhibitsRoute,
   LoginRoute: LoginRoute,
-  OrgConfigurationRoute: OrgConfigurationRoute,
   PoliciesRoute: PoliciesRoute,
 }
 export const routeTree = rootRouteImport
