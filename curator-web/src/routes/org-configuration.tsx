@@ -1,4 +1,4 @@
-import { getMuseums } from "@/lib/api-client/museums/museums";
+# import { getMuseums } from "@/lib/api-client/museums/museums";
 import { useQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 
