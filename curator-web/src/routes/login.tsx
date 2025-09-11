@@ -26,7 +26,7 @@ function RouteComponent() {
               console.log("Before: ", isAuthed);
               setIsAuthed(true);
               console.log("After: ", isAuthed);
-              navigate({ to: "/exhibits" });
+              navigate({ to: "/automations" });
             }}
           >
             Login
