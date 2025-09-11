@@ -28,7 +28,8 @@
 }
 
 .layout-shell {
-    // background: red;
+    display: flex;
+    flex-direction: column;
     align-items: stretch;
     background-color: transparent;
     background-repeat: no-repeat;
@@ -43,14 +44,23 @@
     outline: 0;
     padding: 0;
     text-decoration: none;
+    // background-color: rgb(192, 232, 255);
+    height: 100%;
 }
 
 .layout-main {
     font-family: "Lato", "Helvetica Neue", Arial, Helvetica, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     display: flex;
-    width: 100%;
-    background-color: #F5F6F7;
+    padding: 0 10px;
+    height: 100%;
+
+    // background-color: #F5F6F7;
+    // background-color: red;
     flex-flow: column nowrap;
-    min-height: 100vh;
     position: relative;
+}
+
+#app {
+    // background-color: pink;
+    height: 100%;
 }
