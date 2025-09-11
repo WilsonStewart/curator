@@ -1,6 +1,5 @@
 import { LayoutNavItem } from "@/components/layout.nav.item";
 import {
-  BuildingIcon,
   PresentationIcon,
   RobotIcon,
   ScrollIcon,
@@ -30,13 +29,6 @@ export const LayoutNav = () => {
         name="Policies"
         onclick={async () => {
           navigate({ to: "/policies" });
-        }}
-      />
-      <LayoutNavItem
-        icon={BuildingIcon}
-        name="Org Configuration"
-        onclick={async () => {
-          navigate({ to: "/org-configuration" });
         }}
       />
     </div>

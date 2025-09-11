@@ -1,6 +1,4 @@
-import type { PropsWithChildren } from "react";
-
-export const FormCard = (props: PropsWithChildren) => {
+export const FormCard = () => {
     return (
         <div>
         </div>
