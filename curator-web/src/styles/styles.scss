@@ -37,6 +37,7 @@ html {
     box-sizing: border-box;
     background: linear-gradient(5deg, $oc-grape-3 0%, $oc-violet-3 100%);
     background-attachment: fixed;
+    background-color: transparent;
 }
 
 body {
@@ -61,7 +62,8 @@ body {
     text-decoration: none;
     // box-sizing: border-box;
     color: #16161D;
-    font-size: 15px; // background-color: pink
+    font-size: 15px;
+    background-color: transparent;
 }
 
 img {
