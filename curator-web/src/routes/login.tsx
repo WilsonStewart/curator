@@ -1,4 +1,5 @@
 import { Overlay } from "@/components/overlay";
+import { SocialButton } from "@/components/social-button";
 import { isAuthedAtom } from "@/lib/state";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useAtom } from "jotai";
@@ -13,26 +14,15 @@ function RouteComponent() {
 
   return (
     <Overlay>
-      <div className="login">
-        <img src="/bone.png"></img>
-        <h1 className="login-title">
-          login to <span>curator</span>
-        </h1>
-        <input placeholder="email" />
-        <input placeholder="password" type="password" />
-        <div className="login--buttons">
-          <button
-            onClick={async () => {
-              console.log("Before: ", isAuthed);
-              setIsAuthed(true);
-              console.log("After: ", isAuthed);
-              navigate({ to: "/automations" });
-            }}
-          >
-            Login
-          </button>
-          {/* <SocialButton /> */}
-        </div>
+      <div className="login-box font-lexend">
+        <img className="bone-icon" src="/bone.png" width={"100px"}></img>
+        <h1>curator</h1>
+        {true ? <SocialButton imgpath="/bone.png" type="devBypass" /> : <div />}
+        {true ? <SocialButton imgpath="/github-mark-white.png" type="github" /> : <div />}
+        {true ? <SocialButton imgpath="/google.png" type="google" /> : <div />}
+
+        {/* <input id="email-input" placeholder="email address" type="email" />
+        <input id="password-input" placeholder="password" type="password" /> */}
       </div>
     </Overlay>
   );
