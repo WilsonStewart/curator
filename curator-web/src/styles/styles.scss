@@ -38,6 +38,7 @@ html {
 }
 
 body {
+    overscroll-behavior: none;
     appearance: none;
     align-items: stretch;
     background-color: transparent;
