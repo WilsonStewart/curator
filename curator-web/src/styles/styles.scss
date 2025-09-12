@@ -35,10 +35,13 @@ html {
     padding: 0;
     text-decoration: none;
     box-sizing: border-box;
+    background: linear-gradient(5deg, $oc-grape-3 0%, $oc-violet-3 100%);
+    background-attachment: fixed;
 }
 
 body {
-    overscroll-behavior: none;
+    background: linear-gradient(5deg, $oc-grape-3 0%, $oc-violet-3 100%);
+    background-attachment: fixed;
     appearance: none;
     align-items: stretch;
     background-color: transparent;
