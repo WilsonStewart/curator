@@ -65,20 +65,22 @@ tr {
 }
 
 .root-container {
-    height: 100vh;
-    width: 100vw;
+    height: 100dvh;
+    width: 100dvw;
     overflow: hidden;
     overscroll-behavior: none;
 }
 
 input {
     height: 2.3rem;
+
     padding: {
         top: 5px;
         bottom: 5px;
         left: 15px;
         right: 15px;
     }
+
     cursor: pointer;
 }
 

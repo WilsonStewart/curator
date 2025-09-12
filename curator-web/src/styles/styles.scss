@@ -50,8 +50,8 @@ body {
     font-weight: normal;
     list-style: none;
     margin: 0;
-    height: 100vh;
-    width: 100vw;
+    height: 100dvh;
+    width: 100dvw;
     outline: 0;
     padding: 0;
     text-decoration: none;
@@ -126,7 +126,7 @@ input:focus::placeholder {
 .overlay {
     background-color: $oc-grape-3;
     background-image: linear-gradient(5deg, $oc-grape-3 0%, $oc-violet-3 100%);
-    height: 100vh;
+    height: 100dvh;
     display: flex;
     align-items: center;
     justify-content: center;
