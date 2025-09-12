@@ -1,16 +1,14 @@
 import { Overlay } from "@/components/overlay";
 import { SocialButton } from "@/components/social-button";
-import { isAuthedAtom } from "@/lib/state";
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useAtom } from "jotai";
+import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/login")({
   component: RouteComponent,
 });
 
 function RouteComponent() {
-  const [isAuthed, setIsAuthed] = useAtom(isAuthedAtom);
-  const navigate = useNavigate();
+  // const [isAuthed, setIsAuthed] = useAtom(isAuthedAtom);
+  // const navigate = useNavigate();
 
   return (
     <Overlay>
