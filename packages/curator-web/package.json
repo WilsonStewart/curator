@@ -1,0 +1,49 @@
+{
+  "name": "curator-web",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 3000",
+    "start": "vite --port 3000",
+    "build": "vite build && tsc",
+    "serve": "vite preview",
+    "test": "vitest run",
+    "gen:apiClient": "bunx orval"
+  },
+  "dependencies": {
+    "@hey-api/client-fetch": "^0.12.0",
+    "@mantine/hooks": "^8.0.1",
+    "@phosphor-icons/react": "^2.1.8",
+    "@tabler/icons-react": "^3.31.0",
+    "@tanstack/react-query": "^5.80.7",
+    "@tanstack/react-router": "^1.114.3",
+    "@tanstack/react-router-devtools": "^1.114.3",
+    "@tanstack/react-table": "^8.21.3",
+    "@tanstack/router-plugin": "^1.114.3",
+    "better-auth": "^1.2.9",
+    "jotai": "^2.12.5",
+    "open-color": "^1.9.1",
+    "openapi-fetch": "^0.14.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-scan": "^0.3.4"
+  },
+  "devDependencies": {
+    "@hey-api/openapi-ts": "^0.71.0",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/react": "^16.2.0",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
+    "@vitejs/plugin-react": "^4.3.4",
+    "jsdom": "^26.0.0",
+    "openapi-typescript": "^7.8.0",
+    "orval": "^7.10.0",
+    "sass": "^1.89.1",
+    "typescript": "^5.8.3",
+    "vite": "^6.1.0",
+    "vitest": "^3.0.5"
+  },
+  "trustedDependencies": [
+    "@parcel/watcher"
+  ]
+}

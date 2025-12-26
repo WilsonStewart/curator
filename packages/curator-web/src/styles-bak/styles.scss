@@ -1,0 +1,112 @@
+@use "layout";
+@use "theming/open-color" as *;
+@use "components/overlay";
+@use "components/_login-form";
+@import url('https://fonts.googleapis.com/css2?family=Faculty+Glyphic&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Arsenal+SC:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Mono+One&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: Rubik, sans-serif;
+    font-feature-settings: 'liga' 1, 'calt' 1;
+    font-weight: 300;
+    font-size: 11pt;
+}
+
+code {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+h1 {
+    font-weight: 500;
+    font-size: 2.5rem;
+
+    margin: {
+        bottom: 10px;
+    }
+}
+
+h2 {
+    font-size: 1.3rem;
+}
+
+table {
+    // border: 1px solid $oc-grape-2;
+    border-spacing: 10px 0;
+}
+
+th {
+    font-weight: 500;
+}
+
+tr {
+    text-align: left;
+}
+
+.card {
+    max-width: 400px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    border-radius: 0.5rem;
+    background: -webkit-linear-gradient(to right, #3f4c6b, #606c88);
+    background: linear-gradient(to left top, $oc-grape-3, $oc-grape-5);
+    padding: 1rem;
+    color: white;
+    box-shadow: 0px 87px 78px -39px rgba(0, 0, 0, 0.4);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    max-width: 1300px;
+}
+
+.root-container {
+    height: 100dvh;
+    width: 100dvw;
+    overflow: hidden;
+    overscroll-behavior: none;
+}
+
+input {
+    height: 2.3rem;
+
+    padding: {
+        top: 5px;
+        bottom: 5px;
+        left: 15px;
+        right: 15px;
+    }
+
+    cursor: pointer;
+}
+
+button {
+    height: 3rem;
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.logo {
+    color: black;
+    // font-family: "Faculty Glyphic", sans-serif;
+    // font-weight: 600;
+    // font-style: normal;
+    font-family: "Rubik", monospace;
+    font-weight: 600;
+    font-style: normal;
+}
+
+.logo-xl {
+    font-size: 40pt;
+}
+
+.flex-center {
+    display: flex;
+}

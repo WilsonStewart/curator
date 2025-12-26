@@ -1,0 +1,47 @@
+{
+  "name": "curator-server",
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "start:dev": "docker compose --profile dev-core down; docker compose --profile dev-core up --build",
+    "start:dev:detatched": "docker compose --profile dev-core down; docker compose --profile dev-core up -d --build",
+    "tools:updateLatestDrizzleMigrationHash": "docker compose run --rm --build tool bun tools.ts updateLatestDrizzleMigrationHash",
+    "db:reset": "docker compose run -it --rm --build tool bun tools.ts nukeDbAndReset",
+    "db:migrations:generate": "docker compose run --rm --build tool bunx drizzle-kit generate",
+    "db:migrations:generateCustom": "docker compose run --rm --build tool bunx drizzle-kit generate --custom",
+    "db:migrations:migrate": "docker compose run --rm --build tool bunx drizzle-kit migrate; bun run tools:updateLatestDrizzleMigrationHash",
+    "dev:db:seed-data": "bun run ./dev-tools/seed-test-data.ts"
+  },
+  "dependencies": {
+    "@hono/standard-validator": "^0.2.1",
+    "@hono/zod-validator": "^0.7.6",
+    "@scalar/hono-api-reference": "^0.9.30",
+    "@types/semver": "^7.7.1",
+    "better-auth": "^1.4.7",
+    "chokidar": "^5.0.0",
+    "dotenv": "^17.2.3",
+    "drizzle-orm": "0.45.1",
+    "drizzle-zod": "^0.8.3",
+    "hono": "^4.11.1",
+    "hono-openapi": "^1.1.2",
+    "hono-pino": "^0.10.3",
+    "ioredis": "^5.8.2",
+    "pg": "^8.16.3",
+    "pino": "^10.1.0",
+    "pino-http": "^11.0.0",
+    "pino-loki": "^3.0.0",
+    "pino-pretty": "^13.1.3",
+    "semver": "^7.7.3",
+    "uuid": "^13.0.0",
+    "zod": "^4.2.1",
+    "zod-openapi": "^5.4.5"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.3.10",
+    "@types/bun": "^1.3.5",
+    "@types/pg": "^8.16.0",
+    "drizzle-kit": "0.31.8",
+    "prettier": "3.7.4",
+    "tsx": "^4.21.0"
+  }
+}
