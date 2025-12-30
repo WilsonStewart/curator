@@ -13,7 +13,8 @@
       "extensions": [
         "yoavbls.pretty-ts-errors",
         "biomejs.biome",
-        "esbenp.prettier-vscode"
+        "esbenp.prettier-vscode",
+        "tamasfe.even-better-toml"
       ]
     }
   }

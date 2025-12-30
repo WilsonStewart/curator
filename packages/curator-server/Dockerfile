@@ -19,6 +19,6 @@ RUN uv tool install commitizen && uv tool upgrade commitizen
 RUN dnf copr enable atim/lazygit -y
 RUN dnf install lazygit -y
 RUN curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | sh
-RUN dnf copr enable atim/starship && dnf install starship -y
+RUN dnf copr enable atim/starship -y && dnf install starship -y
 # ENV UV_INSTALL_DIR="/root/.local"
 # ENV PATH="$UV_INSTALL_DIR/bin:$PATH"

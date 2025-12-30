@@ -1,8 +1,8 @@
-import { resolver } from "hono-openapi/zod";
-import { z, ZodTypeAny } from "zod";
+import { resolver } from "hono-openapi";
+import { type ZodAny, z } from "zod";
 
 export const res200Successful = (opts: {
-	zodSchema?: ZodTypeAny;
+	zodSchema?: ZodAny;
 	descriptionOverride?: string;
 }) => {
 	return {
@@ -20,7 +20,7 @@ export const res200Successful = (opts: {
 };
 
 export const res401Unauthorized = (opts: {
-	zodSchema?: ZodTypeAny;
+	zodSchema?: ZodAny;
 	descriptionOverride?: string;
 }) => {
 	return {

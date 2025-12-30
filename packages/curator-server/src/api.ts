@@ -2,15 +2,15 @@ import env from "@/lib/dotenv";
 import { notFound404Handler } from "@/middlewares/404-handler";
 import { errorHandler } from "@/middlewares/error-handler";
 import { openAPIRouteHandler } from "hono-openapi";
-import pkgdotjson from "@/../package.json" with { type: "json" };
+import rootPkgDotJson from "@/../../../package.json" with { type: "json" };
 import { Scalar } from "@scalar/hono-api-reference";
 import { museumsRouter, statusRouter } from "@/api/routes";
 import { auth, authEnabledHono } from "@/lib/auth";
 import { authenticatedRoute } from "@/middlewares/auth-middleware";
-import {logger} from "@/lib/logger"
+import { logger } from "@/lib/logger";
 import { pinoLogger } from "hono-pino";
 import { Hono } from "hono";
-import { RStatusGet } from "./api/routes/status/R.status.get";
+// import { RStatusGet } from "./api/routes/status/R.status.get";
 
 export const API_BASE_URL = "/api/v1";
 
@@ -45,7 +45,7 @@ api.get(
 		documentation: {
 			info: {
 				title: "Curator Server API",
-				version: pkgdotjson.version,
+				version: rootPkgDotJson.version
 			},
 			servers: [
 				{
