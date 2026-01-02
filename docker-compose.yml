@@ -12,6 +12,7 @@ services:
 
   api-prod:
     image: curator-server:latest
+    container_name: api
     profiles:
       - prod
     restart: always
