@@ -12,7 +12,7 @@ jobs:
 
       - name: Build the 'curator-server' image
         run: |
-          docker build -t curator-server --target serverproddeploy .
+          docker build -t curator-server --target serverprod .
 
       - name: Build the 'curator-server-nginx-prod' image
         run: |
