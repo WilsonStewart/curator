@@ -1,7 +1,7 @@
 import "dotenv/config";
-import { worker } from "@/worker";
 // import { printBanner } from "@/lib/banner";
-import { api } from "@/api";
+import { api } from "./api/api";
+import { logger } from "./lib/logger";
 // // import env from "@/lib/dotenv";
 
 // import { eq } from "drizzle-orm";
@@ -9,7 +9,7 @@ import { api } from "@/api";
 // import { metadata } from "@/schemas/drizzle-schema/drizzle-schema.metadata";
 // import { boss } from "@/boss";
 
-async function start() {
+function start() {
 	// printBanner();
 
 	// // Test db connection, kill if not up
@@ -24,18 +24,24 @@ async function start() {
 
 	switch (process.env.CURATOR_MODE) {
 		case "api":
-			return {
-				port: 80,
+			console.log("Starting curator-server in 'api' mode...");
+			return Bun.serve({
+				port: 5099,
 				fetch: api.fetch,
-			};
+			});
 
 		// case "boss":
 		//   boss();
 		//   break;
 
-		case "worker":
-			worker();
+		// case "worker":
+		// 	worker();
+		// 	break
+
+		default:
+			console.log("josiah!");
+			break;
 	}
 }
 
-export default await start();
+start();

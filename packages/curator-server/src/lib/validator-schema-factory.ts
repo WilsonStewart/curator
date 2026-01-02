@@ -35,9 +35,13 @@ export function validatorSchemaFactory<TTable extends AnyPgTable>(
 		};
 		doMakeStringsNotemptyOnInsert?: boolean;
 		VSchemaOverride?: {
+			// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 			VInsert?: ZodObject<any>;
+			// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 			VSelect?: ZodObject<any>;
+			// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 			VUpdate?: ZodObject<any>;
+			// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 			VDelete?: ZodObject<any>;
 		};
 	},
@@ -56,8 +60,9 @@ export function validatorSchemaFactory<TTable extends AnyPgTable>(
 				"id",
 				"createdAt",
 				"modifiedAt",
+				// biome-ignore lint/correctness/noUnsafeOptionalChaining: <explanation>
 				...options?.additionalFieldsToOmit?.insert,
-			]
+		  ]
 		: ["id", "createdAt", "modifiedAt"];
 
 	const insertShape = options?.doMakeStringsNotemptyOnInsert
@@ -73,7 +78,7 @@ export function validatorSchemaFactory<TTable extends AnyPgTable>(
 					Object.entries(insertShape).filter(
 						([key]) => !fieldsToOmitInsert.includes(key),
 					),
-				)
+			  )
 			: insertShape,
 	);
 	const VSelect = z.object(selectShape);

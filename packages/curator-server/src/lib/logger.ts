@@ -1,13 +1,13 @@
 import pino from "pino";
 import "pino-loki";
 import "pino-pretty";
-import env from "@/lib/dotenv";
+import env from "./dotenv";
 
-let transportTargets: pino.TransportTargetOptions[] = [
-	{
-		target: "pino-loki",
-		options: { host: "http://loki:3100" },
-	},
+const transportTargets: pino.TransportTargetOptions[] = [
+	// {
+	// 	target: "pino-loki",
+	// 	options: { host: "http://loki:3100" },
+	// },
 ];
 
 if (env.NODE_ENV !== "production") {

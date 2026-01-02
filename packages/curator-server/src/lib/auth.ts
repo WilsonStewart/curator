@@ -1,9 +1,8 @@
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { betterAuth } from "better-auth";
 import { apiKey, openAPI } from "better-auth/plugins";
-import { db } from "@/lib/db";
-import env from "@/lib/dotenv";
-import { genUlid } from "@/lib/id-generators";
+import { db } from "./db";
+import env from "./dotenv";
 import { Hono } from "hono";
 import {
 	accounts,
@@ -11,10 +10,11 @@ import {
 	sessions,
 	users,
 	verifications,
-} from "@/schemas/drizzle-schema/drizzle-schema.better-auth";
+} from "../schemas/drizzle/drizzle.better-auth";
 
 // let betterAuthPlugins: any = [];
 
+// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 const betterAuthPlugins: any = [apiKey({ defaultPrefix: "curator_" })];
 
 export const auth = betterAuth({
@@ -32,7 +32,7 @@ export const auth = betterAuth({
 					openAPI({
 						disableDefaultReference: true,
 					}),
-				],
+			  ],
 	database: drizzleAdapter(db, {
 		provider: "pg",
 		usePlural: true,

@@ -1,0 +1,23 @@
+{
+  "name": "curator-devcontainer",
+  "runArgs": ["--name", "curator-devcontainer"],
+  "build": {
+    "dockerfile": "Dockerfile",
+    "target": "devcontainer"
+  },
+  "mounts": [
+    "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "yoavbls.pretty-ts-errors",
+        "biomejs.biome",
+        "esbenp.prettier-vscode",
+        "tamasfe.even-better-toml",
+        "ms-azuretools.vscode-containers",
+        "ahmadalli.vscode-nginx-conf"
+      ]
+    }
+  }
+}

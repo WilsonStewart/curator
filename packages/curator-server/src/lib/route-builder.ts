@@ -1,6 +1,6 @@
 import type { Hono, MiddlewareHandler } from "hono";
-import { _HTTP } from "./http-status-codes";
 import { describeRoute, resolver } from "hono-openapi";
+import { _HTTP } from "./http-status-codes";
 
 type TContentType = "application/json";
 interface IRouteParams {

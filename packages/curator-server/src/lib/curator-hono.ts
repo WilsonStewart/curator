@@ -1,12 +1,11 @@
 import { Hono } from "hono";
-import type { User, Session } from "./auth";
+import { auth } from "./auth";
 
 export function createApp() {
-	return new Hono<
-		{},
-		{
-			user: User | null;
-			session: Session | null;
-		}
-	>();
+	return new Hono<{
+		Variables: {
+			user: typeof auth.$Infer.Session.user | null;
+			session: typeof auth.$Infer.Session.session | null;
+		};
+	}>();
 }

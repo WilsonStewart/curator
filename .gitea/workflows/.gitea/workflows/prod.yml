@@ -1,0 +1,27 @@
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-ci-image:
+    runs-on: curator-server
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Build the 'curator-server' image
+        run: |
+          docker build -t curator-server --target serverproddeploy .
+
+      - name: Build the 'curator-server-nginx-prod' image
+        run: |
+          docker build -t curator-server-nginx-prod --target prod ./support-services/nginx
+      
+      - name: Stop the 'prod' profile
+        run: |
+          docker compose --profile prod down
+
+      - name: Start the 'prod' profile, w/--force-recreate
+        run: |
+          docker compose --profile prod up --force-recreate --always-recreate-deps -d

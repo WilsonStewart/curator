@@ -2,6 +2,7 @@
 node_modules/
 .data/
 dist/
+tmp/
 
 .config/nginx/*.crt
 .config/nginx/*.key
