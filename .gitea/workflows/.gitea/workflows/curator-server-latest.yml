@@ -7,6 +7,11 @@ on:
 jobs:
   build-ci-image:
     runs-on: curator-server
+    env:
+      NODE_ENV: production
+      SERVER_URL: https://latest.curator.bellbellbell.com
+      SERVER_PORT: 443
+      DATABASE_URL: https://testdb.local
     steps:
       - uses: actions/checkout@v6
 
