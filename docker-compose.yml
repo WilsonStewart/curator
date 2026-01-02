@@ -18,11 +18,6 @@ services:
     environment:
       - NODE_ENV=production
       - CURATOR_MODE=api
-      - REDIS_PASSWORD=1234
-      - SERVER_URL=http://bob.com
-      - SERVER_PORT=1222
-      - DATABASE_URL=http://bob.com
-      - BETTER_AUTH_SECRET=FakyG8fOYZjD44DEGUGNdHnU2nphasda5tkP2VUHpts=
     networks:
       - curator-server-prod
     working_dir: "/app"
