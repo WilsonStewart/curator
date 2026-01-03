@@ -7,11 +7,6 @@ on:
 jobs:
   build-ci-image:
     runs-on: curator-server
-    env:
-      NODE_ENV: production
-      SERVER_URL: https://latest.curator.bellbellbell.com
-      SERVER_PORT: 443
-      DATABASE_URL: https://testdb.local
     steps:
       - uses: actions/checkout@v6
 
@@ -29,4 +24,8 @@ jobs:
 
       - name: Start the 'prod' profile, w/--force-recreate
         run: |
+          export NODE_ENV=production
+          export SERVER_URL=https://latest.curator.bellbellbell.com
+          export SERVER_PORT=443
+          export DATABASE_URL=https://testdb.local
           docker compose --profile prod up --force-recreate --always-recreate-deps -d
