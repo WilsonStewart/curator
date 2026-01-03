@@ -65,3 +65,16 @@ RUN curl -fsSL https://bun.com/install | bash -s "bun-v1.3.5" \
 ENV PATH="/root/.bun/bin:$PATH"
 COPY --from=serverbunbuild /build/packages/curator-server/dist /app/
 COPY --from=serverpnpmdeploy /build/deploy/curator-server/node_modules /app/node_modules
+
+FROM nginx:1.29.4 AS nginxbase
+RUN rm /etc/nginx/conf.d/default.conf
+RUN mkdir -p /var/cache/nginx/media
+COPY ./support-services/nginx/nginx.conf /etc/nginx/nginx.conf
+COPY ./support-services/nginx/includes/ /etc/nginx/includes/
+COPY ./support-services/nginx/favicon.ico /var/www/
+
+FROM nginxbase AS nginxdev
+COPY ./support-services/nginx/conf.d/dev.conf /etc/nginx/conf.d/
+
+FROM nginxbase AS nginxprod
+COPY ./support-services/nginx/conf.d/prod.conf /etc/nginx/conf.d/

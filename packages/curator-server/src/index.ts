@@ -26,7 +26,7 @@ function start() {
 		case "api":
 			console.log("Starting curator-server in 'api' mode...");
 			return Bun.serve({
-				port: 5099,
+				port: 80,
 				fetch: api.fetch,
 			});
 

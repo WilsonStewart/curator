@@ -22,11 +22,11 @@ api.use(
 	}),
 );
 
-api.get("/pookie", async (c) => {
-	return c.text("ok");
+api.get(`${API_BASE_URL}/pookie`, async (c) => {
+	return c.text("luke");
 });
 
-// const protectedApi = authEnabledHono();
+const protectedApi = authEnabledHono();
 
 // api.use(logger());
 // api.use(honoLogger);
@@ -42,7 +42,7 @@ api.route(`${API_BASE_URL}/status`, statusRouter);
 // api.route("/api/initialize", initializeRouter);
 // api.route("/api/exhibits", exhibitsRouter);
 
-// protectedApi.use("*", authenticatedRoute);
+protectedApi.use("*", authenticatedRoute);
 
 api.get(
 	`${API_BASE_URL}/openapi.json`,
@@ -79,8 +79,11 @@ api.get(
 
 // protectedApi.route("/museums", museumsRouter);
 // protectedApi.route("/initialize", initializeRouter);
+protectedApi.get("/save-pookie", async (c) => {
+	return c.text("luke is safe!");
+});
 
-// api.route("/", protectedApi);
+api.route(API_BASE_URL, protectedApi);
 
 // console.log(
 // 	`Api started for real at ${env.SERVER_URL}:${env.SERVER_PORT}/api/v1`,

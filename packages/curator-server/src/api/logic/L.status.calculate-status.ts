@@ -17,9 +17,10 @@ export const LCalculateUnauthenticatedStatus = async (): Promise<
 	return {
 		product: "com.bellbellbell.curator-server",
 		version: rootPkgDotJson.version,
-		versionBw: convert_SplitSemverToBitwiseVersion(
-			convert_SemverToSplitSemver(rootPkgDotJson.version),
-		),
+		// Disabled until I re-work the bw version number, or retire it -ws 1/2/26
+		// versionBw: convert_SplitSemverToBitwiseVersion(
+		// 	convert_SemverToSplitSemver(rootPkgDotJson.version),
+		// ),
 		serviceStatus: calculateBitwiseServiceStatus(),
 		timestamp: new Date().toISOString(),
 	};

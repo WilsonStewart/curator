@@ -16,8 +16,8 @@ services:
     profiles:
       - prod
     restart: always
+    env_file: .env
     environment:
-      - NODE_ENV=production
       - CURATOR_MODE=api
     networks:
       - curator-server-prod

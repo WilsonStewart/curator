@@ -16,16 +16,20 @@ jobs:
 
       - name: Build the 'curator-server-nginx-prod' image
         run: |
-          docker build -t curator-server-nginx-prod --target prod ./support-services/nginx
+          docker build -t curator-server-nginx-prod --target nginxprod .
       
-      - name: Stop the 'prod' profile
+      - name: Re-write .env file
         run: |
-          docker compose --profile prod down
+          [ -f .env ] && rm .env
+          echo "NODE_ENV=production" >> .env
+          echo "SERVER_URL=https://latest.curator.bellbellbell.com" >> .env
+          echo "SERVER_PORT=443" >> .env
+          echo "DATABASE_URL=postgres://user:pass@db/app" >> .env
+          echo "BETTER_AUTH_SECRET=${{ secrets.CURATOR_SERVER_LATEST_BETTER_AUTH_SECRET }}" >> .env
+      # - name: Stop the 'prod' profile
+      #   run: |
+      #     docker compose --profile prod down
 
       - name: Start the 'prod' profile, w/--force-recreate
         run: |
-          export NODE_ENV=production
-          export SERVER_URL=https://latest.curator.bellbellbell.com
-          export SERVER_PORT=443
-          export DATABASE_URL=https://testdb.local
           docker compose --profile prod up --force-recreate --always-recreate-deps -d
