@@ -12,7 +12,7 @@ RUN curl -fsSL https://rpm.nodesource.com/setup_24.x | bash - \
 FROM base AS ci
 
 FROM base AS devcontainer
-RUN dnf install zsh vim tmux dnf-plugins-core -y
+RUN dnf install zsh vim tmux dnf-plugins-core glibc-langpack-en -y
 RUN dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo && dnf install docker-ce-cli -y
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 ENV UV_INSTALL_DIR="/root/.local"
