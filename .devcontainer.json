@@ -16,7 +16,8 @@
         "esbenp.prettier-vscode",
         "tamasfe.even-better-toml",
         "ms-azuretools.vscode-containers",
-        "ahmadalli.vscode-nginx-conf"
+        "ahmadalli.vscode-nginx-conf",
+        "vivaxy.vscode-conventional-commits"
       ]
     }
   }
