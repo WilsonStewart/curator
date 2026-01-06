@@ -38,6 +38,7 @@ services:
   api-dev:
     build:
       target: base
+    container_name: api
     restart: always
     profiles:
       - dev

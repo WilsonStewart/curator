@@ -23,7 +23,7 @@ api.use(
 );
 
 api.get(`${API_BASE_URL}/pookie`, async (c) => {
-	return c.text("luke");
+	return c.text("pooooookie poookers");
 });
 
 const protectedApi = authEnabledHono();
