@@ -71,7 +71,7 @@ RUN rm /etc/nginx/conf.d/default.conf
 RUN mkdir -p /var/cache/nginx/media
 COPY ./support-services/nginx/nginx.conf /etc/nginx/nginx.conf
 COPY ./support-services/nginx/includes/ /etc/nginx/includes/
-COPY ./support-services/nginx/favicon.ico /var/www/
+COPY ./support-services/nginx/var/www /var/www/
 
 FROM nginxbase AS nginxdev
 COPY ./support-services/nginx/conf.d/dev.conf /etc/nginx/conf.d/

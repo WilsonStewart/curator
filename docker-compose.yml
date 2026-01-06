@@ -24,34 +24,34 @@ services:
     working_dir: "/app"
     command: [ "sh", "-c", "bun index.js" ]
 
-  # nginx-dev:
-  #   build:
-  #     context: support-services/nginx
-  #     target: dev
-  #   container_name: nginx
-  #   profiles:
-  #     - dev-support-services
-  #   ports:
-  #     - "5080:80"
-  #   networks:
-  #     - curator-server
-
+  nginx-dev:
+    build:
+      target: nginxdev
+    container_name: nginx
+    profiles:
+      - dev
+    ports:
+      - "5080:80"
+    networks:
+      - curator-server-dev
 
   api-dev:
     build:
-      target: dev
+      target: base
     restart: always
     profiles:
       - dev
-    # env_file:
-    #   - .env
+    env_file:
+      - .env
     environment:
+      - NODE_ENV=development
       - CURATOR_MODE=api
     volumes:
       - .:/app:rw
-    networks: [ curator-server ]
+    networks:
+      - curator-server-dev
     working_dir: "/app/packages/curator-server"
-    command: [ "sh", "-c", "pnpm exec tsx src/index.ts" ]
+    command: [ "sh", "-c", "bun run --hot src/index.ts" ]
 
   # db-dev:
   #   image: postgres:18
@@ -169,7 +169,7 @@ services:
 networks:
   curator-server-prod:
     driver: bridge
-  curator-server:
+  curator-server-dev:
     driver: bridge
   # volumes:
   # curator-server-db-data:
