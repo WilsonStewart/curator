@@ -1,5 +1,7 @@
 packages:
   - packages/*
 
+# nodeLinker: hoisted
+
 onlyBuiltDependencies:
   - esbuild
